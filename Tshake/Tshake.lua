@@ -3745,9 +3745,9 @@ for k,v in pairs(list) do
 local user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
 if user_info and user_info.username then
 local username = user_info.username
-text = text..k.." ~ ⁞ @"..username.." [ `' ..v.. '` ]\n"
+text = text..k.." ~ ⁞ @"..username.." » ( `' ..v.. '` )\n"
 else
-text = text..k.." ~ ⁞  `' ..v.. '` \n"
+text = text..k.." ~ ⁞ » (`' ..v.. '`) \n"
 end
 end
 if #list == 0 then
