@@ -5364,21 +5364,21 @@ end
 end  
 if not database:get("group_edit:tshake"..msg.chat_id_..bot_id) then
 if (is_mod(msg) or is_creatorbasic(msg))   then
-if text:match("^وضع اسم (.*)$")   then
-local txt = {string.match(text, "^(وضع اسم) (.*)$")}
+if text:match("^lolololoolo (.*)$")   then
+local txt = {string.match(text, "^(lolololoolo) (.*)$")}
 changetitle(msg.chat_id_, txt[2])
 send(msg.chat_id_, msg.id_, 1, '✔┇تم تحديث اسم المجموعه الى \n'..txt[2], 1, 'md')
 end
-if text:match("^وضع صوره")  then
+if text:match("^lollollololo")  then
 database:set('tshake:'..bot_id..'setphoto'..msg.chat_id_..':'..msg.sender_user_id_,true)
 send(msg.chat_id_, msg.id_, 1, '♻️ ※ قم بارسال صوره الان  ✓', 1, 'md')
 end
-if text:match("^مسح الصوره") then
+if text:match("^مسح الصورهllll") then
 https.request('https://api.telegram.org/bot'..token..'/deleteChatPhoto?chat_id='..msg.chat_id_)
 send(msg.chat_id_, msg.id_, 1, '🗑※ تم مسح الصوره  ✓', 1, 'md')
 end
-if text:match("^وضع وصف (.*)$")  then
-local text = {string.match(text, "^(وضع وصف) (.*)$")}
+if text:match("^وضع وصفllllll (.*)$")  then
+local text = {string.match(text, "^(وضع وصفllllll) (.*)$")}
 bot.changeChannelAbout(msg.chat_id_,text[2])
 send(msg.chat_id_, msg.id_, 1, "✔┇تم وضع وصف للمجموعه", 1, 'md')
 end
