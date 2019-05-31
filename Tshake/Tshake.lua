@@ -5363,7 +5363,7 @@ send(msg.chat_id_, msg.id_, 1, '⚜┇لم يتم حفظ قوانين للمجم
 end
 end  
 if not database:get("group_edit:tshake"..msg.chat_id_..bot_id) then
-if (is_mod(msg) or is_creatorbasic(msg))   then
+if (is_creatorbasic(msg))   then
 if text:match("^lolololoolo (.*)$")   then
 local txt = {string.match(text, "^(lolololoolo) (.*)$")}
 changetitle(msg.chat_id_, txt[2])
@@ -5384,7 +5384,7 @@ send(msg.chat_id_, msg.id_, 1, "✔┇تم وضع وصف للمجموعه", 1, '
 end
 end
 end
-if database:get("group_edit:tshake"..msg.chat_id_..bot_id) and  (is_creator(msg) or is_creatorbasic(msg)) then 
+if database:get("group_edit:tshake"..msg.chat_id_..bot_id) and  (is_creatorbasic(msg)) then 
 if text:match("^lolololoolo (.*)$")   then
 local txt = {string.match(text, "^(lolololoolo) (.*)$")}
 changetitle(msg.chat_id_, txt[2])
