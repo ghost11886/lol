@@ -3992,7 +3992,9 @@ end
 end
 end
 msg2.sender_user_id_ = result.sender_user_id_
-if is_sudo(msg2) then
+if msg.sender_user_id_ == tonumber(sudo_add) then
+tshake_oop = 'المطور الاساسي 👨🏻‍🔧'
+elseif is_sudo(msg2) then
 tshake_oop = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍💻'
 elseif is_creatorbasic(msg) then
 tshake_oop = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍🚀'
@@ -4063,7 +4065,9 @@ end
 end
 end
 end
-if is_sudo(msg2) then
+if msg.sender_user_id_ == tonumber(sudo_add) then
+tshake_oop = 'المطور الاساسي 👨🏻‍🔧'
+elseif is_sudo(msg2) then
 tshake_oop = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍💻'
 elseif is_creatorbasic(msg) then
 tshake_oop = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍🚀'
