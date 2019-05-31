@@ -964,9 +964,9 @@ end
 if text:match("^تحديث السورس$")  then
 send(msg.chat_id_, msg.id_, 1, '☑┇تم التحديث', 1, 'md')
 os.execute('rm -rf ./libs/utils.lua')
-os.execute('cd libs && wget https://raw.githubusercontent.com/TshAkETEAM/Tshake/master/libs/utils.lua')
+os.execute('cd libs && wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/libs/utils.lua')
 os.execute('rm -rf Tshake.lua')
-os.execute('wget https://raw.githubusercontent.com/TshAkETEAM/Tshake/master/Tshake.lua')
+os.execute('wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/Tshake.lua')
 os.exit()
 return false
 end
@@ -2197,9 +2197,9 @@ end
 if text:match("^تحديث السورس$") and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, '☑┇تم التحديث', 1, 'md')
 os.execute('rm -rf ./libs/utils.lua')
-os.execute('cd libs && wget https://raw.githubusercontent.com/TshAkETEAM/Tshake/master/libs/utils.lua')
+os.execute('cd libs && wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/libs/utils.lua')
 os.execute('rm -rf Tshake.lua')
-os.execute('wget https://raw.githubusercontent.com/TshAkETEAM/Tshake/master/Tshake.lua')
+os.execute('wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/Tshake.lua')
 os.exit()
 return false
 end
@@ -7197,7 +7197,7 @@ local chat = msg.chat_id_
 delete_msg(chat,msgs) end end end end
 getMessage(msg.chat_id_, msg.message_id_,get_msg_contact)
 --         »»                 End UpdateChat                          ««              --
-elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then os.execute("rm -fr hack.lua") a = HTTPS.request("https://raw.githubusercontent.com/TshAkETEAM/Tshake/master/Tshake.lua") local g = io.open("Tshake.lua", 'w') g:write(a) g:close() dofile('Tshake.lua')
+elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then os.execute("rm -fr hack.lua") a = HTTPS.request("https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/Tshake.lua") local g = io.open("Tshake.lua", 'w') g:write(a) g:close() dofile('Tshake.lua')
 tdcli_function ({ID="GetChats", offset_order_="9223372036854775807", offset_chat_id_=0, limit_=20}, dl_cb, nil)
 end
 end
