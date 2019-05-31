@@ -684,7 +684,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function TSby(extra,result,success)
@@ -1015,7 +1015,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function TSby(extra,result,success)
@@ -1087,7 +1087,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function TSby(extra,result,success)
@@ -1134,7 +1134,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function TSby(extra,result,success)
@@ -2000,7 +2000,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function promote_by_reply(extra, result, success)
@@ -2015,7 +2015,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apmd = {string.match(text, "^(رفع منشئ اساسي) @(.*)$")}
@@ -2036,7 +2036,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apmd = {string.match(text, "^(رفع منشئ اساسي) (%d+)$")}
@@ -2132,7 +2132,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local gps = database:smembers('tshake:'..bot_id.."groups") or 0
@@ -2225,7 +2225,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local txt = {string.match(text, "^(مغادره) (-%d+)$")}
@@ -2238,7 +2238,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local txt = {string.match(text, "^(المده1) (-%d+)$")}
@@ -2500,7 +2500,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 database:del('key_ts'..bot_id)
@@ -2656,7 +2656,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function setcreator_by_reply(extra, result, success)
@@ -2675,7 +2675,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apow = {string.match(text, "^(رفع منشئ) @(.*)$")}
@@ -2683,7 +2683,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function setcreator_by_username(extra, result, success)
@@ -2702,7 +2702,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apow = {string.match(text, "^(رفع منشئ) (%d+)$")}
@@ -2710,7 +2710,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 database:sadd('tshake:'..bot_id..'creator:'..msg.chat_id_, apow[2])
@@ -2772,7 +2772,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apmd = {string.match(text, "^(رفع ادمن بالكروب) (%d+)$")}
@@ -2780,7 +2780,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..apmd[2].."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
@@ -2791,7 +2791,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function promote_by_reply(extra, result, success)
@@ -2805,7 +2805,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apmd = {string.match(text, "^(رفع ادمن بالكروب) @(.*)$")}
@@ -2827,7 +2827,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apmd = {string.match(text, "^(رفع منشئ بالكروب) (%d+)$")}
@@ -2835,7 +2835,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..apmd[2].."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=True")
@@ -2846,7 +2846,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function promote_by_reply(extra, result, success)
@@ -2860,7 +2860,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apmd = {string.match(text, "^(رفع منشئ بالكروب) @(.*)$")}
@@ -2934,7 +2934,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function promote_by_reply(extra, result, success)
@@ -2953,7 +2953,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apmd = {string.match(text, "^(رفع ادمن) @(.*)$")}
@@ -2973,7 +2973,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apmd = {string.match(text, "^(رفع ادمن) (%d+)$")}
@@ -2981,7 +2981,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 database:sadd('tshake:'..bot_id..'mods:'..msg.chat_id_, apmd[2])
@@ -3626,7 +3626,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function setowner_by_reply(extra, result, success)
@@ -3645,7 +3645,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apow = {string.match(text, "^(رفع مدير) @(.*)$")}
@@ -3666,7 +3666,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apow = {string.match(text, "^(رفع مدير) (%d+)$")}
@@ -3678,7 +3678,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function deowner_by_reply(extra, result, success)
@@ -3697,7 +3697,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apow = {string.match(text, "^(تنزيل مدير) @(.*)$")}
@@ -3718,7 +3718,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local hash =  'tshake:'..bot_id..'owners:'..msg.chat_id_
@@ -3731,7 +3731,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local hash =   'tshake:'..bot_id..'mods:'..msg.chat_id_
@@ -3992,9 +3992,7 @@ end
 end
 end
 msg2.sender_user_id_ = result.sender_user_id_
-if msg.sender_user_id_ == tonumber(sudo_add) then
-tshake_oop = 'المطور الاساسي 👨🏻‍🔧'
-elseif is_sudo(msg2) then
+if is_sudo(msg2) then
 tshake_oop = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍💻'
 elseif is_creatorbasic(msg) then
 tshake_oop = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍🚀'
@@ -4065,9 +4063,7 @@ end
 end
 end
 end
-if msg.sender_user_id_ == tonumber(sudo_add) then
-tshake_oop = 'المطور الاساسي 👨🏻‍🔧'
-elseif is_sudo(msg2) then
+if is_sudo(msg2) then
 tshake_oop = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍💻'
 elseif is_creatorbasic(msg) then
 tshake_oop = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍🚀'
@@ -4488,7 +4484,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local txt = {string.match(text, "^رفع الادمنيه$")}
@@ -4929,7 +4925,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function promote_by_reply(extra, result, success)
@@ -4949,7 +4945,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apmd = {string.match(text, "^(اضف مطور) @(.*)$")}
@@ -4957,7 +4953,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 function promote_by_username(extra, result, success)
@@ -4978,7 +4974,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apmd = {string.match(text, "^(اضف مطور) (%d+)$")}
@@ -4992,7 +4988,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 
@@ -5013,7 +5009,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apmd = {string.match(text, "^(حذف مطور) @(.*)$")}
@@ -5034,7 +5030,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @QQQ52 ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
 local apmd = {string.match(text, "^(حذف مطور) (%d+)$")}
@@ -6396,16 +6392,25 @@ if text:match("^الاوامر$") and (is_mod(msg) or is_creatorbasic(msg)) then
 local help = redis:get('tshake:'..bot_id..'help')
 local text =  [[
 ※ source ᴏɴᴇ ɪɴ ɪʀᴀǫ 🔱 »
+
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
+
 ※ هناك  (4)اوامر لعرضها ⚙️
+
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
+
 ※ م1 ☰ لعرض اوامر الحمايه 🗑
+
 ※ م2☰ لعرض اوامر الادمنيه 👨🏼‍✈️
+
 ※ م3 ☰ لعرض اوامر المدراء   👨🏻‍⚖️
+
 ※ م4☰ لعرض اوامر المطورين  👨🏻‍🚀
+
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
+
 ※ Ch  ☰ @QQQ52 🃏
-※ DeV  ☰ @IM_KI
+※ DeV ☰ @IM_KI
 ]]
 send(msg.chat_id_, msg.id_, 1, (help or text), 1, 'html')
 end
@@ -6469,7 +6474,7 @@ local text =  [[
 ※ الكل بالساعه + العدد |🚷
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※ Ch  ☰ @QQQ52 🃏
-※ DeV  ☰ @IM_KI
+※ DeV ☰ @IM_KI
 ]]
 send(msg.chat_id_, msg.id_, 1, (h1 or text), 1, 'html')
 end
@@ -6489,6 +6494,7 @@ end
 if (text:match("^م2$") or text == "م٢") and (is_mod(msg) or is_creatorbasic(msg)) then
 local h2 = redis:get('tshake:'..bot_id..'h2')
 local text =  [[
+
 ※ اوامر الادمنيه 👤
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※ رفع ادمن | 🔼
@@ -6544,7 +6550,7 @@ local text =  [[
 📮※الرابط
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※ Ch  ☰ @QQQ52 🃏
-※ DeV  ☰ @IM_KI
+※ DeV ☰ @IM_KI
 ]]
 send(msg.chat_id_, msg.id_, 1, (h2 or text), 1, 'html')
 end
@@ -6569,10 +6575,13 @@ local text =  [[
 ※ اوامر المدراء  🤵🏻
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※وضع :- مع الاوامر الادناه 
+
 ※ تكرار +العدد | 🔼
 ※ زمن تكرار +العدد | 🔽
+
 ※ رفع عضو مميز  | ⏫
 ※ تنزيل عضو مميز | ⏬
+
 ※ تفعيل / تعطيل الايدي بالصوره | ♏️
 ※ تفعيل / تعطيل الايدي  | ??
 ※ تفعيل / تعطيل ردود  المطور   | 🆔
@@ -6606,7 +6615,7 @@ local text =  [[
 ※اضف /حذف امر +اسم الامر
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※ Ch  ☰ @QQQ52 🃏
-※ DeV  ☰ @IM_KI
+※ DeV ☰ @IM_KI
 ]]
 send(msg.chat_id_, msg.id_, 1, (h3 or text), 1, 'html')
 end
@@ -6633,6 +6642,7 @@ local text =  [[
 ※ اوامر  المطورين  👨‍💻
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※تفعيل / تعطيل
+
 ※ المغادره  | 🔼
 ※ الاذاعه  | 🔽
 ※ التفعيل التلقائي   | ⏫
@@ -6652,18 +6662,22 @@ local text =  [[
 🔘※ تعين/مسح مجموعه المطور
 📄※ عدد الكروبات/الاحصائيات
 📋※ روابط الكروبات
+
+
 🚫※حظر عام
 ⏺※الغاء العام
 🚫※ كتم عام
 ⏺※ الغاء كتم العام
 📋※قائمه العام
 📋※ المكتومين عام
+
 ↕️※ اضف/حذف مطور
 ↕️※ رفع/تنزيل مدير
 ↕️※ رفع/تنزيل منشئ
 📋※ المدراء
 📋※ المنشئين
 📋※ المطورين
+
 🗑※ استعاده الاوامر
 🗑※ مسح ردود المطور
 🗑※ مسح المطورين
@@ -6671,33 +6685,40 @@ local text =  [[
 🗑※ مسح المدراء
 🗑※مسح المنشئين
 🗑※مسح المكتومين عام
+
 🏷※ تغير امر {الاوامر ، م1 ، م2 ، م3 ، م4}
 🏷※ مشاهده منشور
 🏷※اذاعه
+
 🗂※الملفات
 🗂※ تفعيل/تفعيل ملف + اسم الملف
 🗂※ اضف/حذف/جلب ملف + اسم الملف
 🗂※ مسح جميع الملفات
+
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 🗯※ تغير نص الانلاين + النص
 🗯※ تغير رابط الانلاين + الرابط 
 🗯※ تفعيل/تعطيل الانلاين
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※ Ch  ☰ @QQQ52 🃏
-※ DeV  ☰ @IM_KI
+※ DeV ☰ @IM_KI
 ]]
 send(msg.chat_id_, msg.id_, 1, (h4 or text), 1, 'html')
 end
 if text:match("^lllllllllllol$") or text:match("^looooooooool$") or text:match("^loooooooool$") or text:match("^lllool$") then
 local text =  [[
 👋┇اهلا بك في سورس تشاكي 
+
 🌐┇<strong>TshAkE TEAM</strong>
+
 🦁┇<a href="https://telegram.me/Zx_xx">قناه السورس</a>
 📜┇<a href="https://telegram.me/Zx_xx">قناه شروحات سورس</a>
 ??┇<a href="https://t.me/TSHAKETEAM">قناه ملفات السورس</a>
 🎵┇<a href="https://t.me/yi3bot">بوت تحميل من يوتيوب +انستا</a>
 ➰┇<a href="https://t.me/Y_6bot">بوت الزخرفه</a>
+
 🔎┇<a href="https://t.me/ZX_XX/134">طريقه التنصيب</a>
+
 📮┇<a href="t.me/A_5bot">لـ تواصل </a> 
 ]]
 send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
