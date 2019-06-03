@@ -7043,7 +7043,7 @@ function get_msg_contact(extra, result, success)
 local text = (result.content_.text_ or result.content_.caption_)
 local msgg = result 
 database:incr('tshake:'..bot_id..'user:editmsg'..msgg.chat_id_..':'..msgg.sender_user_id_)
-if (not (is_creator(msgg) or is_admin(msgg)) and not text) then 
+if (not is_mod(msgg) and not text) then 
 if database:get("tshake:lo:edit:new:"..bot_id..msgg.chat_id_) then 
 msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs)
