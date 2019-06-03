@@ -5781,7 +5781,7 @@ if text and text == "مسح مجموعه المطور" and tonumber(msg.sender_u
 send(msg.chat_id_, msg.id_, 1, '☑┇ تم مسح مجموعه المطور', 1, 'md')
 database:del("tshake"..bot_id..":sudo:gr")
 end
-if (text:match("^ايدي$") or text:match("^id$") ) and msg.reply_to_message_id_ == 0 then
+if (text:match("^ايدي$") or text:match("[Ii][Dd]$") ) and msg.reply_to_message_id_ == 0 then
 local keko_info = nil
 function keko333(extra,result,success)
 keko_info = '@'..(result.username_ or 'لا يوجد')..''
