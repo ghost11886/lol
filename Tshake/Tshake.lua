@@ -7084,14 +7084,14 @@ if database:get("lock_link.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) end end end
 if result.id_ and result.content_.text_ then
-if not is_mod(msgg) then
+if not is_vip(msgg) then
 check_filter_words(result, text)
 if text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]") or text:match("[Tt].[Mm][Ee]") or text:match(".[Mm][Ee]") or text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]") then
 if database:get("lock_link:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs)
 end end end 
-if not is_mod(msgg) then
+if not is_vip(msgg) then
 check_filter_words(result, text)
 if text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]") or text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]") then
 if database:get("lock_link.note:tshake"..msg.chat_id_..bot_id) then
