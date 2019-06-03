@@ -7160,7 +7160,7 @@ if text:match("[ASDFGHJKLQWERTYUIOPZXCVBNMasdfghjklqwertyuiopzxcvbnm]") then
 if database:get("lock_en.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) end end end 
-if not is_vip(msgg) then
+if not is_mod(msgg) then
 check_filter_words(result, text)
 if database:get("lock_edit:tshake"..msg.chat_id_..bot_id) then
 local id = msg.message_id_
