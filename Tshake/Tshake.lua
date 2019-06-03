@@ -7057,7 +7057,7 @@ delete_msg(msg.chat_id_,msgs)
 end 
 end 
 end
-if (not is_mod(msgg) and text) then
+if (not is_vip(msgg) and text) then
 check_filter_words(result, text)
 if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or
 text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or
