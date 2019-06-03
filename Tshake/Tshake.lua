@@ -7057,6 +7057,15 @@ delete_msg(msg.chat_id_,msgs)
 end 
 end 
 end
+     if (not is_creator(msgg) ) then
+check_filter_words(result, text)
+if database:get("lock_edit:tshake"..msg.chat_id_..bot_id) then
+local id = msg.message_id_
+local msgs = {[0] = id}
+local chat = msg.chat_id_
+delete_msg(chat,msgs) 
+ end 
+ end 
 if (not is_vip(msgg) and text) then
 check_filter_words(result, text)
 if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or
@@ -7160,15 +7169,6 @@ if text:match("[ASDFGHJKLQWERTYUIOPZXCVBNMasdfghjklqwertyuiopzxcvbnm]") then
 if database:get("lock_en.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) end end end 
-if (not is_creator(msgg) ) then
-check_filter_words(result, text)
-if database:get("lock_edit:tshake"..msg.chat_id_..bot_id) then
-local id = msg.message_id_
-local msgs = {[0] = id}
-local chat = msg.chat_id_
-delete_msg(chat,msgs) 
- end 
- end 
  end 
  end
 getMessage(msg.chat_id_, msg.message_id_,get_msg_contact)
