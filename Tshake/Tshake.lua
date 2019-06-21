@@ -4152,6 +4152,7 @@ send(msg.chat_id_, msg.id_, 1, '🎴※ رابط المجموعة 👩🏿‍�
 else
 local getlink = 'https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_
 local req = https.request(getlink)
+local link = json:decode(req)
 if link.ok == true then 
 send(msg.chat_id_, msg.id_, 1, '📮┇رابط المجموعه \n'..(link.result or "Error"), 1, "html")
 database:set('tshake:'..bot_id.."group:link"..msg.chat_id_,link.result)
