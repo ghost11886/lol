@@ -1015,7 +1015,7 @@ local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
 if res then
 if res == 'false' then
-send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
+send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ghost118877 ⚜️\n', 1, 'html')   
 return false end
 end
 function TSby(extra,result,success)
