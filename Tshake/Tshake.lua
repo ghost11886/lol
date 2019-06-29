@@ -6427,7 +6427,7 @@ database:set('tshake:'..bot_id..'l:id3'..msg.chat_id_,true)
 end
 if text == 'محيبس' or text == 'بات' and database:get('tshake:'..bot_id..'lock_geam'..msg.chat_id_) then  
 Num = math.random(1,6)
-database:set('tshake:'..bot_id..'bat'..msg.chat_id_,name) 
+database:set('tshake:'..bot_id.."GAMES"..msg.chat_id_,name) 
 TEST = [[
 *➀       ➁     ➂      ➃      ➄     ➅
 ↓      ↓     ↓      ↓     ↓     ↓
@@ -6447,7 +6447,7 @@ local NUM = text:match("^(%d+)$")
 if tonumber(NUM) > 6 then
 send( msg.chat_id_, msg.id_, 1,"*📬¦ عذرا لا يوجد سواء { 6 } اختيارات فقط ارسل اختيارك مره اخره*\n", 1, "md")    
 return false  end 
-local GETNUM = database:get('tshake:'..bot_id.."bat"..msg.chat_id_)
+local GETNUM = database:get('tshake:'..bot_id.."GAMES"..msg.chat_id_)
 if tonumber(NUM) == tonumber(GETNUM) then
 database:del('tshake:'..bot_id.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 send( msg.chat_id_, msg.id_, 1,'*📮¦ مبروك فزت وطلعت المحيبس بل ايد رقم { '..NUM..' }\n🎊¦ لقد حصلت على { 3 }من نقاط يمكنك استبدالهن برسائل *', 1, "md")    
