@@ -7,20 +7,17 @@
            CH > @TshAkETEAM
 --]]
 --------------------------------------
-serpent = require('serpent')
+serpent = (loadfile  "./libs/serpent.lua")()
 serp = require 'serpent'.block
 https = require("ssl.https")
 HTTPS = require("ssl.https")
 http = require("socket.http")
 http.TIMEOUT = 10
-lgi = require ('lgi')
 bot=dofile('./libs/utils.lua')
 JSON = (loadfile  "./libs/dkjson.lua")()
 json = dofile("./libs/JSON.lua")
 redis = (loadfile "./libs/redis.lua")()
 database = Redis.connect('127.0.0.1', 6379)
-notify = lgi.require('Notify')
-notify.init ("Telegram updates")
 sudos = dofile('sudo.lua')
 chats = {}
 day = 86400
@@ -331,11 +328,7 @@ end
 function chat_kick(chat_id, user_id)
 changeChatMemberStatus(chat_id, user_id, "Kicked")
 end
---         »»                 do_notify                         ««              --
-function do_notify (user, msg)
-local n = notify.Notification.new(user, msg)
-n:show ()
-end
+
 --         »»                 getParseMode                         ««              --
 local function getParseMode(parse_mode)
 if parse_mode then
@@ -967,6 +960,7 @@ os.execute('rm -rf ./libs/utils.lua')
 os.execute('cd libs && wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/libs/utils.lua')
 os.execute('rm -rf Tshake.lua')
 os.execute('wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/Tshake.lua')
+dofile('Tshake.lua') 
 os.exit()
 return false
 end
@@ -2194,12 +2188,17 @@ local tshakee = 'https://api.telegram.org/bot' .. token .. '/sendDocument'
 local curl = 'curl "' .. tshakee .. '" -F "chat_id=' .. msg.chat_id_ .. '" -F "document=@' .. 'TshAkE.txt' .. '"'
 io.popen(curl)
 end
+if text == 'تحديث' then
+dofile('Tshake.lua')  
+send(msg.chat_id_, msg.id_, 1, '☑┇تم التحديث', 1, 'md')
+end
 if text:match("^تحديث السورس$") and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, '☑┇تم التحديث', 1, 'md')
 os.execute('rm -rf ./libs/utils.lua')
 os.execute('cd libs && wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/libs/utils.lua')
 os.execute('rm -rf Tshake.lua')
 os.execute('wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/Tshake.lua')
+dofile('Tshake.lua')  
 os.exit()
 return false
 end
@@ -2604,13 +2603,7 @@ database:sadd( 'tshake:'..bot_id.."groups",msg.chat_id_)
 end
 end
 end
-if ((not d) and chat) then
-if msg.content_.ID == "MessageText" then
-do_notify (chat.title_, msg.content_.text_)
-else
-do_notify (chat.title_, msg.content_.ID)
-end
-end
+
 database:incr('tshake:'..bot_id..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
 if database:get('tshake:'..bot_id..'viewget'..msg.sender_user_id_) then
 if not msg.forward_info_ then
@@ -2937,6 +2930,10 @@ if res == 'false' then
 send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
+if not is_creator(msg) and database:get('tshake:'..bot_id.."Tshake:lock:set"..msg.chat_id_) then 
+send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع الرفع تم تعطيل الرفع من قبل المنشئين \n', 1, 'md')
+return false
+end
 function promote_by_reply(extra, result, success)
 local hash =  'tshake:'..bot_id..'mods:'..msg.chat_id_
 if database:sismember(hash, result.sender_user_id_) then
@@ -2956,6 +2953,9 @@ if res == 'false' then
 send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
+if not is_creator(msg) and database:get('tshake:'..bot_id.."Tshake:lock:set"..msg.chat_id_) then 
+send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع الرفع تم تعطيل الرفع من قبل المنشئين \n', 1, 'md')
+return false end
 local apmd = {string.match(text, "^(رفع ادمن) @(.*)$")}
 function promote_by_username(extra, result, success)
 if result.id_ then
@@ -2976,6 +2976,9 @@ if res == 'false' then
 send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @ZX_XX ⚜️\n', 1, 'html')   
 return false end
 end
+if not is_creator(msg) and database:get('tshake:'..bot_id.."Tshake:lock:set"..msg.chat_id_) then 
+send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع الرفع تم تعطيل الرفع من قبل المنشئين \n', 1, 'md')
+return false end
 local apmd = {string.match(text, "^(رفع ادمن) (%d+)$")}
 local res = http.request('http://tshake.gq/x.php?id='..msg.sender_user_id_..'')
 vardump(res)
@@ -3020,6 +3023,9 @@ database:srem(hash, apmd[2])
 tsX000(apmd[2],msg,"※ تم تنزيله من ادمنيه البوت ✓ 🧙🏻‍♂️")
 end
 if (text:match("^رفع عضو مميز$") or text:match("^رفع مميز$"))  and (is_owner(msg) or is_creatorbasic(msg)) and msg.reply_to_message_id_ then
+if not is_creator(msg) and database:get('tshake:'..bot_id.."Tshake:lock:set"..msg.chat_id_) then 
+send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع الرفع تم تعطيل الرفع من قبل المنشئين \n', 1, 'md')
+return false end
 function promote_by_reply(extra, result, success)
 local hash =  'tshake:'..bot_id..'vipgp:'..msg.chat_id_
 if database:sismember(hash, result.sender_user_id_) then
@@ -3034,10 +3040,13 @@ end
 local text = text:gsub('رفع مميز','رفع عضو مميز')
 if text:match("^رفع عضو مميز @(.*)$") and (is_owner(msg) or is_creatorbasic(msg)) then
 local apmd = {string.match(text, "^(رفع عضو مميز) @(.*)$")}
+if not is_creator(msg) and database:get('tshake:'..bot_id.."Tshake:lock:set"..msg.chat_id_) then 
+send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع الرفع تم تعطيل الرفع من قبل المنشئين \n', 1, 'md')
+return false end
 function promote_by_username(extra, result, success)
 if result.id_ then
 database:sadd('tshake:'..bot_id..'vipgp:'..msg.chat_id_, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم رفعة عضو مميز  في البوت ✓ 👶🏻'
+texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n※ تم رفعة عضو مميز  في البوت ✓ 👶🏻'
 else
 texts = '✖┇خطاء'
 end
@@ -3048,6 +3057,9 @@ end
 local text = text:gsub('رفع مميز','رفع عضو مميز')
 if text:match("^رفع عضو مميز (%d+)$") and (is_owner(msg) or is_creatorbasic(msg)) then
 local apmd = {string.match(text, "^(رفع عضو مميز) (%d+)$")}
+if not is_creator(msg) and database:get('tshake:'..bot_id.."Tshake:lock:set"..msg.chat_id_) then 
+send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع الرفع تم تعطيل الرفع من قبل المنشئين \n', 1, 'md')
+return false end
 database:sadd('tshake:'..bot_id..'vipgp:'..msg.chat_id_, apmd[2])
 tsX000(apmd[2],msg,"※ تم رفعة عضو مميز  في البوت ✓ 👶🏻")
 end
@@ -4359,6 +4371,14 @@ if  txt[2] == 'المكتومين' then
 database:del('tshake:'..bot_id..'muted:'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, 1, '📟※ تم مسح قائمه المكتومين ✓', 1, 'md')
 end
+end
+if (text and (text == "تعطيل الرفع" or text == "تعطيل الترقيه") and (is_creator(msg) or is_creatorbasic(msg))) then
+database:set('tshake:'..bot_id.."Tshake:lock:set"..msg.chat_id_,"tshake")
+send(msg.chat_id_, msg.id_, 1, '☑┇تم تعطيل رفع ( الادمنيه - المميزين ) في المجموعه \n', 1, 'md')
+end
+if (text and (text == "تفعيل الرفع" or text == "تفعيل الترقيه")  and (is_creator(msg) or is_creatorbasic(msg))) then
+database:del('tshake:'..bot_id.."Tshake:lock:set"..msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, '☑┇تم تفعيل رفع ( الادمنيه - المميزين ) في المجموعه \n', 1, 'md')
 end
 if (text and (text == "تعطيل الطرد" or text == "تعطيل الحظر") and (is_creator(msg) or is_creatorbasic(msg))) then
 database:set("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_,"tshake")
@@ -6458,6 +6478,35 @@ end
 end
 end
 end
+if text == 'امثله' and database:get('tshake:'..bot_id..'lock_geam'..msg.chat_id_) then
+katu = {
+'جوز','ضراطه','الحبل','الحافي','شقره','بيدك','سلايه','النخله','الخيل','حداد','المبلل','يركص','قرد','العنب','العمه','الخبز','بالحصاد','شهر','شكه','يكحله',
+};
+name = katu[math.random(#katu)]
+database:set('tshake:'..bot_id..':Set_Amthlh:'..msg.chat_id_,name)
+name = string.gsub(name,'جوز','ينطي____للماعده سنون')
+name = string.gsub(name,'ضراطه','الي يسوق المطي يتحمل___')
+name = string.gsub(name,'بيدك','اكل___محد يفيدك')
+name = string.gsub(name,'الحافي','تجدي من___نعال')
+name = string.gsub(name,'شقره','مع الخيل يا___')
+name = string.gsub(name,'النخله','الطول طول___والعقل عقل الصخلة')
+name = string.gsub(name,'سلايه','بالوجه امراية وبالظهر___')
+name = string.gsub(name,'الخيل','من قلة___شدو على الچلاب سروج')
+name = string.gsub(name,'حداد','موكل من صخم وجهه كال آني___')
+name = string.gsub(name,'المبلل','___ما يخاف من المطر')
+name = string.gsub(name,'الحبل','اللي تلدغة الحية يخاف من جرة___')
+name = string.gsub(name,'يركص','المايعرف___يكول الكاع عوجه')
+name = string.gsub(name,'العنب','المايلوح___يكول حامض')
+name = string.gsub(name,'العمه','___إذا حبت الچنة ابليس يدخل الجنة')
+name = string.gsub(name,'الخبز','انطي___للخباز حتى لو ياكل نصه')
+name = string.gsub(name,'باحصاد','اسمة___ومنجله مكسور')
+name = string.gsub(name,'شهر','امشي__ولا تعبر نهر')
+name = string.gsub(name,'شكه','يامن تعب يامن__يا من على الحاضر لكة')
+name = string.gsub(name,'القرد','__بعين امه غزال')
+name = string.gsub(name,'يكحله','اجه___عماها')
+TEST = 'اكمل المثل التالي {* '..name..' *}'
+send(msg.chat_id_, msg.id_, 1,TEST, 1, 'md')
+end
 if database:get('tshake:'..bot_id.."skrafa:name" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then   
 if text and text:match("^الغاء$") then 
 send(msg.chat_id_, msg.id_, 1, "*💥¦* تم الغاء امر الزخرفه ✔", 1, "md")
@@ -7827,7 +7876,21 @@ send(msg.chat_id_, msg.id_, 1, "🗑 ※ تم حذف رسائلك  ✓", 1, "md"
 end
 ---------------------------------------------------------------------------
 if text == 'تفعيل اللعبه' and (is_owner(msg) or is_creatorbasic(msg)) then   
-send(msg.chat_id_, msg.id_, 1,"👾 | تم تفعيل اللعبة   ✓\n👾 | تم تفعيل اللعبة   ✓ هناك خمس العاب 👾\n 🕛 | ارسل امر (الاسرع) لبدء لعبه الاسرع  👾\n🏴 | ارسل امر (سمايلات) لبدء لعبه السمايلات 👾\n🤔 | ارسل امر (حزوره) لبدء لعبه الحزوره 👾\n💿| ارسل امر (المعاني) لبدء لعبه المعاني 👾\n✖️| ارسل امر (العكس) لبدء لعبه العكس 👾\n   ✓", 1, 'md')
+send(msg.chat_id_, msg.id_, 1,[[*
+✔️| تم تفعيل الالعاب بنجاح  ✓
+┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+📋| الالعاب المتاحه لديك هي ↓
+┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+🚸| ارسل امر (الاسرع) لبدء لعبه
+🚸| ارسل امر (سمايلات) لبدء لعبه
+🚸| ارسل امر (حزوره) لبدء لعبه
+🚸| ارسل امر (المعاني) لبدء لعبه
+🚸| ارسل امر (العكس) لبدء لعبه
+🚸| ارسل امر (خمن) لبدء لعبه
+🚸| ارسل امر (امثله) لبدء لعبه
+┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+Ch  ☰ *[@zx_xx] 🃏
+]], 1, 'md')
 database:set('tshake:'..bot_id..'lock_geam'..msg.chat_id_,true)  
 end
 if text == 'تعطيل اللعبه' and (is_owner(msg) or is_creatorbasic(msg)) then  
@@ -8618,7 +8681,7 @@ local chat = msg.chat_id_
 delete_msg(chat,msgs) end end end end
 getMessage(msg.chat_id_, msg.message_id_,get_msg_contact)
 --         »»                 End UpdateChat                          ««              --
-elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then os.execute("rm -fr hack.lua") a = HTTPS.request("https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/Tshake.lua") local g = io.open("Tshake.lua", 'w') g:write(a) g:close() dofile('Tshake.lua')
+elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then 
 tdcli_function ({ID="GetChats", offset_order_="9223372036854775807", offset_chat_id_=0, limit_=20}, dl_cb, nil)
 end
 end
