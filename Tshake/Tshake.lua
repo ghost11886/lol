@@ -6426,7 +6426,7 @@ end
 database:set('tshake:'..bot_id..'l:id3'..msg.chat_id_,true)
 end
 if text == 'خمن' or text == 'تخمين' and database:get('tshake:'..bot_id..'lock_geam'..msg.chat_id_) then   
-Num = math.random(1,3)
+Num = math.random(1,5)
 database:set('tshake:'..bot_id.."GAMES:NUM"..msg.chat_id_,Num) 
 TEST = '*\n📮¦ اهلا بك عزيزي في لعبة التخمين :\nٴ━━━━━━━━━━\n'..'⚠¦ ملاحظه لديك { 3 } محاولات فقط فكر قبل ارسال تخمينك \n\n'..'🔖¦ سيتم تخمين عدد ما بين ال {1 و 20} اذا تعتقد انك تستطيع الفوز جرب واللعب الان ؟ \n🎊¦ الفائز سيحصل على { 5 } من النقود \n💥*'
 send( msg.chat_id_, msg.id_, 1, TEST, 1, "md") 
@@ -6436,14 +6436,15 @@ end
 if database:get('tshake:'..bot_id.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
 if text and text:match("^(%d+)$") then
 local NUM = text:match("^(%d+)$")
-if tonumber(NUM) > 3 then
-send( msg.chat_id_, msg.id_, 1,"*📬¦ عذرآ لا يمكنك تخمين عدد اكبر من ال { 20 } خمن رقم ما بين ال{ 1 و 20 } *\n", 1, "md")    
+if tonumber(NUM) > 5 then
+send( msg.chat_id_, msg.id_, 1,"*📬¦ عذرآ لا يمكنك تخمين عدد اكبر من ال { 5 } خمن رقم ما بين ال{ 1 و 5 } *\n", 1, "md")    
 return false  end 
 local GETNUM = database:get('tshake:'..bot_id.."GAMES:NUM"..msg.chat_id_)
 if tonumber(NUM) == tonumber(GETNUM) then
 database:del('tshake:'..bot_id..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_)
 database:del('tshake:'..bot_id.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
-database:incrby('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_,5)  
+database:incrby('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_, 5) 
+database:incrby('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_id_, 1)    
 send( msg.chat_id_, msg.id_, 1,'*🔖¦ مبروك فزت ويانه وخمنت الرقم الصحيح\n🚸¦ تم اضافة { 5 } من النقاط *\n', 1, "md")    
 elseif tonumber(NUM) ~= tonumber(GETNUM) then
 database:incrby('tshake:'..bot_id..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_,1)
