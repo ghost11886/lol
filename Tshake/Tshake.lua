@@ -2538,6 +2538,13 @@ end
 end
 end -- end function sudo
 -----------------------------------------
+function GET_TEXT(msg)
+if database:get('tshake:'..bot_id.."skrafa:name" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then   
+if text and text:match("^الغاء$") then 
+send(msg.chat_id_, msg.id_, 1, "*💥¦* تم الغاء امر الزخرفه ✔", 1, "md")
+database:del('tshake:'..bot_id.."skrafa:name" .. msg.chat_id_ .. "" .. msg.sender_user_id_)     
+return false
+end
 if text then
 if utf8.len(text) > 20 then
 send(msg.chat_id_, msg.id_, 1,'*📮¦ لا يمكن زخرفة اكثر من 20 حرف *', 1, 'md') 
@@ -3824,6 +3831,8 @@ send(msg.chat_id_, msg.id_, 1, SEND_SKRF,  1, "md")
 database:del('tshake:'..bot_id.."skrafa:name" .. msg.chat_id_ .. "" .. msg.sender_user_id_)     
 end
 end
+end
+function zhrfa(msg)
 if text == 'تفعيل الزخرفه' and is_mod(msg) then   
 if database:get('tshake:'..bot_id..'lock:skrfa'..msg.chat_id_)  then
 taha = '*📮¦ تم تفعيل الزخرفه *\n✓' 
@@ -3855,6 +3864,7 @@ else
 send(msg.chat_id_, msg.id_, 1,'*📬¦ الزخرفه معطله *', 1, 'md') 
 end
 return false
+end
 end
 ----------------------------------------
 function tshake_run_file(data)
