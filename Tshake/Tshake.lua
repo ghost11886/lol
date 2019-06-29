@@ -7797,13 +7797,12 @@ zhrf18 = zhrf18:gsub('ى', 'ى')
 zhrf18 = zhrf18:gsub('ز', 'ز')
 zhrf18 = zhrf18:gsub('و', 'ﯛ̲୭')
 zhrf18 = zhrf18:gsub("ه", "໋۠هہؚ")
-local RANDROM={'•💚','🍿﴿','❥˓ ','💝﴿ֆ','🐼🌿','🙊💙','-✨','〄💖‘','⚡️💊','-⁽🌷','🔥“','💜💭','','🎩','“̯🐼💗','🍷','❥̚͢₎😍','🌸‘','💭💔ۦ','💛💭ۦ','⚡️🔱ۦ','℡ᴖ̈💜','🌔☄️₎ۦ˛','💥♩','☻🔥“ٰۦ','℡̇✨🐯⇣✦','⁞♩⁽💎🌩₎⇣✿','ۦٰ‏┋❥͢˓🦁💛ۦ‏','⚡️♛ֆ₎','♛⇣🐰☄️₎✦','⁾⇣✿┊❥','₎✿💥🎃⁞“❥','😴✿⇣','❥┊⁽℡🦁🌸'}
+local RANDROM={'•💚','🍿﴿','❥˓ ','💝﴿ֆ','🐼🌿','🙊💙','-✨','〄💖‘','⚡️💊','-⁽🌷','🔥“','💜💭','','🎩','“̯🐼💗','🍷','❥̚͢₎😍','🌸‘','💭💔ۦ','💛💭ۦ','⚡️🔱ۦ','℡ᴖ̈💜','🌔☄️₎ۦ˛','💥♩','☻🔥“ٰۦ','℡̇✨🐯⇣✦','⁞♩⁽💎🌩₎⇣✿','ۦٰ‏┋❥͢˓🦁💛ۦ‏','⚡️♛ֆ₎','♛⇣🐰☄️₎✦','⁾⇣✿┊❥','₎✿💥🎃⁞“❥','😴✿⇣','❥┊⁽℡🦁🌸'}
 local TEXTSHER = '\n*📮¦ اهلا بك عزيزي المستخدم\n🗃¦ اضغط على الاسم ليتم نسخه *\nٴ━━━━━━━━━━\n'
 local TEXT_end = '*\nٴ━━━━━━━━━━\n📌¦ مطور البوت* ❪['..SUDOUSERNAME..']❫'
 local SEND_SKRF = TEXTSHER..'*1 »* `'..zhrf1..' '..RANDROM[math.random(#RANDROM)]..'`\n*2 »* `'..zhrf2..' '..RANDROM[math.random(#RANDROM)]..'`\n*3 »* `'..zhrf3..' '..RANDROM[math.random(#RANDROM)]..'`\n*4 »* `'..zhrf4..' '..RANDROM[math.random(#RANDROM)]..'`\n*5 »* `'..zhrf5..' '..RANDROM[math.random(#RANDROM)]..'`\n*6 »* `'..zhrf6..' '..RANDROM[math.random(#RANDROM)]..'`\n*7 »* `'..zhrf7..' '..RANDROM[math.random(#RANDROM)]..'`\n*8 »* `'..zhrf8..' '..RANDROM[math.random(#RANDROM)]..'`\n*9 »* `'..zhrf9..' '..RANDROM[math.random(#RANDROM)]..'`\n*10 »* `'..zhrf10..' '..RANDROM[math.random(#RANDROM)]..'`\n*11 »* `'..zhrf11..' '..RANDROM[math.random(#RANDROM)]..'`\n*12 »* `'..zhrf12..' '..RANDROM[math.random(#RANDROM)]..'`\n*13 »* `'..zhrf13..' '..RANDROM[math.random(#RANDROM)]..'`\n*14 »* `'..zhrf14..' '..RANDROM[math.random(#RANDROM)]..'`\n*15 »* `'..zhrf15..' '..RANDROM[math.random(#RANDROM)]..'`\n*16 »* `'..zhrf16..' '..RANDROM[math.random(#RANDROM)]..'`\n*17 »* `'..zhrf17..' '..RANDROM[math.random(#RANDROM)]..'`\n*18 »* `'..zhrf18..' '..RANDROM[math.random(#RANDROM)]..'`'..TEXT_end
 send(msg.chat_id_, msg.id_, 1, SEND_SKRF,  1, "md")
 database:del('tshake:'..bot_id.."skrafa:name" .. msg.chat_id_ .. "" .. msg.sender_user_id_)     
-end
 end
 end
 end
@@ -7841,7 +7840,6 @@ end
 return false
 end
 end
-end
 
 return {
 CMDS = {
@@ -7854,28 +7852,18 @@ STORM = zhrfa,
 STORM_TEXT = GET_TEXT
 }
 
-----------------
 if text:match("^الاوامر$") and (is_mod(msg) or is_creatorbasic(msg)) then
 local help = redis:get('tshake:'..bot_id..'help')
 local text =  [[
 ※ source ᴏɴᴇ ɪɴ ɪʀᴀǫ 🔱 »
-
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
-
 ※ هناك  (4)اوامر لعرضها ⚙️
-
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
-
 ※ م1 ☰ لعرض اوامر الحمايه 🗑
-
 ※ م2☰ لعرض اوامر الادمنيه 👨🏼‍✈️
-
 ※ م3 ☰ لعرض اوامر المدراء   👨🏻‍⚖️
-
 ※ م4☰ لعرض اوامر المطورين  👨🏻‍🚀
-
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
-
 ※ Ch  ☰ @QQQ52 🃏
 ※ DeV ☰ @IM_KI
 ]]
@@ -7961,7 +7949,6 @@ end
 if (text:match("^م2$") or text == "م٢") and (is_mod(msg) or is_creatorbasic(msg)) then
 local h2 = redis:get('tshake:'..bot_id..'h2')
 local text =  [[
-
 ※ اوامر الادمنيه 👤
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※ رفع ادمن | 🔼
@@ -8042,13 +8029,10 @@ local text =  [[
 ※ اوامر المدراء  🤵🏻
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※وضع :- مع الاوامر الادناه 
-
 ※ تكرار +العدد | 🔼
 ※ زمن تكرار +العدد | 🔽
-
 ※ رفع عضو مميز  | ⏫
 ※ تنزيل عضو مميز | ⏬
-
 ※ تفعيل / تعطيل الايدي بالصوره | ♏️
 ※ تفعيل / تعطيل الايدي  | ??
 ※ تفعيل / تعطيل ردود  المطور   | 🆔
@@ -8109,7 +8093,6 @@ local text =  [[
 ※ اوامر  المطورين  👨‍💻
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※تفعيل / تعطيل
-
 ※ المغادره  | 🔼
 ※ الاذاعه  | 🔽
 ※ التفعيل التلقائي   | ⏫
@@ -8129,22 +8112,18 @@ local text =  [[
 🔘※ تعين/مسح مجموعه المطور
 📄※ عدد الكروبات/الاحصائيات
 📋※ روابط الكروبات
-
-
 🚫※حظر عام
 ⏺※الغاء العام
 🚫※ كتم عام
 ⏺※ الغاء كتم العام
 📋※قائمه العام
 📋※ المكتومين عام
-
 ↕️※ اضف/حذف مطور
 ↕️※ رفع/تنزيل مدير
 ↕️※ رفع/تنزيل منشئ
 📋※ المدراء
 📋※ المنشئين
 📋※ المطورين
-
 🗑※ استعاده الاوامر
 🗑※ مسح ردود المطور
 🗑※ مسح المطورين
@@ -8152,16 +8131,13 @@ local text =  [[
 🗑※ مسح المدراء
 🗑※مسح المنشئين
 🗑※مسح المكتومين عام
-
 🏷※ تغير امر {الاوامر ، م1 ، م2 ، م3 ، م4}
 🏷※ مشاهده منشور
 🏷※اذاعه
-
 🗂※الملفات
 🗂※ تفعيل/تفعيل ملف + اسم الملف
 🗂※ اضف/حذف/جلب ملف + اسم الملف
 🗂※ مسح جميع الملفات
-
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 🗯※ تغير نص الانلاين + النص
 🗯※ تغير رابط الانلاين + الرابط 
@@ -8175,17 +8151,13 @@ end
 if text:match("^lllllllllllol$") or text:match("^looooooooool$") or text:match("^loooooooool$") or text:match("^lllool$") then
 local text =  [[
 👋┇اهلا بك في سورس تشاكي 
-
 🌐┇<strong>TshAkE TEAM</strong>
-
 🦁┇<a href="https://telegram.me/Zx_xx">قناه السورس</a>
 📜┇<a href="https://telegram.me/Zx_xx">قناه شروحات سورس</a>
 ??┇<a href="https://t.me/TSHAKETEAM">قناه ملفات السورس</a>
 🎵┇<a href="https://t.me/yi3bot">بوت تحميل من يوتيوب +انستا</a>
 ➰┇<a href="https://t.me/Y_6bot">بوت الزخرفه</a>
-
 🔎┇<a href="https://t.me/ZX_XX/134">طريقه التنصيب</a>
-
 📮┇<a href="t.me/A_5bot">لـ تواصل </a> 
 ]]
 send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
