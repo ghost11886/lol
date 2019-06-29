@@ -6439,17 +6439,17 @@ local NUM = text:match("^(%d+)$")
 if tonumber(NUM) > 20 then
 send( msg.chat_id_, msg.id_, 1,"*📬¦ عذرآ لا يمكنك تخمين عدد اكبر من ال { 20 } خمن رقم ما بين ال{ 1 و 20 } *\n", 1, "md")    
 return false  end 
-local GETNUM = database:get(tshake.."GAMES:NUM"..msg.chat_id_)
+local GETNUM = database:get('tshake:'..bot_id.."GAMES:NUM"..msg.chat_id_)
 if tonumber(NUM) == tonumber(GETNUM) then
-database:del(tshake..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_)
-database:del(tshake.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
-database:incrby(tshake..'add:num'..msg.chat_id_..msg.sender_user_id_,5)  
+database:del('tshake:'..bot_id..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_)
+database:del('tshake:'..bot_id.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+database:incrby('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_,5)  
 send( msg.chat_id_, msg.id_, 1,'*🔖¦ مبروك فزت ويانه وخمنت الرقم الصحيح\n🚸¦ تم اضافة { 5 } من النقاط *\n', 1, "md")    
 elseif tonumber(NUM) ~= tonumber(GETNUM) then
-database:incrby(tshake..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_,1)
-if tonumber(database:get(tshake..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_)) >= 3 then
-database:del(tshake..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_)
-database:del(tshake.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+database:incrby('tshake:'..bot_id..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_,1)
+if tonumber(database:get('tshake:'..bot_id..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_)) >= 3 then
+database:del('tshake:'..bot_id..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_)
+database:del('tshake:'..bot_id.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 send( msg.chat_id_, msg.id_, 1,'\n*📮¦ اوبس لقد خسرت في اللعبه \n📬¦ حظآ اوفر في المره القادمه \n🔰¦ كان الرقم الذي تم تخمينه { '..GETNUM..' }\n*', 1, "md")    
 else
 send( msg.chat_id_, msg.id_, 1,'\n*📛¦ اوبس تخمينك غلط \n📌¦ ارسل رقم تخمنه مره اخره \n*', 1, "md")    
