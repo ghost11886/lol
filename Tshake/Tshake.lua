@@ -3832,7 +3832,6 @@ database:del('tshake:'..bot_id.."skrafa:name" .. msg.chat_id_ .. "" .. msg.sende
 end
 end
 end
-end
 local function zhrfa(msg)
 if text == 'تفعيل الزخرفه' and is_mod(msg) then   
 if database:get('tshake:'..bot_id..'lock:skrfa'..msg.chat_id_)  then
@@ -3867,8 +3866,6 @@ end
 return false
 end
 end
-end
-
 return {
 CMDS = {
 "^(زخرفه)$",
