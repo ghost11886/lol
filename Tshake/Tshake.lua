@@ -2538,12 +2538,6 @@ end
 end
 end -- end function sudo
 -----------------------------------------
-if database:get('tshake:'..bot_id.."skrafa:name" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then   
-if text and text:match("^الغاء$") then 
-send(msg.chat_id_, msg.id_, 1, "*💥¦* تم الغاء امر الزخرفه ✔", 1, "md")
-database:del('tshake:'..bot_id.."skrafa:name" .. msg.chat_id_ .. "" .. msg.sender_user_id_)     
-return false
-end
 if text then
 if utf8.len(text) > 20 then
 send(msg.chat_id_, msg.id_, 1,'*📮¦ لا يمكن زخرفة اكثر من 20 حرف *', 1, 'md') 
