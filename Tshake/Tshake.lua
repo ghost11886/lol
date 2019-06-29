@@ -7743,14 +7743,14 @@ zhrf18 = zhrf18:gsub('ز', 'ز')
 zhrf18 = zhrf18:gsub('و', 'ﯛ̲୭')
 zhrf18 = zhrf18:gsub("ه", "໋۠هہؚ")
 RANDROM={'•💚','🍿﴿','❥˓ ','💝﴿ֆ','🐼🌿','🙊💙','-✨','〄💖‘','⚡️💊','-⁽🌷','🔥“','💜💭','','🎩','“̯🐼💗','🍷','❥̚͢₎😍','🌸‘','💭💔ۦ','💛💭ۦ','⚡️🔱ۦ','℡ᴖ̈💜','🌔☄️₎ۦ˛','💥♩','☻🔥“ٰۦ','℡̇✨🐯⇣✦','⁞♩⁽💎🌩₎⇣✿','ۦٰ‏┋❥͢˓🦁💛ۦ‏','⚡️♛ֆ₎','♛⇣🐰☄️₎✦','⁾⇣✿┊❥','₎✿💥🎃⁞“❥','😴✿⇣','❥┊⁽℡🦁🌸'}
-TEXTSHER = '\n*📮¦ اهلا بك عزيزي المستخدم\n🗃¦ اضغط على الاسم ليتم نسخه *\nٴ━━━━━━━━━━\n'
-TEXT_end = '*\nٴ━━━━━━━━━━\n📌¦ مطور البوت* ❪[@IM_KI]❫'
+TEXTSHER = '\n*📮¦ اهلا بك عزيزي المستخدم\n🗃¦ اضغط على الاسم ليتم نسخه *\nٴ——————————-——\n'
+TEXT_end = '*\n——————————\n🌚¦ مطور البوت* ❪[@IM_KI]❫'
 SEND_SKRF = TEXTSHER..'*1 »* `'..zhrf1..' '..RANDROM[math.random(#RANDROM)]..'`\n*2 »* `'..zhrf2..' '..RANDROM[math.random(#RANDROM)]..'`\n*3 »* `'..zhrf3..' '..RANDROM[math.random(#RANDROM)]..'`\n*4 »* `'..zhrf4..' '..RANDROM[math.random(#RANDROM)]..'`\n*5 »* `'..zhrf5..' '..RANDROM[math.random(#RANDROM)]..'`\n*6 »* `'..zhrf6..' '..RANDROM[math.random(#RANDROM)]..'`\n*7 »* `'..zhrf7..' '..RANDROM[math.random(#RANDROM)]..'`\n*8 »* `'..zhrf8..' '..RANDROM[math.random(#RANDROM)]..'`\n*9 »* `'..zhrf9..' '..RANDROM[math.random(#RANDROM)]..'`\n*10 »* `'..zhrf10..' '..RANDROM[math.random(#RANDROM)]..'`\n*11 »* `'..zhrf11..' '..RANDROM[math.random(#RANDROM)]..'`\n*12 »* `'..zhrf12..' '..RANDROM[math.random(#RANDROM)]..'`\n*13 »* `'..zhrf13..' '..RANDROM[math.random(#RANDROM)]..'`\n*14 »* `'..zhrf14..' '..RANDROM[math.random(#RANDROM)]..'`\n*15 »* `'..zhrf15..' '..RANDROM[math.random(#RANDROM)]..'`\n*16 »* `'..zhrf16..' '..RANDROM[math.random(#RANDROM)]..'`\n*17 »* `'..zhrf17..' '..RANDROM[math.random(#RANDROM)]..'`\n*18 »* `'..zhrf18..' '..RANDROM[math.random(#RANDROM)]..'`'..TEXT_end
 send(msg.chat_id_, msg.id_, 1, SEND_SKRF,  1, "md")
 database:del('tshake:'..bot_id.."skrafa:name" .. msg.chat_id_ .. "" .. msg.sender_user_id_)     
 end
 end
-if text == 'تفعيل الزخرفه' and is_mod(msg) then   
+if text == 'تفعيل الزخرفه' and is_owner(msg) then   
 if database:get('tshake:'..bot_id..'lock:skrfa'..msg.chat_id_)  then
 taha = '*📮¦ تم تفعيل الزخرفه *\n✓' 
 send( msg.chat_id_, msg.id_, 1, taha, 1, "md") 
@@ -7761,7 +7761,7 @@ send( msg.chat_id_, msg.id_, 1, taha, 1, "md")
 end
 return false
 end
-if text == 'تعطيل الزخرفه' and is_mod(msg) then   
+if text == 'تعطيل الزخرفه' and is_owner(msg) then   
 if not database:get('tshake:'..bot_id..'lock:skrfa'..msg.chat_id_)  then
 taha = '*📮¦ تم تعطيل الزخرفه *\n✓' 
 send( msg.chat_id_, msg.id_, 1, taha, 1, "md") 
