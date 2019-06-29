@@ -6424,7 +6424,41 @@ database:incrby('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_,
 database:incrby('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_id_, 1)    
 end
 database:set('tshake:'..bot_id..'l:id3'..msg.chat_id_,true)
-end 
+end
+if text == 'محيبس' or text == 'بات' and database:get('tshake:'..bot_id..'lock_geam'..msg.chat_id_) then  
+Num = math.random(1,6)
+database:set('tshake:'..bot_id..'bat'..msg.chat_id_,name) 
+TEST = [[
+*➀       ➁     ➂      ➃      ➄     ➅
+↓      ↓     ↓      ↓     ↓     ↓
+👊 ‹› 👊 ‹› 👊 ‹› 👊 ‹› 👊 ‹› 👊
+
+
+📮¦ اختر لأستخراج المحيبس الايد التي تحمل المحيبس 
+🎁¦ الفائز يحصل على { 3 } من النقاط *
+]]
+send(msg.chat_id_, msg.id_, 1,TEST, 1, 'md') 
+database:setex('tshake:'..bot_id.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 100, true)  
+return false  
+end
+if database:get('tshake:'..bot_id.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
+if text and text:match("^(%d+)$") then
+local NUM = text:match("^(%d+)$")
+if tonumber(NUM) > 6 then
+send( msg.chat_id_, msg.id_, 1,"*📬¦ عذرا لا يوجد سواء { 6 } اختيارات فقط ارسل اختيارك مره اخره*\n", 1, "md")    
+return false  end 
+local GETNUM = database:get('tshake:'..bot_id.."bat"..msg.chat_id_)
+if tonumber(NUM) == tonumber(GETNUM) then
+database:del('tshake:'..bot_id.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+send( msg.chat_id_, msg.id_, 1,'*📮¦ مبروك فزت وطلعت المحيبس بل ايد رقم { '..NUM..' }\n🎊¦ لقد حصلت على { 3 }من نقاط يمكنك استبدالهن برسائل *', 1, "md")    
+database:incrby('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_, 3)
+database:incrby('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_id_, 3)     
+elseif tonumber(NUM) ~= tonumber(GETNUM) then
+database:del('tshake:'..bot_id.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+send( msg.chat_id_, msg.id_, 1,'\n*📮¦ للاسف لقد خسرت \n📬¦ المحيبس بل ايد رقم { '..GETNUM..' }\n💥¦ حاول مره اخرى للعثور على المحيبس *', 1, "md")    
+end
+end
+end
 if text =='مجوهراتي' then 
 if tonumber((database:get('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_) or 0)) == 0 then
 taha = '*💎¦ ليس لديك مجوهرات \n📬¦ للحصول على مجوهرات ارسل الاسرع وابدأ اللعب*\n'
