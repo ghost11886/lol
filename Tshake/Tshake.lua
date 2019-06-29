@@ -3866,16 +3866,6 @@ end
 return false
 end
 end
-return {
-CMDS = {
-"^(زخرفه)$",
-"^(زخرف)$",
-"^(تفعيل الزخرفه)$",
-"^(تعطيل الزخرفه)$",
-},
-STORM = zhrfa,
-STORM_TEXT = GET_TEXT
-}
 ------------------------------------------------------------------
 function tshake_run_file(data)
 local files_tshake = database:smembers("files"..bot_id)
