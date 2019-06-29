@@ -6225,7 +6225,7 @@ send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 end
 if text == ''..(database:get('tshake:'..bot_id..'klmos'..msg.chat_id_) or 'لفاتع')..'' and not database:get('tshake:'..bot_id..'l:ids'..msg.chat_id_) then
 if not database:get('tshake:'..bot_id..'l:ids'..msg.chat_id_) then 
-taha = '*👾| مبروك لقد فزت ,\n👨🏽‍💻| لعب مره اخره ارسل سمايلات ,*'
+taha = '*👾| مبروك لقد فزت ,\n👨🏽‍💻| للعب مره اخرى ارسل سمايلات ,*'
 send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 database:incrby('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_, 1)  
 database:incrby('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_id_, 1)    
@@ -6283,7 +6283,7 @@ send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 end
 if text == ''..(database:get('tshake:'..bot_id..'klmo'..msg.chat_id_) or 'لفاتع')..'' and not database:get('tshake:'..bot_id..'l:id'..msg.chat_id_) then
 if not database:get('tshake:'..bot_id..'l:id'..msg.chat_id_) then 
-taha = '*👾| مبروك لقد فزت ,\n👨🏽‍💻| لعب مره اخره ارسل الاسرع ,*'
+taha = '*👾| مبروك لقد فزت ,\n👨🏽‍💻| للعب مره اخرى ارسل الاسرع,*'
 send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 database:incrby('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_, 1) 
 database:incrby('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_id_, 1)    
@@ -6334,7 +6334,7 @@ send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 end
 if text == ''..(database:get('tshake:'..bot_id..'klmoa'..msg.chat_id_) or 'لفاتع')..'' and not database:get('tshake:'..bot_id..'l:id1'..msg.chat_id_) then
 if not database:get('tshake:'..bot_id..'l:id1'..msg.chat_id_) then 
-taha = '*👾| مبروك لقد فزت ,\n👨🏽‍💻| لعب مره اخره ارسل حزوره ,*'
+taha = '*👾| مبروك لقد فزت ,\n👨🏽‍💻| للعب مره اخرى ارسل حزوره,*'
 send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 database:incrby('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_, 1)
 database:incrby('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_id_, 1)    
@@ -6376,7 +6376,7 @@ send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 end
 if text == ''..(database:get('tshake:'..bot_id..'means'..msg.chat_id_) or 'لفاتع')..'' and not database:get('tshake:'..bot_id..'l:id2'..msg.chat_id_) then
 if not database:get('tshake:'..bot_id..'l:id2'..msg.chat_id_) then 
-taha = '*👾| مبروك لقد فزت ,\n👨🏽‍💻| لعب مره اخره ارسل المعاني ,*'
+taha = '*👾| مبروك لقد فزت ,\n👨🏽‍💻| للعب مره اخرى ارسل المعاني,*'
 send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 database:incrby('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_, 1)
 database:incrby('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_id_, 1)    
@@ -6418,7 +6418,7 @@ send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 end
 if text == ''..(database:get('tshake:'..bot_id..'aks'..msg.chat_id_) or 'لفاتع')..'' and not database:get('tshake:'..bot_id..'l:id3'..msg.chat_id_) then
 if not database:get('tshake:'..bot_id..'l:id3'..msg.chat_id_) then 
-taha = '*👾| مبروك لقد فزت ,\n👨🏽‍💻| لعب مره اخره ارسل العكس ,*'
+taha = '*👾| مبروك لقد فزت ,\n👨🏽‍💻| للعب مره اخرى ارسل العكس,*'
 send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 database:incrby('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_, 1)
 database:incrby('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_id_, 1)    
