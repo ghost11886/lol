@@ -6425,7 +6425,7 @@ database:incrby('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_i
 end
 database:set('tshake:'..bot_id..'l:id3'..msg.chat_id_,true)
 end
-if MSG_TEXT[1] == 'خمن' or MSG_TEXT[1] == 'تخمين' then   
+if text == 'خمن' or text == 'تخمين' and database:get('tshake:'..bot_id..'lock_geam'..msg.chat_id_) then   
 Num = math.random(1,20)
 database:set('tshake:'..bot_id.."GAMES:NUM"..msg.chat_id_,Num) 
 TEST = '*\n📮¦ اهلا بك عزيزي في لعبة التخمين :\nٴ━━━━━━━━━━\n'..'⚠¦ ملاحظه لديك { 3 } محاولات فقط فكر قبل ارسال تخمينك \n\n'..'🔖¦ سيتم تخمين عدد ما بين ال {1 و 20} اذا تعتقد انك تستطيع الفوز جرب واللعب الان ؟ \n🎊¦ الفائز سيحصل على { 5 } من النقود \n💥*'
