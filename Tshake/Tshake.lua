@@ -6425,37 +6425,34 @@ database:incrby('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_i
 end
 database:set('tshake:'..bot_id..'l:id3'..msg.chat_id_,true)
 end
-if text == 'محيبس' or text == 'بات' and database:get('tshake:'..bot_id..'lock_geam'..msg.chat_id_) then  
-Num = math.random(1,6)
-database:set('tshake:'..bot_id.."bat"..msg.chat_id_,name) 
-TEST = [[
-*➀       ➁     ➂      ➃      ➄     ➅
-↓      ↓     ↓      ↓     ↓     ↓
-👊 ‹› 👊 ‹› 👊 ‹› 👊 ‹› 👊 ‹› 👊
-
-
-📮¦ اختر لأستخراج المحيبس الايد التي تحمل المحيبس 
-🎁¦ الفائز يحصل على { 3 } من النقاط *
-]]
-send(msg.chat_id_, msg.id_, 1,TEST, 1, 'md') 
-database:setex('tshake:'..bot_id.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 100, true)  
+if MSG_TEXT[1] == 'خمن' or MSG_TEXT[1] == 'تخمين' then   
+Num = math.random(1,20)
+database:set('tshake:'..bot_id.."GAMES:NUM"..msg.chat_id_,Num) 
+TEST = '*\n📮¦ اهلا بك عزيزي في لعبة التخمين :\nٴ━━━━━━━━━━\n'..'⚠¦ ملاحظه لديك { 3 } محاولات فقط فكر قبل ارسال تخمينك \n\n'..'🔖¦ سيتم تخمين عدد ما بين ال {1 و 20} اذا تعتقد انك تستطيع الفوز جرب واللعب الان ؟ \n🎊¦ الفائز سيحصل على { 5 } من النقود \n💥*'
+send( msg.chat_id_, msg.id_, 1, TEST, 1, "md") 
+database:setex('tshake:'..bot_id.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 100, true)  
 return false  
 end
-if database:get('tshake:'..bot_id.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
+if database:get('tshake:'..bot_id.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
 if text and text:match("^(%d+)$") then
 local NUM = text:match("^(%d+)$")
-if tonumber(NUM) > 6 then
-send( msg.chat_id_, msg.id_, 1,"*📬¦ عذرا لا يوجد سواء { 6 } اختيارات فقط ارسل اختيارك مره اخره*\n", 1, "md")    
+if tonumber(NUM) > 20 then
+send( msg.chat_id_, msg.id_, 1,"*📬¦ عذرآ لا يمكنك تخمين عدد اكبر من ال { 20 } خمن رقم ما بين ال{ 1 و 20 } *\n", 1, "md")    
 return false  end 
-local GETNUM = database:get('tshake:'..bot_id.."bat"..msg.chat_id_)
+local GETNUM = database:get(tshake.."GAMES:NUM"..msg.chat_id_)
 if tonumber(NUM) == tonumber(GETNUM) then
-database:del('tshake:'..bot_id.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
-send( msg.chat_id_, msg.id_, 1,'*📮¦ مبروك فزت وطلعت المحيبس بل ايد رقم { '..NUM..' }\n🎊¦ لقد حصلت على { 3 }من نقاط يمكنك استبدالهن برسائل *', 1, "md")    
-database:incrby('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_, 3)
-database:incrby('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_id_, 3)     
+database:del(tshake..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_)
+database:del(tshake.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+database:incrby(tshake..'add:num'..msg.chat_id_..msg.sender_user_id_,5)  
+send( msg.chat_id_, msg.id_, 1,'*🔖¦ مبروك فزت ويانه وخمنت الرقم الصحيح\n🚸¦ تم اضافة { 5 } من النقاط *\n', 1, "md")    
 elseif tonumber(NUM) ~= tonumber(GETNUM) then
-database:del('tshake:'..bot_id.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
-send( msg.chat_id_, msg.id_, 1,'\n*📮¦ للاسف لقد خسرت \n📬¦ المحيبس بل ايد رقم { '..GETNUM..' }\n💥¦ حاول مره اخرى للعثور على المحيبس *', 1, "md")    
+database:incrby(tshake..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_,1)
+if tonumber(database:get(tshake..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_)) >= 3 then
+database:del(tshake..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_)
+database:del(tshake.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+send( msg.chat_id_, msg.id_, 1,'\n*📮¦ اوبس لقد خسرت في اللعبه \n📬¦ حظآ اوفر في المره القادمه \n🔰¦ كان الرقم الذي تم تخمينه { '..GETNUM..' }\n*', 1, "md")    
+else
+send( msg.chat_id_, msg.id_, 1,'\n*📛¦ اوبس تخمينك غلط \n📌¦ ارسل رقم تخمنه مره اخره \n*', 1, "md")    
 end
 end
 end
