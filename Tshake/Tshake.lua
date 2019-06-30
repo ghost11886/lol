@@ -970,7 +970,7 @@ end
 if not database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
 database:set( 'tshake:'..bot_id.."charge:"..msg.chat_id_,true)
 function thsake_info(k1,k2)
-send(msg.chat_id_, msg.id_, 1, info.."☑️┇تم تفعيل المجموعه {"..(k2.title_ or "").."}", 1, 'md')
+send(msg.chat_id_, msg.id_, 1, info.."📩┇تم تفعيل المجموعة {"..(k2.title_ or "").."}بنجاح ✔️", 1, 'md')
 end
 openChat(msg.chat_id_,thsake_info)
 function thsake_info2(k1,k2)
