@@ -627,7 +627,7 @@ break
 end
 end
 end 
-info = '👁‍🗨※بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'tshaketeam')..')\n'..text
+info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'tshaketeam')..')\n'..text
 send(msg.chat_id_, msg.id_, 1,info, 1, 'md')
 end
 getUser(msg.sender_user_id_, keko333)
@@ -675,7 +675,7 @@ local text = msg.content_.text_
 if (text == 'تعطيل') and not is_sudo(msg) then
 
 function TSby(extra,result,success)
-info = '👁‍🗨※بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'tshaketeam')..')\n'
+info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'..text
 local keko2 = database:get("add"..bot_id)
 if keko2 then
 local keko = "https://api.telegram.org/bot" ..token.. '/getChatMember?chat_id=' .. msg.chat_id_ .. '&user_id='..msg.sender_user_id_
@@ -960,7 +960,7 @@ return false
 end
 if text == "تفعيل"  then
 function TSby(extra,result,success)
-info = '💬┇بواسطه ~⪼ ['..result.first_name_..'](t.me/'..(result.username_ or 'tshaketeam')..')\n'
+info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'
 if database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
 function thsake_info(k1,k2)
 send(msg.chat_id_, msg.id_, 1, "❕┇المجموعه {"..(k2.title_ or "").."} مفعله سابقا", 1, 'md')
@@ -1001,7 +1001,7 @@ end
 if (text == 'تفعيل') and not is_sudo(msg) then
 
 function TSby(extra,result,success)
-info = '👁‍🗨※بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'tshaketeam')..')\n'
+info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'
 local keko2 = database:get("add"..bot_id)
 if keko2 then
 local keko = "https://api.telegram.org/bot" ..token.. '/getChatMember?chat_id=' .. msg.chat_id_ .. '&user_id='..msg.sender_user_id_
@@ -1067,7 +1067,7 @@ end
 if text == "تفعيل" and is_sudo(msg) then
 
 function TSby(extra,result,success)
-info = '👁‍🗨※بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'tshaketeam')..')\n'
+info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'
 if database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
 function thsake_info(k1,k2)
 send(msg.chat_id_, msg.id_, 1, "❕┇المجموعه {"..(k2.title_ or "").."} مفعله سابقا", 1, 'md')
@@ -1077,7 +1077,7 @@ end
 if not database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
 database:set( 'tshake:'..bot_id.."charge:"..msg.chat_id_,true)
 function thsake_info(k1,k2)
-send(msg.chat_id_, msg.id_, 1, info.."📩┇تم تفعيل المجموعة {"..(k2.title_ or "").."}بنجاح ✔️", 1, 'md')
+send(msg.chat_id_, msg.id_, 1, info.."📩┇تم تفعيل المجموعة {"..(k2.title_ or "").."} بنجاح ✔️ ", 1, 'md')
 end
 openChat(msg.chat_id_,thsake_info)
 function thsake_info2(k1,k2)
@@ -1108,7 +1108,7 @@ end
 if text == "تعطيل" and is_sudo(msg) then
 
 function TSby(extra,result,success)
-info = '👁‍🗨※بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'tshaketeam')..')\n'
+info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'
 if not database:get( 'tshake:'..bot_id.."charge:"..msg.chat_id_) then
 function thsake_info(k1,k2)
 send(msg.chat_id_, msg.id_, 1, "❕┇المجموعه {"..(k2.title_ or "").."} معطله سابقا", 1, 'md')
