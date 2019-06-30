@@ -6241,6 +6241,13 @@ name = string.gsub(name,'يكحله','اجه___عماها')
 TEST = 'اكمل المثل التالي {* '..name..' *}'
 send(msg.chat_id_, msg.id_, 1,TEST, 1, 'md')
 end
+if text == database:get('tshake:'..bot_id..':Set_Amthlh:'..msg.chat_id_) then -- // امثله
+database:incrby('tshake:'..bot_id..'add:num'..msg.chat_id_..msg.sender_user_id_, 1)  
+database:incrby('tshake:'..bot_id..'add:numall'..msg.chat_id_..msg.sender_user_id_, 1)    
+database:del('tshake:'..bot_id..':Set_Amthlh:'..msg.chat_id_)
+taha = '*  🎁  احسنت اجابتك صحيحه   \n* '
+send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
+end
 if database:get('tshake:'..bot_id.."skrafa:name" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then   
 if text and text:match("^الغاء$") then 
 send(msg.chat_id_, msg.id_, 1, "*💥¦* تم الغاء امر الزخرفه ✔", 1, "md")
