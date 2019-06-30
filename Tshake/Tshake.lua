@@ -1425,216 +1425,216 @@ end
 if (text == "فتح الاشعارات") then
 local tsX_o = database:get("lock_new:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الاشعارات ")
+tsX000("lock",msg,"┇بالفعل تم فتح الاشعارات ")
 else
-tsX000("lock",msg,"┇┇تم فتح الاشعارات ")
+tsX000("lock",msg,"┇تم فتح الاشعارات ")
 database:del("lock_new:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح التاك") then
 local tsX_o = database:get("lock_tag:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح التاك ")
+tsX000("lock",msg,"┇بالفعل تم فتح التاك ")
 else
-tsX000("lock",msg,"┇┇تم فتح التاك ")
+tsX000("lock",msg,"┇تم فتح التاك ")
 database:del("lock_tag:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الكلايش") then
 local tsX_o = database:get("lock_word:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الكلايش ")
+tsX000("lock",msg,"┇بالفعل تم فتح الكلايش ")
 else
-tsX000("lock",msg,"┇┇تم فتح الكلايش ")
+tsX000("lock",msg,"┇تم فتح الكلايش ")
 database:del("lock_word:tshake"..msg.chat_id_..bot_id)
 end
 end
 if (text == "فتح تعديل الميديا") then
 local tsX_o = database:get("tshake:lo:edit:new:"..bot_id..msg.chat_id_)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح تعديل الميديا ")
+tsX000("lock",msg,"┇بالفعل تم فتح تعديل الميديا ")
 else
-tsX000("lock",msg,"┇┇تم فتح تعديل الميديا ")
+tsX000("lock",msg,"┇تم فتح تعديل الميديا ")
 database:del("tshake:lo:edit:new:"..bot_id..msg.chat_id_)
 end
 end
 if (text == "فتح الشارحه") then
 local tsX_o = database:get("lock_sarha:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الشارحه ")
+tsX000("lock",msg,"┇بالفعل تم فتح الشارحه ")
 else
-tsX000("lock",msg,"┇┇تم فتح الشارحه ")
+tsX000("lock",msg,"┇تم فتح الشارحه ")
 database:del("lock_sarha:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح التكرار") then
 local tsX_o = database:get("lock_lllll:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح التكرار ")
+tsX000("lock",msg,"┇بالفعل تم فتح التكرار ")
 else
-tsX000("lock",msg,"┇┇تم فتح التكرار ")
+tsX000("lock",msg,"┇تم فتح التكرار ")
 database:del("lock_lllll:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح التعديل") then
 local tsX_o = database:get("lock_edit:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح التعديل ")
+tsX000("lock",msg,"┇بالفعل تم فتح التعديل ")
 else
-tsX000("lock",msg,"┇┇تم فتح التعديل ")
+tsX000("lock",msg,"┇تم فتح التعديل ")
 database:del("lock_edit:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح المتحركه") then
 local tsX_o = database:get("lock_gif:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح المتحركه ")
+tsX000("lock",msg,"┇بالفعل تم فتح المتحركه ")
 else
-tsX000("lock",msg,"┇┇تم فتح المتحركه ")
+tsX000("lock",msg,"┇تم فتح المتحركه ")
 database:del("lock_gif:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الملفات") then
 local tsX_o = database:get("lock_files:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الملفات ")
+tsX000("lock",msg,"┇بالفعل تم فتح الملفات ")
 else
-tsX000("lock",msg,"┇┇تم فتح الملفات ")
+tsX000("lock",msg,"┇تم فتح الملفات ")
 database:del("lock_files:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الماركدون") then
 local tsX_o = database:get("lock_mark:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الماركدون ")
+tsX000("lock",msg,"┇بالفعل تم فتح الماركدون ")
 else
-tsX000("lock",msg,"┇┇تم فتح الماركدون ")
+tsX000("lock",msg,"┇تم فتح الماركدون ")
 database:del("lock_mark:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الصور") then
 local tsX_o = database:get("lock_photo:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الصور ")
+tsX000("lock",msg,"┇بالفعل تم فتح الصور ")
 else
-tsX000("lock",msg,"┇┇تم فتح الصور ")
+tsX000("lock",msg,"┇تم فتح الصور ")
 database:del("lock_photo:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الملصقات") then
 local tsX_o = database:get("lock_stecker:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الملصقات ")
+tsX000("lock",msg,"┇بالفعل تم فتح الملصقات ")
 else
-tsX000("lock",msg,"┇┇تم فتح الملصقات ")
+tsX000("lock",msg,"┇تم فتح الملصقات ")
 database:del("lock_stecker:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الفيديو") then
 local tsX_o = database:get("lock_video:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الفيديو ")
+tsX000("lock",msg,"┇بالفعل تم فتح الفيديو ")
 else
-tsX000("lock",msg,"┇┇تم فتح الفيديو ")
+tsX000("lock",msg,"┇تم فتح الفيديو ")
 database:del("lock_video:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الانلاين") then
 local tsX_o = database:get("lock_inline:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الانلاين ")
+tsX000("lock",msg,"┇بالفعل تم فتح الانلاين ")
 else
-tsX000("lock",msg,"┇┇تم فتح الانلاين ")
+tsX000("lock",msg,"┇تم فتح الانلاين ")
 database:del("lock_inline:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الدردشه") then
 local tsX_o = database:get("lock_chat:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الدردشه ")
+tsX000("lock",msg,"┇بالفعل تم فتح الدردشه ")
 else
-tsX000("lock",msg,"┇┇تم فتح الدردشه ")
+tsX000("lock",msg,"┇تم فتح الدردشه ")
 database:del("lock_chat:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح التوجيه") then
 local tsX_o = database:get("lock_fwd:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح التوجيه ")
+tsX000("lock",msg,"┇بالفعل تم فتح التوجيه ")
 else
-tsX000("lock",msg,"┇┇تم فتح التوجيه ")
+tsX000("lock",msg,"┇تم فتح التوجيه ")
 database:del("lock_fwd:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح التثبيت") then
 local tsX_o = database:get("lock_pin:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح التثبيت ")
+tsX000("lock",msg,"┇بالفعل تم فتح التثبيت ")
 else
-tsX000("lock",msg,"┇┇تم فتح التثبيت ")
+tsX000("lock",msg,"┇تم فتح التثبيت ")
 database:del("lock_pin:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الاغاني") then
 local tsX_o = database:get("lock_audeo:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الاغاني ")
+tsX000("lock",msg,"┇بالفعل تم فتح الاغاني ")
 else
-tsX000("lock",msg,"┇┇تم فتح الاغاني ")
+tsX000("lock",msg,"┇تم فتح الاغاني ")
 database:del("lock_audeo:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الصوت") then
 local tsX_o = database:get("lock_voice:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الصوت ")
+tsX000("lock",msg,"┇بالفعل تم فتح الصوت ")
 else
-tsX000("lock",msg,"┇┇تم فتح الصوت ")
+tsX000("lock",msg,"┇تم فتح الصوت ")
 database:del("lock_voice:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح البوتات بالطرد") then
 local tsX_o = database:get("lock_botAndBan:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح البوتات بالطرد ")
+tsX000("lock",msg,"┇بالفعل تم فتح البوتات بالطرد ")
 else
-tsX000("lock",msg,"┇┇تم فتح البوتات بالطرد ")
+tsX000("lock",msg,"┇تم فتح البوتات بالطرد ")
 database:del("lock_botAndBan:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الجهات") then
 local tsX_o = database:get("lock_contact:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الجهات ")
+tsX000("lock",msg,"┇بالفعل تم فتح الجهات ")
 else
-tsX000("lock",msg,"┇┇تم فتح الجهات ")
+tsX000("lock",msg,"┇تم فتح الجهات ")
 database:del("lock_contact:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح العربيه") then
 local tsX_o = database:get("lock_ar:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح العربيه ")
+tsX000("lock",msg,"┇بالفعل تم فتح العربيه ")
 else
-tsX000("lock",msg,"┇┇تم فتح العربيه ")
+tsX000("lock",msg,"┇تم فتح العربيه ")
 database:del("lock_ar:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الانكليزيه") then
 local tsX_o = database:get("lock_en:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الانكليزيه ")
+tsX000("lock",msg,"┇بالفعل تم فتح الانكليزيه ")
 else
-tsX000("lock",msg,"┇┇تم فتح الانكليزيه ")
+tsX000("lock",msg,"┇تم فتح الانكليزيه ")
 database:del("lock_en:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الميديا") then
 local tsX_o = database:get("lock_media:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الميديا ")
+tsX000("lock",msg,"┇بالفعل تم فتح الميديا ")
 else
-tsX000("lock",msg,"┇┇تم فتح الميديا ")
+tsX000("lock",msg,"┇تم فتح الميديا ")
 database:del("lock_media:tshake"..msg.chat_id_..bot_id,"ok")
 database:del("lock_audeo:tshake"..msg.chat_id_..bot_id,"ok")
 database:del("lock_video:tshake"..msg.chat_id_..bot_id,"ok")
@@ -1648,34 +1648,34 @@ end
 if (text == "فتح المعرف") then
 local tsX_o = database:get("lock_username:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح المعرف ")
+tsX000("lock",msg,"┇بالفعل تم فتح المعرف ")
 else
-tsX000("lock",msg,"┇┇تم فتح المعرف ")
+tsX000("lock",msg,"┇تم فتح المعرف ")
 database:del("lock_username:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح بصمه الفيديو") then
 local tsX_o = database:get("lock_note:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح بصمه فيديو ")
+tsX000("lock",msg,"┇بالفعل تم فتح بصمه فيديو ")
 else
-tsX000("lock",msg,"┇┇تم فتح بصمه فيديو ")
+tsX000("lock",msg,"┇تم فتح بصمه فيديو ")
 database:del("lock_note:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الروابط") then
 local tsX_o = database:get("lock_link:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الروابط ")
+tsX000("lock",msg,"┇بالفعل تم فتح الروابط ")
 else
-tsX000("lock",msg,"┇┇تم فتح الروابط ")
+tsX000("lock",msg,"┇تم فتح الروابط ")
 database:del("lock_link:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
 if (text == "فتح الدخول") then
 local tsX_o = database:get("lock_join:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح الدخول للمجموعه ")
+tsX000("lock",msg,"┇بالفعل تم فتح الدخول للمجموعه ")
 else
 tsX000("lock",msg,"🔆┇ تم فتح الدخول للمجموعه ")
 database:del("lock_join:tshake"..msg.chat_id_..bot_id,"ok")
@@ -1684,9 +1684,9 @@ end
 if (text == "فتح البوتات") then
 local tsX_o = database:get("lock_bot:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"┇┇بالفعل تم فتح البوتات ")
+tsX000("lock",msg,"┇بالفعل تم فتح البوتات ")
 else
-tsX000("lock",msg,"┇┇تم فتح البوتات ")
+tsX000("lock",msg,"┇تم فتح البوتات ")
 database:del("lock_bot:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end  --         »»               End tshake unlock                       ««              --
