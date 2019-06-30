@@ -7643,9 +7643,9 @@ end
 if text:match("^الاوامر$") and (is_mod(msg) or is_creatorbasic(msg)) then
 local help = redis:get('tshake:'..bot_id..'help')
 local text =  [[
-   ←◊→←◊→←◊→←◊→←◊→←◊→
+    ←◊→←◊→→←◊→←◊→
 ┇ source ᴏɴᴇ ɪɴ ɪʀᴀǫ 🔱 »
-   ←◊→←◊→←◊→←◊→←◊→←◊→
+    ←◊→←◊→→←◊→←◊→
 ┇ هناك  (4)اوامر لعرضها ⚙️
  ﹎﹎﹎﹎﹎﹎﹎﹎﹎﹎﹎﹎
 ┇ م1 ☰ لعرض اوامر الحمايه 🗑
