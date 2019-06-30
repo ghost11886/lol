@@ -645,7 +645,7 @@ break
 end
 end
 end 
-info = '💁🏻‍♂️※ العضو ✓['..result.first_name_..'](t.me/'..(result.username_ or 'tshaketeam')..')\n'..text
+info = '💁🏻‍♂️┇ العضو ['..result.first_name_..'](t.me/'..(result.username_ or 'tshaketeam')..')\n'..text
 send(msg.chat_id_, msg.id_, 1,info, 1, 'md')
 end
 getUser(id_tshakex, keko333)
@@ -663,7 +663,7 @@ break
 end
 end
 end 
-info = '💁🏻‍♂️※ العضو ✓['..(result.first_name_ or value)..'](t.me/'..(result.username_ or 'tshaketeam')..')\n'..text
+info = '💁🏻‍♂️┇ العضو ['..(result.first_name_ or value)..'](t.me/'..(result.username_ or 'tshaketeam')..')\n'..text
 send(msg.chat_id_, msg.id_, 1,info, 1, 'md')
 end
 getUser(value, keko333)
@@ -1981,7 +1981,7 @@ function promote_by_username(extra, result, success)
 if result.id_ then
 database:del('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_)
 database:sadd('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم رفعة منشئ اساسي  في البوت ✓ 👨🏻‍✈️'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم رفعة منشئ اساسي  في البوت ✓ 👨🏻‍✈️'
 else
 texts = '✖┇خطاء'
 end
@@ -2583,10 +2583,10 @@ if text == "رفع منشئ" and is_creatorbasic(msg) and msg.reply_to_message_i
 function setcreator_by_reply(extra, result, success)
 local hash =  'tshake:'..bot_id..'creator:'..msg.chat_id_
 if database:sismember(hash, result.sender_user_id_) then
-tsX000("prore",msg,"※ تم بالفعل رفعة منشئ  في البوت ✓ 🤵🏻")
+tsX000("prore",msg,"تم بالفعل رفعة منشئ  في البوت  🤵🏻")
 else
 database:sadd(hash, result.sender_user_id_)
-tsX000("prore",msg,"※ تم رفعة منشئ  في البوت ✓ 🤵🏻")
+tsX000("prore",msg,"تم رفعة منشئ  في البوت 🤵🏻")
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,setcreator_by_reply)
@@ -2598,7 +2598,7 @@ local apow = {string.match(text, "^(رفع منشئ) @(.*)$")}
 function setcreator_by_username(extra, result, success)
 if result.id_ then
 database:sadd('tshake:'..bot_id..'creator:'..msg.chat_id_, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apow[2] or 'tshaketeam')..')\n※ تم رفعة منشئ  في البوت ✓ 🤵🏻'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apow[2] or 'tshaketeam')..')\nتم رفعة منشئ  في البوت 🤵🏻'
 else
 texts = '✖┇خطاء'
 end
@@ -2611,7 +2611,7 @@ if text:match("^رفع منشئ (%d+)$") and is_creatorbasic(msg) then
 local apow = {string.match(text, "^(رفع منشئ) (%d+)$")}
 
 database:sadd('tshake:'..bot_id..'creator:'..msg.chat_id_, apow[2])
-tsX000(apow[2],msg,"※ تم رفعة منشئ  في البوت ✓ 🤵🏻")
+tsX000(apow[2],msg,"تم رفعة منشئ  في البوت 🤵🏻")
 end
 if text:match("^تنزيل منشئ$") and is_creatorbasic(msg) and msg.reply_to_message_id_ then
 function decreator_by_reply(extra, result, success)
@@ -2631,7 +2631,7 @@ local hash =  'tshake:'..bot_id..'creator:'..msg.chat_id_
 function remcreator_by_username(extra, result, success)
 if result.id_ then
 database:srem(hash, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apow[2] or 'tshaketeam')..')\n※ تم تنزيله من منشئين المجموعه ✓ 🕵🏻‍♂️'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apow[2] or 'tshaketeam')..')\n※ تم تنزيله من منشئين المجموعه ✓ 🕵🏻‍♂️'
 else
 texts = '✖┇خطاء'
 end
@@ -2685,7 +2685,7 @@ local apmd = {string.match(text, "^(رفع ادمن بالكروب) @(.*)$")}
 function promote_by_username(extra, result, success)
 if result.id_ then
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم رفعة ادمن   في الكروب ✓ 👨🏻‍🚒'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم رفعة ادمن   في الكروب ✓ 👨🏻‍🚒'
 else
 texts = '✖┇خطاء'
 end
@@ -2713,7 +2713,7 @@ local apmd = {string.match(text, "^(رفع منشئ بالكروب) @(.*)$")}
 function promote_by_username(extra, result, success)
 if result.id_ then
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=True")
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم رفعة منشئ   في الكروب ✓ 👨🏻‍🚒'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم رفعة منشئ   في الكروب ✓ 👨🏻‍🚒'
 else
 texts = '✖┇خطاء'
 end
@@ -2739,7 +2739,7 @@ local apmd = {string.match(text, "^(تنزيل ادمن بالكروب) @(.*)$")
 function promote_by_username(extra, result, success)
 if result.id_ then
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=false&can_restrict_members=false&can_pin_messages=false&can_promote_members=false")
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم تنزيله ادمن   في الكروب ✓ 👨🏻‍🚒'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم تنزيله ادمن   في الكروب ✓ 👨🏻‍🚒'
 else
 texts = '✖┇خطاء'
 end
@@ -2766,7 +2766,7 @@ local apmd = {string.match(text, "^(تنزيل منشئ بالكروب) @(.*)$")
 function promote_by_username(extra, result, success)
 if result.id_ then
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=false&can_restrict_members=false&can_pin_messages=false&can_promote_members=false")
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم تنزيله منشئ   في الكروب ✓ 👨🏻‍🚒'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم تنزيله منشئ   في الكروب ✓ 👨🏻‍🚒'
 else
 texts = '✖┇خطاء'
 end
@@ -2783,10 +2783,10 @@ end
 function promote_by_reply(extra, result, success)
 local hash =  'tshake:'..bot_id..'mods:'..msg.chat_id_
 if database:sismember(hash, result.sender_user_id_) then
-tsX000("prore",msg,'※ بالفعل تم رفعة ادمن   في البوت ✓ 👨🏻‍🚒')
+tsX000("prore",msg,' بالفعل تم رفعة ادمن   في البوت  👨🏻‍🚒')
 else
 database:sadd(hash, result.sender_user_id_)
-tsX000("prore",msg,'※ تم رفعة ادمن   في البوت ✓ 👨🏻‍🚒')
+tsX000("prore",msg,'تم رفعة ادمن   في البوت 👨🏻‍🚒')
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
@@ -2800,7 +2800,7 @@ local apmd = {string.match(text, "^(رفع ادمن) @(.*)$")}
 function promote_by_username(extra, result, success)
 if result.id_ then
 database:sadd('tshake:'..bot_id..'mods:'..msg.chat_id_, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم رفعة ادمن   في البوت ✓ 👨🏻‍🚒'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\nتم رفعة ادمن   في البوت 👨🏻‍🚒'
 else
 texts = '✖┇خطاء'
 end
@@ -2816,7 +2816,7 @@ return false end
 local apmd = {string.match(text, "^(رفع ادمن) (%d+)$")}
 
 database:sadd('tshake:'..bot_id..'mods:'..msg.chat_id_, apmd[2])
-tsX000(apmd[2],msg,"※ تم رفعة ادمن   في البوت ✓ 👨🏻‍🚒")
+tsX000(apmd[2],msg,"تم رفعة ادمن   في البوت 👨🏻‍🚒")
 end
 if text:match("^تنزيل ادمن$") and (is_owner(msg) or is_creatorbasic(msg)) and msg.reply_to_message_id_ then
 function demote_by_reply(extra, result, success)
@@ -2836,7 +2836,7 @@ local apmd = {string.match(text, "^(تنزيل ادمن) @(.*)$")}
 function demote_by_username(extra, result, success)
 if result.id_ then
 database:srem(hash, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم تنزيله من ادمنيه البوت ✓ 🧙🏻‍♂️'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم تنزيله من ادمنيه البوت ✓ 🧙🏻‍♂️'
 else
 texts = '✖┇خطاء'
 end
@@ -2857,10 +2857,10 @@ return false end
 function promote_by_reply(extra, result, success)
 local hash =  'tshake:'..bot_id..'vipgp:'..msg.chat_id_
 if database:sismember(hash, result.sender_user_id_) then
-tsX000("prore",msg,"※ تم بالفعل رفعة عضو مميز  في البوت ✓ 👶🏻") 
+tsX000("prore",msg,"تم بالفعل رفعة عضو مميز  في البوت 👶🏻") 
 else
 database:sadd(hash, result.sender_user_id_)
-tsX000("prore",msg,"※ تم رفعة عضو مميز  في البوت ✓ 👶🏻")
+tsX000("prore",msg," تم رفعة عضو مميز  في البوت 👶🏻")
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
@@ -2874,7 +2874,7 @@ return false end
 function promote_by_username(extra, result, success)
 if result.id_ then
 database:sadd('tshake:'..bot_id..'vipgp:'..msg.chat_id_, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n※ تم رفعة عضو مميز  في البوت ✓ 👶🏻'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n تم رفعة عضو مميز  في البوت 👶🏻'
 else
 texts = '✖┇خطاء'
 end
@@ -2889,7 +2889,7 @@ if not is_creator(msg) and database:get('tshake:'..bot_id.."Tshake:lock:set"..ms
 send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع الرفع تم تعطيل الرفع من قبل المنشئين \n', 1, 'md')
 return false end
 database:sadd('tshake:'..bot_id..'vipgp:'..msg.chat_id_, apmd[2])
-tsX000(apmd[2],msg,"※ تم رفعة عضو مميز  في البوت ✓ 👶🏻")
+tsX000(apmd[2],msg," تم رفعة عضو مميز  في البوت 👶🏻")
 end
 if text and text == "تعين الايدي" and (is_owner(msg) or is_creatorbasic(msg)) then
 send(msg.chat_id_, msg.id_, 1,  '☑┇ ارسل الان النص\n☑┇ يمكنك اضافه :\n- `#username` > اسم المستخدم\n- `#msgs` > عدد رسائل المستخدم\n- `#photos` > عدد صور المستخدم\n- `#id` > ايدي المستخدم\n- `#auto` > تفاعل المستخدم\n- `#stast` > موقع المستخدم \n- `#edit` > عدد السحكات\n- `#game` > المجوهرات', 1, 'md')
@@ -2924,7 +2924,7 @@ local apmd = {string.match(text, "^(تنزيل عضو مميز) @(.*)$")}
 function demote_by_username(extra, result, success)
 if result.id_ then
 database:srem(hash, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم تنزيله من اعضاء الممزين البوت ✓👨🏻‍🚒'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم تنزيله من اعضاء الممزين البوت ✓👨🏻‍🚒'
 else
 texts = '✖┇خطاء'
 end
@@ -2974,7 +2974,7 @@ if ck_mod(result.id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '❕┇لا تستطيع حظر \n🔘┇(مدراء،ادمنيه،اعضاء مميزين)البوت', 1, 'md')
 else
 database:sadd('tshake:'..bot_id..'banned:'..msg.chat_id_, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apba[2] or 'tshaketeam')..')\n☑┇تم حظره من المجموعه'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apba[2] or 'tshaketeam')..')\n☑┇تم حظره من المجموعه'
 chat_kick(msg.chat_id_, result.id_)
 end
 else
@@ -3015,7 +3015,7 @@ function clear_all(extra, result, success)
 if result.id_ then
 database:del('tshake:'..bot_id..'banned:'..msg.chat_id_, result.id_)
 database:del('tshake:'..bot_id..'muted:'..msg.chat_id_, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apba[2] or 'tshaketeam')..')\n☑┇تم تحريره من القيود'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apba[2] or 'tshaketeam')..')\n☑┇تم تحريره من القيود'
 end
 send(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
 end
@@ -3076,7 +3076,7 @@ local apba = {string.match(text, "^(الغاء حظر) @(.*)$")}
 function unban_by_username(extra, result, success)
 if result.id_ then
 database:srem('tshake:'..bot_id..'banned:'..msg.chat_id_, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apba[2] or 'tshaketeam')..')\n☑┇تم الغاء حظره من البوت' 
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apba[2] or 'tshaketeam')..')\n☑┇تم الغاء حظره من البوت' 
 else
 texts = '✖┇خطاء'
 end
@@ -3139,7 +3139,7 @@ function delall_by_reply(extra, result, success)
 if ck_mod(result.sender_user_id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️※ لا تستطيع مسح رسائل (مدراء، ادمنية،مميزين)البوت   ✓', 1, 'md')
 else
-send(msg.chat_id_, msg.id_, 1, '💁🏻‍♂️※ العضو ✓*('..result.sender_user_id_..')* \n🗑┇تم حذف كل رسائله\n', 1, 'md')
+send(msg.chat_id_, msg.id_, 1, '💁🏻‍♂️┇ العضو *('..result.sender_user_id_..')* \n🗑┇تم حذف كل رسائله\n', 1, 'md')
 del_all_msgs(result.chat_id_, result.sender_user_id_)
 end
 end
@@ -3152,7 +3152,7 @@ if ck_mod(ass[2], msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️※ لا تستطيع مسح رسائل (مدراء، ادمنية،مميزين)البوت   ✓', 1, 'md')
 else
 del_all_msgs(msg.chat_id_, ass[2])
-send(msg.chat_id_, msg.id_, 1, '💁🏻‍♂️※ العضو ✓*('..ass[2]..')* \n🗑┇تم حذف كل رسائله\n', 1, 'md')
+send(msg.chat_id_, msg.id_, 1, '💁🏻‍♂️┇ العضو *('..ass[2]..')* \n🗑┇تم حذف كل رسائله\n', 1, 'md')
 end
 end
 
@@ -3165,7 +3165,7 @@ send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️※ لا تستطيع مسح ر
 return false
 end
 del_all_msgs(msg.chat_id_, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓('..result.id_..') \n🗑┇تم حذف كل رسائله'
+texts = '💁🏻‍♂️┇ العضو ('..result.id_..') \n🗑┇تم حذف كل رسائله'
 else
 texts = '✖┇خطاء'
 end
@@ -3189,7 +3189,7 @@ local apbll = {string.match(text, "^(حظر عام) @(.*)$")}
 function gban_by_username(extra, result, success)
 if result.id_ then
 local hash =  'tshake:'..bot_id..'gbanned:'
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apbll[2] or 'tshaketeam')..')\n🚫┇تم حظره من المجموعات البوت'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apbll[2] or 'tshaketeam')..')\n🚫┇تم حظره من المجموعات البوت'
 database:sadd(hash, result.id_)
 else
 texts = '✖┇خطاء'
@@ -3219,7 +3219,7 @@ local apid = {string.match(text, "^(الغاء العام) @(.*)$")}
 function ungban_by_username(extra, result, success)
 local hash =  'tshake:'..bot_id..'gbanned:'
 if result.id_ then
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apid[2] or 'tshaketeam')..')\n��┇تم الغاء حظره من المجموعات البوت'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apid[2] or 'tshaketeam')..')\n��┇تم الغاء حظره من المجموعات البوت'
 database:srem(hash, result.id_)
 else
 texts = '✖┇خطاء'
@@ -3250,7 +3250,7 @@ local apbll = {string.match(text, "^(كتم عام) @(.*)$")}
 function gmute_by_username(extra, result, success)
 if result.id_ then
 local hash =  'tshake:'..bot_id..'gmuted:'
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apbll[2] or 'tshaketeam')..')\n🚫┇تم كتمه من المجموعات البوت'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apbll[2] or 'tshaketeam')..')\n🚫┇تم كتمه من المجموعات البوت'
 database:sadd(hash, result.id_)
 else
 texts = '✖┇خطاء'
@@ -3280,7 +3280,7 @@ local apid = {string.match(text, "^(الغاء كتم العام) @(.*)$")}
 function ungmute_by_username(extra, result, success)
 local hash =  'tshake:'..bot_id..'gmuted:'
 if result.id_ then
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apid[2] or 'tshaketeam')..')\n🚫┇تم الغاء كتمه من المجموعات البوت'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apid[2] or 'tshaketeam')..')\n🚫┇تم الغاء كتمه من المجموعات البوت'
 database:srem(hash, result.id_)
 else
 texts = '✖┇خطاء'
@@ -3321,7 +3321,7 @@ if ck_mod(result.id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️※ لا تستطيع كتم (مدراء، ادمنية،مميزين)البوت   ✓', 1, 'md')
 else
 database:sadd('tshake:'..bot_id..'muted:'..msg.chat_id_, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apsi[2] or 'tshaketeam')..')\n🚫┇تم كتمه من البوت'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apsi[2] or 'tshaketeam')..')\n🚫┇تم كتمه من البوت'
 end
 else
 texts = '✖┇خطاء'
@@ -3356,7 +3356,7 @@ local apsi = {string.match(text, "^(الغاء كتم) @(.*)$")}
 function unmute_by_username(extra, result, success)
 if result.id_ then
 database:srem('tshake:'..bot_id..'muted:'..msg.chat_id_, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apsi[2] or 'tshaketeam')..')\n🚫┇تم الغاء كتمه من البوت'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apsi[2] or 'tshaketeam')..')\n🚫┇تم الغاء كتمه من البوت'
 else
 texts = '✖┇خطاء'
 end
@@ -3397,7 +3397,7 @@ if result.id_ then
 if ck_mod(result.id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️※ لا تستطيع حظر او طرد (مدراء، ادمنية،مميزين)البوت   ✓', 1, 'md')
 else
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apki[2] or 'tshaketeam')..')\n🚫┇تم طرده من المجموعه'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apki[2] or 'tshaketeam')..')\n🚫┇تم طرده من المجموعه'
 chat_kick(msg.chat_id_, result.id_)
 end
 else
@@ -3466,10 +3466,10 @@ if text:match("^رفع مدير$") and (is_creator(msg) or is_creatorbasic(msg))
 function setowner_by_reply(extra, result, success)
 local hash =  'tshake:'..bot_id..'owners:'..msg.chat_id_
 if database:sismember(hash, result.sender_user_id_) then
-tsX000("prore",msg,"※ بالفعل تم رفعة مدير في البوت ✓ 👩🏿‍🚒")
+tsX000("prore",msg," بالفعل تم رفعة مدير في البوت 👨‍💼")
 else
 database:sadd(hash, result.sender_user_id_)
-tsX000("prore",msg,"※ تم رفعة مدير في البوت ✓ 👩🏿‍🚒")
+tsX000("prore",msg," تم رفعة مدير في البوت 👨‍💼")
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,setowner_by_reply)
@@ -3480,7 +3480,7 @@ local apow = {string.match(text, "^(رفع مدير) @(.*)$")}
 function setowner_by_username(extra, result, success)
 if result.id_ then
 database:sadd('tshake:'..bot_id..'owners:'..msg.chat_id_, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apow[2] or 'tshaketeam')..')\n※ تم رفعة مدير في البوت ✓ 👩🏿‍🚒'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apow[2] or 'tshaketeam')..')\n تم رفعة مدير في البوت 👨‍💼'
 else
 texts = '✖┇خطاء'
 end
@@ -3493,7 +3493,7 @@ if text:match("^رفع مدير (%d+)$") and (is_creator(msg) or is_creatorbasic
 
 local apow = {string.match(text, "^(رفع مدير) (%d+)$")}
 database:sadd('tshake:'..bot_id..'owners:'..msg.chat_id_, apow[2])
-tsX000(apow[2],msg,"※ تم رفعة مدير في البوت ✓ 👩🏿‍🚒")
+tsX000(apow[2],msg," تم رفعة مدير في البوت 👨‍💼")
 end  
 if text:match("^تنزيل مدير$") and (is_creator(msg) or is_creatorbasic(msg)) and msg.reply_to_message_id_ then
 function deowner_by_reply(extra, result, success)
@@ -3514,7 +3514,7 @@ local hash =  'tshake:'..bot_id..'owners:'..msg.chat_id_
 function remowner_by_username(extra, result, success)
 if result.id_ then
 database:srem(hash, result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apow[2] or 'tshaketeam')..')\n※ تم تنزيله من مدراء  البوت ✓👨🏻‍⚖️'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apow[2] or 'tshaketeam')..')\n※ تم تنزيله من مدراء  البوت ✓👨🏻‍⚖️'
 else
 texts = '✖┇خطاء'
 end
@@ -4726,7 +4726,7 @@ tsX000("prore",msg,'※ بالفعل تم رفعة مطور في البوت  ✓
 else
 redis:set('tshake:'..bot_id..'sudoo'..result.sender_user_id_..'', 'yes')
 redis:sadd('tshake:'..bot_id..'dev', result.sender_user_id_)
-tsX000("prore",msg,'※ تم رفعة مطور في البوت  ✓ 👨🏻‍💻')
+tsX000("prore",msg,'تم رفعة مطور في البوت 👨🏻‍💻')
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
@@ -4740,7 +4740,7 @@ function promote_by_username(extra, result, success)
 if result.id_ then
 redis:set('tshake:'..bot_id..'sudoo'..result.id_..'', 'yes')
 redis:sadd('tshake:'..bot_id..'dev', result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n\n※ تم رفعة مطور في البوت  ✓ 👨🏻‍💻'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n\nتم رفعة مطور في البوت 👨🏻‍💻'
 else
 texts = '✖┇خطاء'
 end
@@ -4753,7 +4753,7 @@ if text:match("^اضف مطور (%d+)$") and tonumber(msg.sender_user_id_) == to
 local apmd = {string.match(text, "^(اضف مطور) (%d+)$")}
 redis:set('tshake:'..bot_id..'sudoo'..apmd[2]..'', 'yes')
 redis:sadd('tshake:'..bot_id..'dev', apmd[2])
-tsX000(apmd[2],msg,'※ تم رفعة مطور في البوت  ✓ 👨🏻‍💻')
+tsX000(apmd[2],msg,'تم رفعة مطور في البوت 👨🏻‍💻')
 end
 
 if text:match("^حذف مطور$") and tonumber(msg.sender_user_id_) == tonumber(sudo_add) and msg.reply_to_message_id_ then
@@ -4777,7 +4777,7 @@ function demote_by_username(extra, result, success)
 if result.id_ then
 redis:del('tshake:'..bot_id..'sudoo'..result.id_..'', 'no')
 redis:srem('tshake:'..bot_id..'dev', result.id_)
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم تنزيلة من مطورين البوت  ✓👨🏼‍🔧'
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n※ تم تنزيلة من مطورين البوت  ✓👨🏼‍🔧'
 else
 texts = '✖┇خطاء'
 end
@@ -5365,7 +5365,7 @@ database:sadd('tshake:'..bot_id..'owners:'..msg.chat_id_, result.sender_user_id_
 end
 database:set("tshake:name_user:"..bot_id..msg.chat_id_..result.sender_user_id_,a[1])
 function keko33332(extra,result2,success)
-info = '💁🏻‍♂️※ العضو ✓['..result2.first_name_..'](t.me/'..(result2.username_ or 'TshakeTeam')..')\n☑┇تم رفعه '..a[1]
+info = '💁🏻‍♂️┇ العضو ['..result2.first_name_..'](t.me/'..(result2.username_ or 'TshakeTeam')..')\n☑┇تم رفعه '..a[1]
 send(msg.chat_id_, msg.id_, 1,info, 1, 'md')
 end
 getUser(result.sender_user_id_, keko33332)  
@@ -5387,7 +5387,7 @@ elseif ts_text == "مدير" then
 database:sadd('tshake:'..bot_id..'owners:'..msg.chat_id_, result.id_)
 end
 database:set("tshake:name_user:"..bot_id..msg.chat_id_..result.id_,apmd[1])
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n☑┇تم رفعه '..apmd[1]
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n☑┇تم رفعه '..apmd[1]
 else
 texts = '✖┇خطاء'
 end
@@ -5442,7 +5442,7 @@ database:srem('tshake:'..bot_id..'vipgp:'..msg.chat_id_, result.id_)
 elseif ts_text == "مدير" then 
 database:srem('tshake:'..bot_id..'owners:'..msg.chat_id_, result.id_)
 end
-texts = '💁🏻‍♂️※ العضو ✓['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n☑┇تم تنزيله من '..apmd[1]
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'tshaketeam')..')\n☑┇تم تنزيله من '..apmd[1]
 database:del("tshake:name_user:"..bot_id..msg.chat_id_..result.id_)
 else
 texts = '✖┇خطاء'
@@ -7644,23 +7644,14 @@ if text:match("^الاوامر$") and (is_mod(msg) or is_creatorbasic(msg)) then
 local help = redis:get('tshake:'..bot_id..'help')
 local text =  [[
 ※ source ᴏɴᴇ ɪɴ ɪʀᴀǫ 🔱 »
-
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
-
 ※ هناك  (4)اوامر لعرضها ⚙️
-
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
-
 ※ م1 ☰ لعرض اوامر الحمايه 🗑
-
 ※ م2☰ لعرض اوامر الادمنيه 👨🏼‍✈️
-
 ※ م3 ☰ لعرض اوامر المدراء   👨🏻‍⚖️
-
 ※ م4☰ لعرض اوامر المطورين  👨🏻‍🚀
-
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
-
 ※ Ch  ☰ @QQQ52 🃏
 ※ DeV ☰ @IM_KI
 ]]
@@ -7746,7 +7737,6 @@ end
 if (text:match("^م2$") or text == "م٢") and (is_mod(msg) or is_creatorbasic(msg)) then
 local h2 = redis:get('tshake:'..bot_id..'h2')
 local text =  [[
-
 ※ اوامر الادمنيه 👤
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※ رفع ادمن | 🔼
@@ -7827,13 +7817,10 @@ local text =  [[
 ※ اوامر المدراء  🤵🏻
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※وضع :- مع الاوامر الادناه 
-
 ※ تكرار +العدد | 🔼
 ※ زمن تكرار +العدد | 🔽
-
 ※ رفع عضو مميز  | ⏫
 ※ تنزيل عضو مميز | ⏬
-
 ※ تفعيل / تعطيل الايدي بالصوره | ♏️
 ※ تفعيل / تعطيل الايدي  | 
 ※ تفعيل / تعطيل ردود  المطور   | 🆔
@@ -7895,7 +7882,6 @@ local text =  [[
 ※ اوامر  المطورين  👨‍💻
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 ※تفعيل / تعطيل
-
 ※ المغادره  | 🔼
 ※ الاذاعه  | 🔽
 ※ التفعيل التلقائي   | ⏫
@@ -7915,22 +7901,18 @@ local text =  [[
 🔘※ تعين/مسح مجموعه المطور
 📄※ عدد الكروبات/الاحصائيات
 📋※ روابط الكروبات
-
-
 🚫※حظر عام
 ⏺※الغاء العام
 🚫※ كتم عام
 ⏺※ الغاء كتم العام
 📋※قائمه العام
 📋※ المكتومين عام
-
 ↕️※ اضف/حذف مطور
 ↕️※ رفع/تنزيل مدير
 ↕️※ رفع/تنزيل منشئ
 📋※ المدراء
 📋※ المنشئين
 📋※ المطورين
-
 🗑※ استعاده الاوامر
 🗑※ مسح ردود المطور
 🗑※ مسح المطورين
@@ -7938,16 +7920,13 @@ local text =  [[
 🗑※ مسح المدراء
 🗑※مسح المنشئين
 🗑※مسح المكتومين عام
-
 🏷※ تغير امر {الاوامر ، م1 ، م2 ، م3 ، م4}
 🏷※ مشاهده منشور
 🏷※اذاعه
-
 🗂※الملفات
 🗂※ تفعيل/تفعيل ملف + اسم الملف
 🗂※ اضف/حذف/جلب ملف + اسم الملف
 🗂※ مسح جميع الملفات
-
 ♦️➖▪️➖▪️➖▪️➖▪️➖♦️
 🗯※ تغير نص الانلاين + النص
 🗯※ تغير رابط الانلاين + الرابط 
@@ -7961,17 +7940,13 @@ end
 if text:match("^lllllllllllol$") or text:match("^looooooooool$") or text:match("^loooooooool$") or text:match("^lllool$") then
 local text =  [[
 👋┇اهلا بك في سورس تشاكي 
-
 🌐┇<strong>TshAkE TEAM</strong>
-
 🦁┇<a href="https://telegram.me/Zx_xx">قناه السورس</a>
 📜┇<a href="https://telegram.me/Zx_xx">قناه شروحات سورس</a>
 ??┇<a href="https://t.me/TSHAKETEAM">قناه ملفات السورس</a>
 🎵┇<a href="https://t.me/yi3bot">بوت تحميل من يوتيوب +انستا</a>
 ➰┇<a href="https://t.me/Y_6bot">بوت الزخرفه</a>
-
 🔎┇<a href="https://t.me/ZX_XX/134">طريقه التنصيب</a>
-
 📮┇<a href="t.me/A_5bot">لـ تواصل </a> 
 ]]
 send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
