@@ -1170,15 +1170,6 @@ tsX000("lock",msg,"🔗┇ تم قفل الشارحه ")
 database:set("lock_sarha:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
-if (text == "قفل تعديل الميديا") then
-local tsX_o = database:get("tshake:lo:edit:new:"..bot_id..msg.chat_id_)
-if tsX_o then
-tsX000("lock",msg,"🔇┇ بالفعل تم قفل تعديل الميديا ")
-else
-tsX000("lock",msg,"🔇┇ تم قفل تعديل الميديا ")
-database:set("tshake:lo:edit:new:"..bot_id..msg.chat_id_,"ok")
-end
-end
 if (text == "قفل الكلايش") then
 local tsX_o = database:get("lock_word:tshake"..msg.chat_id_..bot_id)
 if tsX_o then
@@ -1188,7 +1179,7 @@ tsX000("lock",msg,"🗞┇ تم قفل الكلايش ")
 database:set("lock_word:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
-if (text == "قفل التعديل") then
+if (text == "قفل التعديل") and (is_creator(msg) or is_creatorbasic(msg)) then
 local tsX_o = database:get("lock_edit:tshake"..msg.chat_id_..bot_id)
 if tsX_o then
 tsX000("lock",msg,"🎛┇ بالفعل تم قفل التعديل ")
@@ -1449,15 +1440,6 @@ tsX000("lock",msg,"⚠️┇تم فتح الكلايش ")
 database:del("lock_word:tshake"..msg.chat_id_..bot_id)
 end
 end
-if (text == "فتح تعديل الميديا") then
-local tsX_o = database:get("tshake:lo:edit:new:"..bot_id..msg.chat_id_)
-if not tsX_o then
-tsX000("lock",msg,"⚠️┇بالفعل تم فتح تعديل الميديا ")
-else
-tsX000("lock",msg,"⚠️┇تم فتح تعديل الميديا ")
-database:del("tshake:lo:edit:new:"..bot_id..msg.chat_id_)
-end
-end
 if (text == "فتح الشارحه") then
 local tsX_o = database:get("lock_sarha:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
@@ -1476,7 +1458,7 @@ tsX000("lock",msg,"⚠️┇تم فتح التكرار ")
 database:del("lock_lllll:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
-if (text == "فتح التعديل") then
+if (text == "فتح التعديل") and (is_creator(msg) or is_creatorbasic(msg)) then
 local tsX_o = database:get("lock_edit:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
 tsX000("lock",msg,"⚠️┇بالفعل تم فتح التعديل ")
@@ -7684,8 +7666,8 @@ local text =  [[
 ┇ الروابط  | 🔰
 ┇ المعرف |🌀
 ┇ التاك |📥
-┇ الشارحه |〰
-┇ التعديل | 🛃
+┇ الشارحه |〰️
+┇ التعديل (يشمل تعديل الميديا ! )| 🛃 
 ┇ التثبيت | 📌
 ┇ المواقع | ♨️
        «---------------------»
@@ -7712,13 +7694,12 @@ local text =  [[
 ┇ الانكليزيه |♍️
 ┇الميديا |♨️
 ┇الكلايش| 📃
-┇قفل تعديل الميديا| 📠
 ┇قفل بصمه الفيديو | 📽
 ┇ الكل بالثواني + العدد |🚯
 ┇ الكل بالساعه + العدد |🚷
        «---------------------»
-┇ Ch  ☰ @QQQ52 🃏
-┇ DeV ☰ @IM_KI
+┇ Ch  ☰ [@QQQ52] 🃏
+┇ DeV ☰ [@IM_KI]
 ]]
 send(msg.chat_id_, msg.id_, 1, (h1 or text), 1, 'html')
 end
@@ -7793,8 +7774,8 @@ local text =  [[
 📮┇الصوره
 📮┇الرابط
        «---------------------»
-┇ Ch  ☰ @QQQ52 🃏
-┇ DeV ☰ @IM_KI
+┇ Ch  ☰ [@QQQ52] 🃏
+┇ DeV ☰ [@IM_KI]
 ]]
 send(msg.chat_id_, msg.id_, 1, (h2 or text), 1, 'html')
 end
@@ -7856,8 +7837,8 @@ local text =  [[
 ┇تفعيل/تعطيل الحظر /الطرد 
 ┇اضف /حذف امر +اسم الامر
        «---------------------»
-┇ Ch  ☰ @QQQ52 🃏
-┇ DeV ☰ @IM_KI
+┇ Ch  ☰ [@QQQ52] 🃏
+┇ DeV ☰ [@IM_KI]
 ]]
 send(msg.chat_id_, msg.id_, 1, (h3 or text), 1, 'html')
 end
@@ -7934,8 +7915,8 @@ local text =  [[
 🗯┇ تغير رابط الانلاين + الرابط 
 🗯┇ تفعيل/تعطيل الانلاين
        «---------------------»
-┇ Ch  ☰ @QQQ52 🃏
-┇ DeV ☰ @IM_KI
+┇ Ch  ☰ [@QQQ52] 🃏
+┇ DeV ☰ [@IM_KI]
 ]]
 send(msg.chat_id_, msg.id_, 1, (h4 or text), 1, 'html')
 end
