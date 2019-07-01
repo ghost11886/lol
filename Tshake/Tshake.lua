@@ -1188,12 +1188,12 @@ tsX000("lock",msg,"🗞┇ تم قفل الكلايش ")
 database:set("lock_word:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
-if (text == "قفل التعديل") then
+if (text == "قفل التعديل") and (is_creator(msg) or is_creatorbasic(msg)) then
 local tsX_o = database:get("lock_edit:tshake"..msg.chat_id_..bot_id)
 if tsX_o then
-tsX000("lock",msg,"🎛┇ بالفعل تم قفل التعديل ")
+tsX000("lock",msg,"🎛※ بالفعل تم قفل التعديل ✓")
 else
-tsX000("lock",msg,"🎛┇تم قفل التعديل ")
+tsX000("lock",msg,"🎛※تم قفل التعديل ✓")
 database:set("lock_edit:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
@@ -1476,12 +1476,12 @@ tsX000("lock",msg,"⚠️┇تم فتح التكرار ")
 database:del("lock_lllll:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
-if (text == "فتح التعديل") then
+if (text == "فتح التعديل") and (is_creator(msg) or is_creatorbasic(msg)) then
 local tsX_o = database:get("lock_edit:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"⚠️┇بالفعل تم فتح التعديل ")
+tsX000("lock",msg,"※┇بالفعل تم فتح التعديل ✓")
 else
-tsX000("lock",msg,"⚠️┇تم فتح التعديل ")
+tsX000("lock",msg,"※┇تم فتح التعديل ✓")
 database:del("lock_edit:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
