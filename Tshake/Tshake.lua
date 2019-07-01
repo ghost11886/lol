@@ -8276,7 +8276,14 @@ database:incr('tshake:'..bot_id..'user:editmsg'..msgg.chat_id_..':'..msgg.sender
 if (not is_mod(msgg) and not text) then 
 if database:get("tshake:lo:edit:new:"..bot_id..msgg.chat_id_) then 
 msgs = {[0] = data.message_id_}
-delete_msg(msg.chat_id_,msgs)
+if data.username_ ~= false then
+send(msg.chat_id_,0, 1, "⚠┇#تحذير \n🔖┇قام شخصآ ما في المجموعه بالتعديل على الميديا يرجى الانتباه \n📫┇الشخص الي قام بالتعديل \n (@"..data.username_..")" , 1, 'html') 
+else
+send(msg.chat_id_,0, 1, "[⚠┇#تحذير] \n🔖┇قام شخصآ ما في المجموعه بالتعديل على الميديا يرجى الانتباه \n📫┇الشخص الي قام بالتعديل \n ["..data.first_name_.."](T.ME/TSHAKETEAM)" , 1, 'md') 
+end
+end
+getUser(result.sender_user_id_,get_edit)
+delete_msg(msg.chat_id_,{[0] = msg.message_id_}) 
 end
 end
 if (result.content_.caption_ and not is_vip(msgg)) then 
