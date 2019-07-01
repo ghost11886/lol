@@ -8399,12 +8399,21 @@ local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) end end end 
 if (not is_mod(msgg) ) then
 check_filter_words(result, text)
-if database:get("lock_edit:tshake"..msg.chat_id_..bot_id) then
-local id = msg.message_id_
-local msgs = {[0] = id}
-local chat = msg.chat_id_
-delete_msg(chat,msgs) end end end end
-getMessage(msg.chat_id_, msg.message_id_,get_msg_contact)
+if database:get("lock_edit:tshake"..msg.chat_id_..bot_id) and not result.content_.text_ and not is_creator(msgg) then
+function get_edit(arg,data)
+local username = data.username_
+local name = data.first_name_
+local iduser = data.id_
+if data.username_ ~= false then
+send(msg.chat_id_,0, 1, "⚠┇#تحذير \n🔖┇قام شخصآ ما في المجموعه بالتعديل على الميديا يرجى الانتباه \n📫┇الشخص الي قام بالتعديل \n (@"..data.username_..")" , 1, 'html') 
+else
+send(msg.chat_id_,0, 1, "[⚠┇#تحذير] \n🔖┇قام شخصآ ما في المجموعه بالتعديل على الميديا يرجى الانتباه \n📫┇الشخص الي قام بالتعديل \n ["..data.first_name_.."](T.ME/TSHAKETEAM)" , 1, 'md') 
+end
+end
+getUser(result.sender_user_id_,get_edit)
+delete_msg(msg.chat_id_,{[0] = msg.message_id_}) 
+end
+
 --         »»                 End UpdateChat                          ««              --
 elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then 
 tdcli_function ({ID="GetChats", offset_order_="9223372036854775807", offset_chat_id_=0, limit_=20}, dl_cb, nil)
