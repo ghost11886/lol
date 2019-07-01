@@ -1188,12 +1188,12 @@ tsX000("lock",msg,"🗞┇ تم قفل الكلايش ")
 database:set("lock_word:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
-if (text == "قفل التعديل") and (is_creator(msg) or is_creatorbasic(msg)) then
+if (text == "قفل التعديل") then
 local tsX_o = database:get("lock_edit:tshake"..msg.chat_id_..bot_id)
 if tsX_o then
-tsX000("lock",msg,"🎛※ بالفعل تم قفل التعديل ✓")
+tsX000("lock",msg,"🎛┇ بالفعل تم قفل التعديل ")
 else
-tsX000("lock",msg,"🎛※تم قفل التعديل ✓")
+tsX000("lock",msg,"🎛┇تم قفل التعديل ")
 database:set("lock_edit:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
@@ -1476,12 +1476,12 @@ tsX000("lock",msg,"⚠️┇تم فتح التكرار ")
 database:del("lock_lllll:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
-if (text == "فتح التعديل") and (is_creator(msg) or is_creatorbasic(msg)) then
+if (text == "فتح التعديل") then
 local tsX_o = database:get("lock_edit:tshake"..msg.chat_id_..bot_id)
 if not tsX_o then
-tsX000("lock",msg,"※┇بالفعل تم فتح التعديل ✓")
+tsX000("lock",msg,"⚠️┇بالفعل تم فتح التعديل ")
 else
-tsX000("lock",msg,"※┇تم فتح التعديل ✓")
+tsX000("lock",msg,"⚠️┇تم فتح التعديل ")
 database:del("lock_edit:tshake"..msg.chat_id_..bot_id,"ok")
 end
 end
@@ -8156,7 +8156,7 @@ redis:set('tshake:'..bot_id..':file:'..keko2..''..msg.chat_id_..'', data.message
 else
 end -- end if text 
 redis:sadd('tshake:'..bot_id..'kekore'..msg.chat_id_..'', keko2)
-send(msg.chat_id_, msg.id_, 1, "📊┇ تم حفظ الرد  ", 1, 'md')
+send(msg.chat_id_, msg.id_, 1, "📊※ تم حفظ الرد  ✓", 1, 'md')
 redis:set('tshake:'..bot_id..'keko1'..msg.sender_user_id_..''..msg.chat_id_..'', 'no')
 end
 local keko1 = redis:get('tshake:'..bot_id..'keko1'..msg.sender_user_id_..'')
@@ -8176,7 +8176,7 @@ elseif (msg.content_.document_) then
 redis:set('tshake:'..bot_id..':file:'..keko2, msg.content_.document_.document_.persistent_id_)
 end
 redis:sadd('tshake:'..bot_id..'kekoresudo', keko2)
-send(msg.chat_id_, msg.id_, 1, "📊┇ تم حفظ الرد  ", 1, 'md')
+send(msg.chat_id_, msg.id_, 1, "📊※ تم حفظ الرد  ✓", 1, 'md')
 redis:set('tshake:'..bot_id..'keko1'..msg.sender_user_id_..'', 'no')
 end
 --         »»                 Run TshAkE                         ««              --
@@ -8270,12 +8270,25 @@ chats[chat.id_] = chat
 elseif (data.ID == "UpdateMessageEdited") then
 local msg = data
 function get_msg_contact(extra, result, success)
-local text = (result.content_.text_ or result.content_.caption_)
 local msgg = result 
 database:incr('tshake:'..bot_id..'user:editmsg'..msgg.chat_id_..':'..msgg.sender_user_id_)
-if (not is_mod(msgg) and not text) then 
-if database:get("tshake:lo:edit:new:"..bot_id..msgg.chat_id_) then 
-msgs = {[0] = data.message_id_}
+if (result.content_.caption_ and not is_vip(msgg)) then 
+if (result.content_.caption_:match("(.*)@(.*)") or result.content_.caption_:match("@")) then 
+if database:get("lock_username:tshake"..msg.chat_id_..bot_id) then
+local msgs = {[0] = data.message_id_}
+delete_msg(msg.chat_id_,msgs) 
+end 
+end 
+end
+
+
+
+
+if database:get("lock_edit:tshake"..msg.chat_id_..bot_id) and not result.content_.text_ and not is_creator(msgg) then
+function get_edit(arg,data)
+local username = data.username_
+local name = data.first_name_
+local iduser = data.id_
 if data.username_ ~= false then
 send(msg.chat_id_,0, 1, "⚠┇#تحذير \n🔖┇قام شخصآ ما في المجموعه بالتعديل على الميديا يرجى الانتباه \n📫┇الشخص الي قام بالتعديل \n (@"..data.username_..")" , 1, 'html') 
 else
@@ -8285,26 +8298,81 @@ end
 getUser(result.sender_user_id_,get_edit)
 delete_msg(msg.chat_id_,{[0] = msg.message_id_}) 
 end
+
+local text = result.content_.text_
+if not is_creator(msgg) then
+if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+if database:get("lock_link:tshake"..msg.chat_id_..bot_id) then
+local msgs = {[0] = data.message_id_}
+delete_msg(msg.chat_id_,msgs) 
 end
-if (result.content_.caption_ and not is_vip(msgg)) then 
-if (result.content_.caption_:match("(.*)@(.*)") or result.content_.caption_:match("@")) then 
-if database:get("lock_username:tshake"..msg.chat_id_..bot_id) then
+end
+if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+if database:get("lock_link.note:tshake"..msg.chat_id_..bot_id) then
+local msgs = {[0] = data.message_id_}
+delete_msg(msg.chat_id_,msgs) 
+end
+end
+if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+if database:get("lock_link:tshake"..msg.chat_id_..bot_id) then
+local msgs = {[0] = data.message_id_}
+delete_msg(msg.chat_id_,msgs) 
+end 
+end
+if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+if database:get("lock_link.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) 
 end 
 end 
+if text:match("(.*)(@)(.*)") then
+if database:get("lock_username:tshake"..msg.chat_id_..bot_id) then
+local msgs = {[0] = data.message_id_}
+delete_msg(msg.chat_id_,msgs) 
+end 
 end
-if (not is_mod(msgg) and text) then
+if text:match("@") then
+if database:get("lock_username.note:tshake"..msg.chat_id_..bot_id) then
+local msgs = {[0] = data.message_id_}
+delete_msg(msg.chat_id_,msgs) 
+end 
+end 
+if text:match("#") then
+if database:get("lock_tag:tshake"..msg.chat_id_..bot_id) then
+local msgs = {[0] = data.message_id_}
+delete_msg(msg.chat_id_,msgs) 
+end 
+end 
+if text:match("#") then
+if database:get("lock_tag.note:tshake"..msg.chat_id_..bot_id) then
+local msgs = {[0] = data.message_id_}
+delete_msg(msg.chat_id_,msgs) 
+end 
+end 
+
+if text:match("/")  then
+if database:get("lock_sarha:tshake"..msg.chat_id_..bot_id) then
+local msgs = {[0] = data.message_id_}
+delete_msg(msg.chat_id_,msgs) 
+end 
+end 
+if text:match("/")  then
+if database:get("lock_sarha.note:tshake"..msg.chat_id_..bot_id) then
+local msgs = {[0] = data.message_id_}
+delete_msg(msg.chat_id_,msgs) 
+end 
+end
 check_filter_words(result, text)
-if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or
-text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or
-text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+end
+
+if (not is_vip(msgg) and text) then
+check_filter_words(result, text)
+if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
 if database:get("lock_link:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
-delete_msg(msg.chat_id_,msgs) end
-if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or
-text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or
-text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+delete_msg(msg.chat_id_,msgs) 
+end
+if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
 if database:get("lock_link.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) end
@@ -8323,14 +8391,14 @@ delete_msg(msg.chat_id_,msgs) end end end
 if result.id_ and result.content_.text_ then
 if not is_vip(msgg) then
 check_filter_words(result, text)
-if text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]") or text:match("[Tt].[Mm][Ee]") or text:match(".[Mm][Ee]") or text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]") then
+if text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]") then
 if database:get("lock_link:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs)
 end end end 
 if not is_vip(msgg) then
 check_filter_words(result, text)
-if text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]") or text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]") then
+if text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]") then
 if database:get("lock_link.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs)
@@ -8397,24 +8465,9 @@ if text:match("[ASDFGHJKLQWERTYUIOPZXCVBNMasdfghjklqwertyuiopzxcvbnm]") then
 if database:get("lock_en.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) end end end 
-if (not is_mod(msgg) ) then
-check_filter_words(result, text)
-if database:get("lock_edit:tshake"..msg.chat_id_..bot_id) and not result.content_.text_ and not is_creator(msgg) then
-function get_edit(arg,data)
-local username = data.username_
-local name = data.first_name_
-local iduser = data.id_
-if data.username_ ~= false then
-send(msg.chat_id_,0, 1, "⚠┇#تحذير \n🔖┇قام شخصآ ما في المجموعه بالتعديل على الميديا يرجى الانتباه \n📫┇الشخص الي قام بالتعديل \n (@"..data.username_..")" , 1, 'html') 
-else
-send(msg.chat_id_,0, 1, "[⚠┇#تحذير] \n🔖┇قام شخصآ ما في المجموعه بالتعديل على الميديا يرجى الانتباه \n📫┇الشخص الي قام بالتعديل \n ["..data.first_name_.."](T.ME/TSHAKETEAM)" , 1, 'md') 
-end
-end
-getUser(result.sender_user_id_,get_edit)
-delete_msg(msg.chat_id_,{[0] = msg.message_id_}) 
-end
-end
-end
+ end 
+ end
+getMessage(msg.chat_id_, msg.message_id_,get_msg_contact)
 --         »»                 End UpdateChat                          ««              --
 elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then 
 tdcli_function ({ID="GetChats", offset_order_="9223372036854775807", offset_chat_id_=0, limit_=20}, dl_cb, nil)
