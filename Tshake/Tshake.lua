@@ -7515,7 +7515,7 @@ zhrf18 = zhrf18:gsub('ز', 'ز')
 zhrf18 = zhrf18:gsub('و', 'ﯛ̲୭')
 zhrf18 = zhrf18:gsub("ه", "໋۠هہؚ")
 
-local zhrf6 = text:gsub('ض', 'ض͜ـ')
+zhrf6 = text:gsub('ض', 'ض͜ـ')
 zhrf19 = zhrf19:gsub('ص', 'ص͜ـ')
 zhrf19 = zhrf19:gsub('ث', 'ث͜ـ͜ـ')
 zhrf19 = zhrf19:gsub('ق', 'ق͜ـ')
