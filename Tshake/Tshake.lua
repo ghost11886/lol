@@ -4113,23 +4113,7 @@ send(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
 end
 resolve_username(ap[2],id_by_username)
 end  
-if text:match("^جلب صوره (%d+)$") and msg.reply_to_message_id_ == 0 and not database:get('tshake:'..bot_id..'get:photo'..msg.chat_id_) then
-local pronumb = {string.match(text, "^(جلب صوره) (%d+)$")}
-local ph = pronumb[2] - 1
-local function gpro(extra, result, success)
-if result.photos_[ph] then
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[ph].sizes_[1].photo_.persistent_id_)
-else
-send(msg.chat_id_, msg.id_, 1, "❕┇لا تملك صوره رقم <b>{"..pronumb[2].."}</b> في حسابك", 1, 'html')
-end
-end
-tdcli_function ({
-ID = "GetUserProfilePhotos",
-user_id_ = msg.sender_user_id_,
-offset_ = 0,
-limit_ = pronumb[2]
-}, gpro, nil)
-end
+
 if text:match("^وضع تكرار (%d+)$") and (is_owner(msg) or is_creatorbasic(msg)) then
 local floodmax = {string.match(text, "^(وضع تكرار) (%d+)$")}
 if tonumber(floodmax[2]) < 2 then
@@ -6005,6 +5989,7 @@ limit_ = 1
 }, getpro, nil)
 end
 getUser(msg.sender_user_id_, keko333)
+end
 end
 if text:match('^الحساب (%d+)$') then
 local id = text:match('^الحساب (%d+)$')
