@@ -1,4 +1,3 @@
-
 --[[
  _____ ____  _   _    _    _  _______
 |_   _/ ___|| | | |  / \  | |/ / ____|
@@ -5990,6 +5989,12 @@ limit_ = 1
 }, getpro, nil)
 end
 getUser(msg.sender_user_id_, keko333)
+end
+end
+if text then
+if database:sismember('tshake:'..bot_id..'spam:id'..msg.sender_user_id_..':'..msg.chat_id_,text) then
+else
+database:del('tshake:'..bot_id..'spam:id'..msg.sender_user_id_..':'..msg.chat_id_) 
 end
 end
 if text:match('^الحساب (%d+)$') then
