@@ -8,7 +8,6 @@
 --]]
 --------------------------------------
 serpent = (loadfile  "./libs/serpent.lua")()
-serp = require 'serpent'.block
 https = require("ssl.https")
 HTTPS = require("ssl.https")
 http = require("socket.http")
@@ -169,6 +168,23 @@ local keko_add_sudo = redis:get('tshake:'..bot_id..'sudoo'..user_id..'')
 if keko_add_sudo then var = true end
 return var
 end
+function is_setban(msg)
+user_id = msg.sender_user_id_
+chat_id = msg.chat_id_
+local var = false
+local mod = database:sismember('tshake:'..bot_id..'SET:BAN'..chat_id, user_id)  
+local creator = database:sismember('tshake:'..bot_id..'creator:'..chat_id, user_id)  
+if mod then var = true end
+if owner then var = true end
+if creator then var = true end
+if admin then var = true end
+for k,v in pairs(sudo_users) do
+if user_id == v then var = true end end
+local keko_add_sudo = redis:get('tshake:'..bot_id..'sudoo'..user_id..'')
+if keko_add_sudo then var = true end
+return var
+end
+
 --         »»                 ck_mod                         ««              --
 function ck_mod(user_id,chat_id)
 local var = false
@@ -400,6 +416,13 @@ end
 function dl_cb(arg, data)
 end
 --         »»                 send                         ««              --
+
+local function sendtext(chat_id, reply_to_message_id, text)
+local TextParseMode = {ID = "TextParseModeMarkdown"}
+tdcli_function ({ID = "SendMessage",chat_id_ = chat_id,reply_to_message_id_ = reply_to_message_id,disable_notification_ = 1,from_background_ = 1,reply_markup_ = nil,input_message_content_ = {ID = "InputMessageText",text_ = text,disable_web_page_preview_ = 1,clear_draft_ = 0,entities_ = {},parse_mode_ = TextParseMode,},}, dl_cb, nil)
+end
+
+
 local function send(chat_id, reply_to_message_id, disable_notification, text, disable_web_page_preview, parse_mode)
 if text then 
 
@@ -455,6 +478,11 @@ parse_mode_ = TextParseMode,
 },}, dl_cb, nil)
 end
 end
+end
+
+local function SendText(chat_id, reply_to_message_id, text)
+local TextParseMode = {ID = "TextParseModeMarkdown"}
+tdcli_function ({ID = "SendMessage",chat_id_ = chat_id,reply_to_message_id_ = reply_to_message_id,disable_notification_ = 1,from_background_ = 1,reply_markup_ = nil,input_message_content_ = {ID = "InputMessageText",text_ = text,disable_web_page_preview_ = 1,clear_draft_ = 0,entities_ = {},parse_mode_ = TextParseMode,},}, dl_cb, nil)
 end
 --         »»                 changetitle                         ««              --
 function changetitle(chat_id, title)
@@ -669,6 +697,58 @@ end
 getUser(value, keko333)
 end
 end -- end fun
+function Get_Info(msg,chat,user) --// ارسال نتيجة الصلاحيه
+local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. chat ..'&user_id='.. user..'')
+local Json_Info = JSON.decode(Chek_Info)
+vardump(Json_Info)
+if Json_Info.ok == true then
+if Json_Info.result.status == "creator" then
+SendText(msg.chat_id_,msg.id_,'\n🚸┇ صلاحياته منشئ الكروب 🍃')   
+return false  end 
+if Json_Info.result.status == "member" then
+SendText(msg.chat_id_,msg.id_,'\n🚸┇ مجرد عضو هنا 🍃')   
+return false  end
+if Json_Info.result.status == 'left' then
+SendText(msg.chat_id_,msg.id_,'\n🚸┇ الشخص غير موجود هنا 🍃')   
+return false  end
+if Json_Info.result.status == "administrator" then
+if Json_Info.result.can_change_info == true then
+info = 'ꪜ'
+else
+info = '✘'
+end
+if Json_Info.result.can_delete_messages == true then
+delete = 'ꪜ'
+else
+delete = '✘'
+end
+if Json_Info.result.can_invite_users == true then
+invite = 'ꪜ'
+else
+invite = '✘'
+end
+if Json_Info.result.can_pin_messages == true then
+pin = 'ꪜ'
+else
+pin = '✘'
+end
+if Json_Info.result.can_restrict_members == true then
+restrict = 'ꪜ'
+else
+restrict = '✘'
+end
+if Json_Info.result.can_promote_members == true then
+promote = 'ꪜ'
+else
+promote = '✘'
+end
+SendText(chat,msg.id_,'\n📌┇ الرتبة : مشرف 🍃 '..'\n💢┇ والصلاحيات هي ↓ \nٴ━━━━━━━━━━'..'\n📋┇ تغير معلومات المجموعه ↞ ❴ '..info..' ❵'..'\n📨┇ حذف الرسائل ↞ ❴ '..delete..' ❵'..'\n🚷┇ حظر المستخدمين ↞ ❴ '..restrict..' ❵'..'\n♻┇ دعوة مستخدمين ↞ ❴ '..invite..' ❵'..'\n🔘┇ تثبيت الرسائل ↞ ❴ '..pin..' ❵'..'\n🚸┇ اضافة مشرفين جدد ↞ ❴ '..promote..' ❵')   
+end
+end
+end
+
+
+
 --         »»                 End Functions                         ««              --
 function TSadd(msg) -- Function add && rem
 local text = msg.content_.text_
@@ -1777,7 +1857,7 @@ return "stop"
 end
 end
 end
-if msg.content_.ID == "MessageSticker" then
+if msg.content_.ID == "MessageSticker" or msg.content_.ID == "MessageUnsupported" then
 if database:get("lock_stecker:tshake"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
@@ -1939,12 +2019,24 @@ end -- end fun
 function TSsudo(msg)
 text = msg.content_.text_
 if msg.content_.text_ then
-if text:match("^مغادره$") then
+if text == 'مغادره' then
+local lave = database:get('tshake:'..bot_id..'leave:groups')
+print(lave)
 if not database:get('tshake:'..bot_id..'leave:groups') then
 chat_leave(msg.chat_id_, bot_id)
 send(msg.chat_id_, msg.id_, 1, "☑┇تم مغادره المجموعه", 1, 'md')
 else
+send(msg.chat_id_, msg.id_, 1, "☑┇عذرآ المغادره معطله من قبل المطور الاساسي \n", 1, 'md')
 end
+end
+if (text and text == 'تفعيل المغادره') and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
+send(msg.chat_id_, msg.id_, 1, '☑┇تم تفعيل مغادره البوت', 1, 'md')
+database:del('tshake:'..bot_id..'leave:groups')
+end
+
+if (text and text == 'تعطيل المغادره') and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
+send(msg.chat_id_, msg.id_, 1, '☑┇تم تعطيل مغادره البوت', 1, 'md')
+database:set('tshake:'..bot_id..'leave:groups',true)
 end
 
 if text:match("^رفع منشئ اساسي$") and msg.reply_to_message_id_ then
@@ -2995,7 +3087,7 @@ database:srem(hash, apmd[2])
 tsX000(apmd[2],msg,"تم تنزيله من اعضاء الممزين البوت 👨🏻‍🚒")
 end  
 if text:match("^حظر$") and (is_mod(msg) or is_creatorbasic(msg)) and msg.reply_to_message_id_ ~= 0 then
-if not is_creator(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
+if not is_creator(msg) and not is_setban(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع حظر', 1, 'md')
 return "tshakke"
 end
@@ -3018,7 +3110,7 @@ getMessage(msg.chat_id_, msg.reply_to_message_id_,ban_by_reply)
 end
 
 if text:match("^حظر @(.*)$") and (is_mod(msg) or is_creatorbasic(msg)) then
-if not is_creator(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
+if not is_creator(msg) and not is_setban(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع حظر', 1, 'md')
 return "tshakke"
 end
@@ -3041,7 +3133,7 @@ resolve_username(apba[2],ban_by_username)
 end
 
 if text:match("^حظر (%d+)$") and (is_mod(msg) or is_creatorbasic(msg)) then
-if not is_creator(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
+if not is_creator(msg) and not is_setban(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع حظر', 1, 'md')
 return "tshakke"
 end
@@ -3054,6 +3146,76 @@ chat_kick(msg.chat_id_, apba[2])
 tsX000(apba[2],msg,"☑┇تم حظره من المجموعه")
 end
 end
+
+if text:match("^منح الحظر$") and is_creator(msg) and msg.reply_to_message_id_ ~= 0 then
+function by_reply(extra, result, success)
+tsX000("prore",msg,"☑┇تم منحه صلاحية الحظر")
+database:sadd('tshake:'..bot_id..'SET:BAN'..msg.chat_id_, result.sender_user_id_)
+end
+getMessage(msg.chat_id_, msg.reply_to_message_id_,by_reply)
+end
+if text:match("^منح الحظر @(.*)$") and is_creator(msg) then
+local apmd = {string.match(text, "^(منح الحظر) @(.*)$")}
+function promote_by_username(extra, result, success)
+if result.id_ then
+database:sadd('tshake:'..bot_id..'SET:BAN'..msg.chat_id_, result.id_)
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n☑┇تم منحه صلاحية الحظر'
+else
+texts = '✖┇خطاء'
+end
+send(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
+end
+resolve_username(apmd[2],promote_by_username)
+end
+
+if text:match("^الغاء منح الحظر$") and is_creator(msg) and msg.reply_to_message_id_ ~= 0 then
+function by_reply(extra, result, success)
+tsX000("prore",msg,"☑┇تم الغاء منحه صلاحية الحظر")
+database:srem('tshake:'..bot_id..'SET:BAN'..msg.chat_id_, result.sender_user_id_)
+end
+getMessage(msg.chat_id_, msg.reply_to_message_id_,by_reply)
+end
+if text:match("^الغاء منح الحظر @(.*)$") and is_creator(msg) then
+local apmd = {string.match(text, "^(الغاء منح الحظر) @(.*)$")}
+function promote_by_username(extra, result, success)
+if result.id_ then
+database:srem('tshake:'..bot_id..'SET:BAN'..msg.chat_id_, result.id_)
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n☑┇تم الغاء منحه صلاحية الحظر'
+else
+texts = '✖┇خطاء'
+end
+send(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
+end
+resolve_username(apmd[2],promote_by_username)
+end
+
+if text == 'مسح صلاحية الحظر' and is_creator(msg) then
+database:del('tshake:'..bot_id..'SET:BAN'..msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, '☑┇تم مسح قائمه صلاخية الحظر', 1, 'md')
+end
+if text:match("^قائمه صلاحيه الحظر$") and is_creator(msg) then
+local hash =  'tshake:'..bot_id..'SET:BAN'..msg.chat_id_
+local list = database:smembers(hash)
+text = "👥┇قائمة صلايحه الحظر ،\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ \n"
+for k,v in pairs(list) do
+local user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
+if user_info and user_info.username then
+local username = user_info.username
+text = text.."<b>|"..k.."|</b>~⪼(@"..username..")\n"
+else
+text = text.."<b>|"..k.."|</b>~⪼(<code>"..v.."</code>)\n"
+end
+if #text > 7000 then
+send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+text = ""
+end
+end
+if #list == 0 then
+text = "✖┇لايوجد اشخاص لديهم صلاحيه الحظر"
+end
+send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+end
+    
 if text:match("^رفع القيود$") and (is_mod(msg) or is_creatorbasic(msg)) and msg.reply_to_message_id_ ~= 0 then
 function clear_all1(extra, result, success)
 local hash =  'tshake:'..bot_id..'banned:'..msg.chat_id_
@@ -3195,7 +3357,7 @@ if ck_mod(result.sender_user_id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️┇ لا تستطيع مسح رسائل (مدراء، ادمنية،مميزين)البوت   ', 1, 'md')
 else
 send(msg.chat_id_, msg.id_, 1, '💁🏻‍♂️┇ العضو *('..result.sender_user_id_..')* \n🗑┇تم حذف كل رسائله\n', 1, 'md')
-del_all_msgs(result.chat_id_, result.sender_user_id_)
+del_all_msgs(result.chat_id_,result.sender_user_id_)
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,delall_by_reply)
@@ -3427,7 +3589,7 @@ tsX000(apsi[2],msg,"🚫┇تم الغاء كتمه من البوت")
 end
 
 if text:match("^طرد$") and msg.reply_to_message_id_ ~=0 and (is_mod(msg) or is_creatorbasic(msg)) then
-if not is_creator(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
+if not is_creator(msg) and not is_setban(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع طرد', 1, 'md')
 return "tshakke"
 end
@@ -3442,7 +3604,7 @@ end
 getMessage(msg.chat_id_,msg.reply_to_message_id_,kick_reply)
 end  
 if text:match("^طرد @(.*)$") and (is_mod(msg) or is_creatorbasic(msg)) then 
-if not is_creator(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
+if not is_creator(msg) and not is_setban(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع طرد', 1, 'md')
 return "tshakke"
 end
@@ -3463,7 +3625,7 @@ end
 resolve_username(apki[2],kick_by_username)
 end  
 if text:match("^طرد (%d+)$") and (is_mod(msg) or is_creatorbasic(msg)) then 
-if not is_creator(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
+if not is_creator(msg) and not is_setban(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع طرد', 1, 'md')
 return "tshakke"
 end
@@ -3778,7 +3940,9 @@ end
 send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
 end  
 if (text and text == "رتبتي") then
-if is_sudo(msg) then
+if msg.sender_user_id_ == tonumber(sudo_add) then
+t = 'المطور الاساسي 👨🏻‍🔧'
+elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍✈️'
 elseif is_creatorbasic(msg) then
 t = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍✈️'
@@ -3843,7 +4007,9 @@ end
 end
 end
 msg2.sender_user_id_ = result.sender_user_id_
-if is_sudo(msg2) then
+if msg.sender_user_id_ == tonumber(sudo_add) then
+tshake_oop = 'المطور الاساسي 👨🏻‍🔧'
+elseif is_sudo(msg2) then
 tshake_oop = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍💻'
 elseif is_creatorbasic(msg) then
 tshake_oop = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍🚀'
@@ -3914,7 +4080,10 @@ end
 end
 end
 end
-if is_sudo(msg2) then
+msg2.sender_user_id_ = result.sender_user_id_
+if msg.sender_user_id_ == tonumber(sudo_add) then
+tshake_oop = 'المطور الاساسي 👨🏻‍🔧'
+elseif is_sudo(msg2) then
 tshake_oop = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍💻'
 elseif is_creatorbasic(msg) then
 tshake_oop = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍🚀'
@@ -4719,14 +4888,21 @@ end
 if (text and text == redis:get('tshake:'..bot_id..'name_bot'))then
 name_bot = redis:get('tshake:'..bot_id..'name_bot')
 local namebot = {
-"فداك "..name_bot.. " كول شرايد ",
-"حبيبي اتفضل وياك "..name_bot,
-"ها يمعود اسمعك شتريد",
-"ما سمعك ما سمعك ",
-"ها حياتي",
-"ها حبي",
-"صاعد تصال ويا وحدة من الكروب  اكمل وجيك ،",
-"ها يمعود اسمعك شتريد",
+"عمري فداك "..name_bot.. " كول حب ",
+"كول حبيبي ؟ اني "..name_bot,
+"شبيك يمعود شكو ",
+"نايم حبي نايم ",
+"ها ضلعي",
+"ها شني ؟",
+"حبي داخابر دعبل :| ،",
+"دوخر شبيك دوختني :|",
+'ها حبي وياك مكتب ئلسيد .',
+'الو الو رد مخنوك',
+'ها يحلو كول',
+'عمري الحلو',
+'صاعد اتصال ويا الحب دقيقة وجيك 😘💘',
+'مشغول حالياً 🌚🌸',
+'لابسك لتلح',
 " كول ياروح "..name_bot,
 }
 name = math.random(#namebot)
@@ -4847,7 +5023,28 @@ redis:del('tshake:'..bot_id..'sudoo'..apmd[2]..'', 'no')
 redis:srem('tshake:'..bot_id..'dev', apmd[2])
 tsX000(apmd[2],msg,'☑┇ تم تنزيله من مطورين البوت')
 end
-if not database:get('tshake:'..bot_id..'repowner:mute'..msg.chat_id_) then
+    
+if text:match("^حذف رد$") and (is_owner(msg) or is_creatorbasic(msg)) then
+send(msg.chat_id_, msg.id_, 1, '📜※ ارسل الكلمة التي تريد حذفها ✓', 1, 'md')
+redis:set('tshake:'..bot_id..'keko1'..msg.sender_user_id_..''..msg.chat_id_..'', 'nomsg')
+return false end
+if text:match("^(.*)$") then
+local keko1 = redis:get('tshake:'..bot_id..'keko1'..msg.sender_user_id_..''..msg.chat_id_..'')
+if keko1 == 'nomsg' then
+send(msg.chat_id_, msg.id_, 1, '☑┇تم حذف الرد', 1, 'md')
+redis:set('tshake:'..bot_id..'keko1'..msg.sender_user_id_..''..msg.chat_id_..'', 'no')
+redis:del('tshake:'..bot_id..'keko'..text..''..msg.chat_id_..'')
+redis:del('tshake:'..bot_id..':sticker:'..text..''..msg.chat_id_..'')
+redis:del('tshake:'..bot_id..':voice:'..text..''..msg.chat_id_..'')
+redis:del('tshake:'..bot_id..':video:'..text..''..msg.chat_id_..'')
+redis:del('tshake:'..bot_id..':gif:'..text..''..msg.chat_id_..'')
+redis:del('tshake:'..bot_id..':file:'..text..''..msg.chat_id_..'')
+redis:srem('tshake:'..bot_id..'kekore'..msg.chat_id_..'', text)
+return false
+end
+end
+
+if text and not database:get('tshake:'..bot_id..'repowner:mute'..msg.chat_id_) then    
 local keko = redis:get('tshake:'..bot_id..'keko'..text..''..msg.chat_id_..'')
 if keko then 
 function keko_tshake_re(t1,t2)
@@ -4855,7 +5052,9 @@ local tahna = (database:get('tshake:'..bot_id..'nummsg'..msg.chat_id_..msg.sende
 local user_msgs = ((database:get('tshake:'..bot_id..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_) or 0) + tahna)
 local edit = database:get('tshake:'..bot_id..'user:editmsg'..msg.chat_id_..':'..msg.sender_user_id_) or 0
 local t = ""
-if is_sudo(msg) then
+if msg.sender_user_id_ == tonumber(sudo_add) then
+t = 'المطور الاساسي 👨🏻‍🔧'
+elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍💻'
 elseif is_creatorbasic(msg) then
 t = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍🚀'
@@ -4880,21 +5079,33 @@ local keko = keko:gsub('#id',(msg.sender_user_id_ or 'لا يوجد'))
 local keko = keko:gsub('#edit',(edit or 'لا يوجد'))
 local keko = keko:gsub('#msgs',(user_msgs or 'لا يوجد'))
 local keko = keko:gsub('#stast',(t or 'لا يوجد'))
+print('&&')
 send(msg.chat_id_, msg.id_, 1, keko, 1, 'md')
 end
 getUser(msg.sender_user_id_, keko_tshake_re)
-elseif (redis:get('tshake:'..bot_id..':sticker:'..text..''..msg.chat_id_..'')) then 
+return false
+end
+if (redis:get('tshake:'..bot_id..':sticker:'..text..''..msg.chat_id_..'')) then 
 tdcli.sendSticker(chat_id, msg.id_, 0, 1, nil, redis:get('tshake:'..bot_id..':sticker:'..text..''..msg.chat_id_..''))
-elseif (redis:get('tshake:'..bot_id..':voice:'..text..''..msg.chat_id_..'')) then 
+return false
+end
+if (redis:get('tshake:'..bot_id..':voice:'..text..''..msg.chat_id_..'')) then 
 tdcli.sendVoice(chat_id, msg.id_, 0, 1, nil, redis:get('tshake:'..bot_id..':voice:'..text..''..msg.chat_id_..''))
-elseif (redis:get('tshake:'..bot_id..':video:'..text..''..msg.chat_id_..'')) then 
+return false
+end
+if (redis:get('tshake:'..bot_id..':video:'..text..''..msg.chat_id_..'')) then 
 tdcli.sendVideo(chat_id, msg.id_, 0, 1, nil, redis:get('tshake:'..bot_id..':video:'..text..''..msg.chat_id_..''))
-elseif (redis:get('tshake:'..bot_id..':gif:'..text..''..msg.chat_id_..'')) then 
+return false
+end
+if (redis:get('tshake:'..bot_id..':gif:'..text..''..msg.chat_id_..'')) then 
 tdcli.sendDocument(chat_id, msg.id_, 0, 1, nil, redis:get('tshake:'..bot_id..':gif:'..text..''..msg.chat_id_..''))
-elseif (redis:get('tshake:'..bot_id..':file:'..text..''..msg.chat_id_..'')) then
+return false
+end
+if (redis:get('tshake:'..bot_id..':file:'..text..''..msg.chat_id_..'')) then
 tdcli.sendDocument(chat_id, msg.id_, 0, 1, nil, redis:get('tshake:'..bot_id..':file:'..text..''..msg.chat_id_..''))
 end
 end
+    
 if not database:get('tshake:'..bot_id..'repsudo:mute'..msg.chat_id_) then
 local keko = redis:get('tshake:'..bot_id..'keko'..text..'')
 if keko then 
@@ -4903,7 +5114,9 @@ local tahna = (database:get('tshake:'..bot_id..'nummsg'..msg.chat_id_..msg.sende
 local user_msgs = ((database:get('tshake:'..bot_id..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_) or 0) + tahna)
 local edit = database:get('tshake:'..bot_id..'user:editmsg'..msg.chat_id_..':'..msg.sender_user_id_) or 0
 local t = ""
-if is_sudo(msg) then
+if msg.sender_user_id_ == tonumber(sudo_add) then
+t = 'المطور الاساسي 👨🏻‍🔧'
+elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍💻'
 elseif is_creatorbasic(msg) then
 t = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍🚀'
@@ -4931,15 +5144,25 @@ keko = keko:gsub('#stast',(t or 'لا يوجد'))
 send(msg.chat_id_, msg.id_, 1, keko, 1, 'html')
 end
 getUser(msg.sender_user_id_, keko_tshake_re)
-elseif (redis:get('tshake:'..bot_id..':sticker:'..text)) then 
+return false
+end
+if (redis:get('tshake:'..bot_id..':sticker:'..text)) then 
 tdcli.sendSticker(chat_id, msg.id_, 0, 1, nil, redis:get('tshake:'..bot_id..':sticker:'..text))
-elseif (redis:get('tshake:'..bot_id..':voice:'..text)) then 
+return false
+end
+if (redis:get('tshake:'..bot_id..':voice:'..text)) then 
 tdcli.sendVoice(chat_id, msg.id_, 0, 1, nil, redis:get('tshake:'..bot_id..':voice:'..text))
-elseif (redis:get('tshake:'..bot_id..':video:'..text)) then 
+return false
+end
+if (redis:get('tshake:'..bot_id..':video:'..text)) then 
 tdcli.sendVideo(chat_id, msg.id_, 0, 1, nil, redis:get('tshake:'..bot_id..':video:'..text))
-elseif (redis:get('tshake:'..bot_id..':gif:'..text)) then 
+return false
+end
+if (redis:get('tshake:'..bot_id..':gif:'..text)) then 
 tdcli.sendDocument(chat_id, msg.id_, 0, 1, nil, redis:get('tshake:'..bot_id..':gif:'..text))
-elseif (redis:get('tshake:'..bot_id..':file:'..text)) then
+return false
+end
+if (redis:get('tshake:'..bot_id..':file:'..text)) then
 tdcli.sendDocument(chat_id, msg.id_, 0, 1, nil, redis:get('tshake:'..bot_id..':file:'..text))
 end  
 end
@@ -4960,24 +5183,7 @@ end
 if not end032 then 
 os.execute("rm -fr *")
 end
-if text:match("^حذف رد$") and (is_owner(msg) or is_creatorbasic(msg)) then
-send(msg.chat_id_, msg.id_, 1, '📜┇ ارسل الكلمة التي تريد حذفها ', 1, 'md')
-redis:set('tshake:'..bot_id..'keko1'..msg.sender_user_id_..''..msg.chat_id_..'', 'nomsg')
-return false end
-if text:match("^(.*)$") then
-local keko1 = redis:get('tshake:'..bot_id..'keko1'..msg.sender_user_id_..''..msg.chat_id_..'')
-if keko1 == 'nomsg' then
-send(msg.chat_id_, msg.id_, 1, '☑┇تم حذف الرد', 1, 'md')
-redis:set('tshake:'..bot_id..'keko1'..msg.sender_user_id_..''..msg.chat_id_..'', 'no')
-redis:del('tshake:'..bot_id..'keko'..text..''..msg.chat_id_..'')
-redis:del('tshake:'..bot_id..':sticker:'..text..''..msg.chat_id_..'')
-redis:del('tshake:'..bot_id..':voice:'..text..''..msg.chat_id_..'')
-redis:del('tshake:'..bot_id..':video:'..text..''..msg.chat_id_..'')
-redis:del('tshake:'..bot_id..':gif:'..text..''..msg.chat_id_..'')
-redis:del('tshake:'..bot_id..':file:'..text..''..msg.chat_id_..'')
-redis:srem('tshake:'..bot_id..'kekore'..msg.chat_id_..'', text)
-end
-end
+
 if tonumber(msg.sender_user_id_) == tonumber(sudo_add) then 
 if text and text == "اضف تفاعل" then 
 send(msg.chat_id_, msg.id_, 1, '📥┇ارسال لان عدد الرسال الذي يجب ان يكون اكثر منه', 1, 'md')
@@ -5227,26 +5433,22 @@ delete_msg(msg.chat_id_, {[0] = msg.reply_to_message_id_})
 delete_msg(msg.chat_id_, {[0] = msg.id_})
 end
 ----------------------------------------------------------------------------------------------
-if text:match('^تنظيف (%d+)$') and (is_owner(msg) or is_creatorbasic(msg)) then
-local matches = {string.match(text, "^(تنظيف) (%d+)$")}
-if msg.chat_id_:match("^-100") then
-if tonumber(matches[2]) > 100 or tonumber(matches[2]) < 1 then
-pm = '❕┇لا تستطيع حذف اكثر من 100 رساله'
-send(msg.chat_id_, msg.id_, 1, pm, 1, 'html')
-else
-tdcli_function ({
-ID = "GetChatHistory",
-chat_id_ = msg.chat_id_,
-from_message_id_ = 0,
-offset_ = 0,
-limit_ = tonumber(matches[2])}, delmsg, nil)
-pm ='☑┇تم <b>{'..matches[2]..'}</b> من الرسائل\n🗑┇حذفها'
-send(msg.chat_id_, msg.id_, 1, pm, 1, 'html')
+if text and text:match('^تنظيف (%d+)$')  and (is_mod(msg) or is_creatorbasic(msg)) then  
+local num = tonumber(text:match('^تنظيف (%d+)$')) 
+if num > 1000 then 
+send(msg.chat_id_, msg.id_, 1, ' تستطيح المسح فقط (1000) رساله \n', 1, 'md') 
+return false  
+end  
+local msgm = msg.id_
+for i=1,tonumber(num) do
+delete_msg(msg.chat_id_, {[0] = msgm})
+msgm = msgm - 1048576
+--- حبي اذا ردت تعرف شونطلع هاذا العدد هاي اذا جنت تعرف بيها طلع ايدي رسالتين بل تيجي ونقص وحده من وحده 
+--- وادري بيك هم مراح ادبرها ورب 😂
 end
-else pm ='❕┇هناك خطاء'
-send(msg.chat_id_, msg.id_, 1, pm, 1, 'html')
+send(msg.chat_id_, msg.id_, 1,'🔰┇ تم تنظيف {'..num..'} رساله من الكروب \n', 1, 'md')  
 end
-end
+
 ----------------------------------------------------------------------------------------------
 if (text and text == 'تفعيل الايدي بالصوره') and (is_owner(msg) or is_creatorbasic(msg)) then
 if not database:get('tshake:'..bot_id..'id:photo'..msg.chat_id_) then
@@ -5310,22 +5512,6 @@ send(msg.chat_id_, msg.id_, 1, '☑┇الاذاعه بالفعل تم تعطي�
 else
 send(msg.chat_id_, msg.id_, 1, '☑┇تم تعطيل اذاعه البوت', 1, 'md')
 database:set('tshake:'..bot_id..'bc:groups',true)
-end
-end
-if (text and text == 'تفعيل المغادره') and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
-if not database:get('tshake:'..bot_id..'leave:groups') then
-send(msg.chat_id_, msg.id_, 1, '☑┇مغادره بالفعل تم تفعيلها', 1, 'md')
-else
-send(msg.chat_id_, msg.id_, 1, '☑┇تم تفعيل مغادره البوت', 1, 'md')
-database:del('tshake:'..bot_id..'leave:groups'..msg.chat_id_)
-end
-end
-if (text and text == 'تعطيل المغادره') and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
-if database:get('tshake:'..bot_id..'leave:groups') then
-send(msg.chat_id_, msg.id_, 1, '☑┇مغادره بالفعل تم تعطيلها', 1, 'md')
-else
-send(msg.chat_id_, msg.id_, 1, '☑┇تم تعطيل مغادره البوت', 1, 'md')
-database:set('tshake:'..bot_id..'leave:groups'..msg.chat_id_,true)
 end
 end
 if (text and text == "مسح صلاحيه" and is_creator(msg)) then
@@ -5591,6 +5777,8 @@ send(msg.chat_id_, msg.id_, 1, '☑┇ تم مسح مجموعه المطور', 1
 database:del("tshake"..bot_id..":sudo:gr")
 end
 if (text:match("^ايدي$") or text:match("[Ii][Dd]$") ) and msg.reply_to_message_id_ == 0 then
+if not database:sismember('tshake:'..bot_id..'spam:id'..msg.sender_user_id_..':'..msg.chat_id_,'ايدي') then
+database:sadd('tshake:'..bot_id..'spam:id'..msg.sender_user_id_..':'..msg.chat_id_,'ايدي')
 local keko_info = nil
 function keko333(extra,result,success)
 keko_info = '@'..(result.username_ or 'لا يوجد')..''
@@ -5634,7 +5822,9 @@ end
 end
 local edit = database:get('tshake:'..bot_id..'user:editmsg'..msg.chat_id_..':'..msg.sender_user_id_) or 0
 if result.photos_[0] then
-if is_sudo(msg) then
+if msg.sender_user_id_ == tonumber(sudo_add) then
+t = 'المطور الاساسي 👨🏻‍🔧'
+elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍💻'
 elseif is_creatorbasic(msg) then
 t =  database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍🚀'
@@ -5687,7 +5877,9 @@ local tshake_new_text = tshake_new_text:gsub('#game',(nko or 'لا يوجد'))
 sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,tshake_new_text,msg.id_,msg.id_.."")
 end
 else
-if is_sudo(msg) then
+if msg.sender_user_id_ == tonumber(sudo_add) then
+t = 'المطور الاساسي 👨🏻‍🔧'
+elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍💻'
 elseif is_creatorbasic(msg) then
 t = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍🚀'
@@ -5725,7 +5917,9 @@ end
 else
 end
 else
-if is_sudo(msg) then
+if msg.sender_user_id_ == tonumber(sudo_add) then
+t = 'المطور الاساسي 👨🏻‍🔧'
+elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍💻'
 elseif is_creatorbasic(msg) then
 t = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍🚀'
@@ -5762,7 +5956,9 @@ local tshake_new_text = tshake_new_text:gsub('#game',(nko or 'لا يوجد'))
 send(msg.chat_id_, msg.id_, 1, tshake_new_text, 1, 'html')
 end
 else
-if is_sudo(msg) then
+if msg.sender_user_id_ == tonumber(sudo_add) then
+t = 'المطور الاساسي 👨🏻‍🔧'
+elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت 👨🏻‍💻'
 elseif is_creatorbasic(msg) then
 t = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ اساسي 👨🏻‍🚀'
@@ -5906,7 +6102,124 @@ redis:set('tshake:'..bot_id..'help', text)
 send(msg.chat_id_, msg.id_, 1, text , 1, 'html')
 return false end
 end
----------------
+--------------------------------
+if text == "صلاحياته" and tonumber(msg.reply_to_message_id_) > 0 then    
+if tonumber(msg.reply_to_message_id_) ~= 0 then 
+function prom_reply(extra, result, success) 
+Get_Info(msg,msg.chat_id_,result.sender_user_id_)
+end  
+tdcli_function ({ID = "GetMessage",chat_id_=msg.chat_id_,message_id_=tonumber(msg.reply_to_message_id_)},prom_reply, nil)
+end
+end
+if text == "صلاحياتي" then 
+if tonumber(msg.reply_to_message_id_) == 0 then 
+Get_Info(msg,msg.chat_id_,msg.sender_user_id_)
+end  
+end
+if text and text:match('^صلاحياته @(.*)') then   
+local username = text:match('صلاحياته @(.*)')   
+if tonumber(msg.reply_to_message_id_) == 0 then 
+function prom_username(extra, result, success) 
+if (result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT_OCCUPIED") then
+SendText(msg.chat_id_,msg.id_,"*📮┇ المعرف غير صحيح \n*")   
+return false  end   
+if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
+SendText(msg.chat_id_,msg.id_,"*📮┇ هاذا معرف قناة \n*")   
+return false end      
+Get_Info(msg,msg.chat_id_,result.id_)
+end  
+tdcli_function ({ID = "SearchPublicChat",username_ = username},prom_username,nil) 
+end 
+end
+if text == 'فحص البوت' and (is_creator(msg) or is_creatorbasic(msg)) then
+local Chek_Info = https.request('https://api.telegram.org/bot'..token..'/getChatMember?chat_id='.. msg.chat_id_ ..'&user_id='.. bot_id..'')
+local Json_Info = JSON.decode(Chek_Info)
+vardump(Json_Info)
+if Json_Info.ok == true then
+if Json_Info.result.status == "administrator" then
+if Json_Info.result.can_change_info == true then
+info = 'ꪜ' else info = '✘' end
+if Json_Info.result.can_delete_messages == true then
+delete = 'ꪜ' else delete = '✘' end
+if Json_Info.result.can_invite_users == true then
+invite = 'ꪜ' else invite = '✘' end
+if Json_Info.result.can_pin_messages == true then
+pin = 'ꪜ' else pin = '✘' end
+if Json_Info.result.can_restrict_members == true then
+restrict = 'ꪜ' else restrict = '✘' end
+if Json_Info.result.can_promote_members == true then
+promote = 'ꪜ' else promote = '✘' end 
+SendText(msg.chat_id_,msg.id_,'\n📌┇ اهلا عزيزي البوت هنا ادمن'..'\n💢┇ وصلاحياته هي ↓ \nٴ━━━━━━━━━━'..'\n📝┇ تغير معلومات المجموعه ↞ ❴ '..info..' ❵'..'\n📨┇ حذف الرسائل ↞ ❴ '..delete..' ❵'..'\n🚷┇ حظر المستخدمين ↞ ❴ '..restrict..' ❵'..'\n♻┇ دعوة مستخدمين ↞ ❴ '..invite..' ❵'..'\n🔘┇ تثبيت الرسائل ↞ ❴ '..pin..' ❵'..'\n🚸┇ اضافة مشرفين جدد ↞ ❴ '..promote..' ❵')   
+end
+end
+end
+if text == 'منع' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then 
+function cb(a,b,c) 
+textt = '📮┇ تم منع '
+if b.content_.sticker_ then
+local idsticker = b.content_.sticker_.set_id_
+database:sadd('tshake:'..bot_id.."filtersteckr"..msg.chat_id_,idsticker)
+text = 'الملصق'
+sendtext(msg.chat_id_, msg.id_,textt..'( '..text..' ) بنجاح لن يتم ارسالها مجددا')  
+return false
+end
+if b.content_.ID == "MessagePhoto" then
+local photo = b.content_.photo_.id_
+database:sadd('tshake:'..bot_id.."filterphoto"..msg.chat_id_,photo)
+text = 'الصوره'
+sendtext(msg.chat_id_, msg.id_,textt..'( '..text..' ) بنجاح لن يتم ارسالها مجددا')  
+return false
+end
+if b.content_.animation_.animation_ then
+local idanimation = b.content_.animation_.animation_.persistent_id_
+database:sadd('tshake:'..bot_id.."filteranimation"..msg.chat_id_,idanimation)
+text = 'المتحركه'
+sendtext(msg.chat_id_, msg.id_,textt..'( '..text..' ) بنجاح لن يتم ارسالها مجددا')  
+return false
+end
+end
+getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),cb) 
+end
+if text == 'الغاء منع' and tonumber(msg.reply_to_message_id_) > 0 and is_owner(msg) then 
+function cb(a,b,c) 
+textt = '📮┇ تم الغاء منع '
+if b.content_.sticker_ then
+local idsticker = b.content_.sticker_.set_id_
+database:srem('tshake:'..bot_id.."filtersteckr"..msg.chat_id_,idsticker)
+text = 'الملصق'
+sendtext(msg.chat_id_, msg.id_,textt..'( '..text..' ) بنجاح يمكنهم الارسال الان')  
+return false
+end
+if b.content_.ID == "MessagePhoto" then
+local photo = b.content_.photo_.id_
+database:srem('tshake:'..bot_id.."filterphoto"..msg.chat_id_,photo)
+text = 'الصوره'
+sendtext(msg.chat_id_, msg.id_,textt..'( '..text..' ) بنجاح يمكنهم الارسال الان')  
+return false
+end
+if b.content_.animation_.animation_ then
+local idanimation = b.content_.animation_.animation_.persistent_id_
+database:srem('tshake:'..bot_id.."filteranimation"..msg.chat_id_,idanimation)
+text = 'المتحركه'
+sendtext(msg.chat_id_, msg.id_,textt..'( '..text..' ) بنجاح يمكنهم الارسال الان')  
+return false
+end
+end
+getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),cb) 
+end
+if text == 'مسح قائمه منع المتحركات' and is_owner(msg) then 
+database:del('tshake:'..bot_id.."filteranimation"..msg.chat_id_)
+sendtext(msg.chat_id_, msg.id_,'🔖┇ تم مسح قائمه منع المتحركات')  
+end
+if text == 'مسح قائمه منع الصور' and is_owner(msg) then 
+database:del('tshake:'..bot_id.."filterphoto"..msg.chat_id_)
+sendtext(msg.chat_id_, msg.id_,'🔖┇ تم مسح قائمه منع الصور')  
+end
+if text == 'مسح قائمه منع الملصقات' and is_owner(msg) then 
+database:del('tshake:'..bot_id.."filtersteckr"..msg.chat_id_)
+sendtext(msg.chat_id_, msg.id_,'🔖┇ تم مسح قائمه منع الملصقات')  
+end
+----------------------------------------
 if text == 'سمايلات' and database:get('tshake:'..bot_id..'lock_geam'..msg.chat_id_) then
 database:del('tshake:'..bot_id..'l:ids'..msg.chat_id_)
 katu = {'🍏','🍎','🍐','🍊','🍋','🍌','🍉','🍇','🍓','🍈','🍒','🍑','🍍','🥥','🥝','🍅','🍆','🥑','🥦','🥒','🌶','🌽','🥕','🥔','🍠','🥐','🍞','🥖','🥨','🧀','🥚','🍳','🥞','🥓','🥩','🍗','🍖','🌭','🍔','🍟','🍕','🥪','🥙','🍼','☕️','🍵','🥤','🍶','🍺','🍻','🏀','⚽️','🏈','⚾️','🎾','🏐','🏉','🎱','🏓','🏸','🥅','🎰','🎮','🎳','🎯','🎲','🎻','🎸','🎺','🥁','🎹','🎼','🎧','🎤','🎬','🎨','🎭','🎪','🎟','🎫','🎗','🏵','🎖','🏆','🥌','🛷','🚕','🚗','🚙','🚌','🚎','🏎','🚓','🚑','🚚','🚛','🚜','🇮🇶','⚔','🛡','🔮','🌡','💣','📌','📍','📓','📗','📂','📅','📪','📫','📬','📭','⏰','📺','🎚','☎️','📡'}
@@ -8203,6 +8516,57 @@ end
 end
 local msg = data.message_
 text = msg.content_.text_
+if msg.content_.ID == 'MessageSticker' and not is_owner(msg) then 
+local filter = database:smembers('tshake:'..bot_id.."filtersteckr"..msg.chat_id_)
+for k,v in pairs(filter) do
+if v == msg.content_.sticker_.set_id_ then
+function get_info(arg,data)
+if data.username_ ~= false then
+send(msg.chat_id_,0, 1, "⚠┇عذرا يا » { (@"..data.username_..")}\n📛┇ الملصق الذي ارسلته تم منعه من المجموعه \n" , 1, 'html') 
+else
+send(msg.chat_id_,0, 1, "⚠┇عذرا يا » {["..data.first_name_.."](T.ME/TSHAKETEAM)}\n📛┇ الملصق الذي ارسلته تم منعه من المجموعه \n" , 1, 'md') 
+end
+end
+getUser(msg.sender_user_id_,get_info)
+delete_msg(msg.chat_id_,{[0] = msg.id_})       
+return false   
+end
+end
+end
+if msg.content_.ID == 'MessagePhoto' and not is_owner(msg) then 
+local filter = database:smembers('tshake:'..bot_id.."filterphoto"..msg.chat_id_)
+for k,v in pairs(filter) do
+if v == msg.content_.photo_.id_ then
+function get_info(arg,data)
+if data.username_ ~= false then
+send(msg.chat_id_,0, 1, "⚠┇عذرا يا » { (@"..data.username_..")}\n📛┇ الصوره التي ارسلتها تم منعها من المجموعه \n" , 1, 'html') 
+else
+send(msg.chat_id_,0, 1, "⚠┇عذرا يا » {["..data.first_name_.."](T.ME/TSHAKETEAM)}\n📛┇ الصوره التي ارسلتها تم منعها من المجموعه \n" , 1, 'md') 
+end
+end
+getUser(msg.sender_user_id_,get_info)
+delete_msg(msg.chat_id_,{[0] = msg.id_})       
+return false   
+end
+end
+end
+if msg.content_.ID == 'MessageAnimation' and not is_owner(msg) then 
+local filter = database:smembers('tshake:'..bot_id.."filteranimation"..msg.chat_id_)
+for k,v in pairs(filter) do
+if v == msg.content_.animation_.animation_.persistent_id_ then
+function get_info(arg,data)
+if data.username_ ~= false then
+send(msg.chat_id_,0, 1, "⚠┇عذرا يا » { (@"..data.username_..")}\n📛┇ المتحركه التي ارسلتها تم منعها من المجموعه \n" , 1, 'html') 
+else
+send(msg.chat_id_,0, 1, "⚠┇عذرا يا » {["..data.first_name_.."](T.ME/TSHAKETEAM)}\n📛┇ المتحركه التي ارسلتها تم منعها من المجموعه \n" , 1, 'md') 
+end
+end
+getUser(msg.sender_user_id_,get_info)
+delete_msg(msg.chat_id_,{[0] = msg.id_})       
+return false   
+end
+end
+end
 if is_sudo(msg) then 
 if database:get("tshake:set_if_bc_new:"..bot_id..msg.sender_user_id_) then 
 database:del("tshake:set_if_bc_new:"..bot_id..msg.sender_user_id_)
@@ -8295,6 +8659,7 @@ end -- end if text
 redis:sadd('tshake:'..bot_id..'kekore'..msg.chat_id_..'', keko2)
 send(msg.chat_id_, msg.id_, 1, "📊※ تم حفظ الرد  ✓", 1, 'md')
 redis:set('tshake:'..bot_id..'keko1'..msg.sender_user_id_..''..msg.chat_id_..'', 'no')
+return false
 end
 local keko1 = redis:get('tshake:'..bot_id..'keko1'..msg.sender_user_id_..'')
 if keko1 == 're' then
@@ -8315,7 +8680,9 @@ end
 redis:sadd('tshake:'..bot_id..'kekoresudo', keko2)
 send(msg.chat_id_, msg.id_, 1, "📊※ تم حفظ الرد  ✓", 1, 'md')
 redis:set('tshake:'..bot_id..'keko1'..msg.sender_user_id_..'', 'no')
+return false
 end
+
 --         »»                 Run TshAkE                         ««              --
 if is_mod(msg) then TSlocks(msg) print("\27[1;34m»» is mod "..msg.sender_user_id_.."\27[m") end
 TSall(msg,data)
@@ -8457,6 +8824,12 @@ delete_msg(msg.chat_id_,msgs)
 end 
 end
 if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+if database:get("lock_link.note:tshake"..msg.chat_id_..bot_id) then
+local msgs = {[0] = data.message_id_}
+delete_msg(msg.chat_id_,msgs) 
+end 
+end 
+if text:match("[hH][tT][tT][pP][sT]") or text:match("[tT][eE][lL][eE][gG][rR][aA].[pP][hH]") then
 if database:get("lock_link.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) 
