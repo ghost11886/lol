@@ -3096,7 +3096,7 @@ if data.Ch_Member.TshAkE ~= true then
 send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• @zx_xx ⚜️\n', 1, 'html')   
 return false end
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..apmd[2].."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
-tsX000(apmd[2],msg,'┇ تم رفعة ادمن   في الكروب  ')
+tsX000(apmd[2],msg,'تم رفعة ادمن   في الكروب')
 return false
 end
 if text:match("^رفع ادمن بالكروب$")  and is_creatorbasic(msg) and msg.reply_to_message_id_ then
@@ -3107,7 +3107,7 @@ send(msg.chat_id_, msg.id_, 1,'\n• اهلا بك عزيزي 🔱 •\n• لا
 return false end
 function promote_by_reply(extra, result, success)
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
-tsX000("prore",msg,'┇ تم رفعة ادمن   في الكروب  ')
+tsX000("prore",msg,'تم رفعة ادمن   في الكروب')
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
 return false
@@ -3122,7 +3122,7 @@ local apmd = {string.match(text, "^(رفع ادمن بالكروب) @(.*)$")}
 function promote_by_username(extra, result, success)
 if result.id_ then
 HTTPS.request("https://api.telegram.org/bot" .. token .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
-texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\n┇ تم رفعة ادمن   في الكروب  '
+texts = '💁🏻‍♂️┇ العضو ['..result.title_..'](t.me/'..(apmd[2] or 'TSHAKETEAM')..')\nتم رفعة ادمن   في الكروب  '
 else
 texts = '✖┇خطاء'
 end
@@ -4167,9 +4167,9 @@ for k,v in pairs(list) do
 local user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
 if user_info and user_info.username then
 local username = user_info.username
-text = text.."<b>|"..k.."|</b>~⪼(@"..username..")\n"
+text = text..k.." ~ ⁞ @"..username.." {`'..v..'`}\n"
 else
-text = text.."<b>|"..k.."|</b>~⪼(<code>"..v.."</code>)\n"
+text = text..k.." ~ ⁞ {`'..v..'`}\n" 
 end
 if #text > 7000 then
 send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
