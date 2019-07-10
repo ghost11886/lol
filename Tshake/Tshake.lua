@@ -2978,7 +2978,7 @@ return false end
 function setcreator_by_reply(extra, result, success)
 local hash =  'tshake:'..bot_id..'creator:'..msg.chat_id_
 if database:sismember(hash, result.sender_user_id_) then
-tsX000("prore",msg,"تم بالفعل رفعة منشئ  في البوت")
+tsX000("prore",msg,"🔖┇تم بالفعل رفعة منشئ  في البوت")
 else
 database:sadd(hash, result.sender_user_id_)
 tsX000("prore",msg,"🔖┇تم رفعة منشئ  في البوت")
@@ -3352,7 +3352,7 @@ return false end
 function promote_by_reply(extra, result, success)
 local hash =  'tshake:'..bot_id..'vipgp:'..msg.chat_id_
 if database:sismember(hash, result.sender_user_id_) then
-tsX000("prore",msg,"تم بالفعل رفعة عضو مميز  في البوت") 
+tsX000("prore",msg,"🔖┇تم بالفعل رفعة عضو مميز  في البوت") 
 else
 database:sadd(hash, result.sender_user_id_)
 tsX000("prore",msg,"🔖┇تم رفعة عضو مميز  في البوت")
