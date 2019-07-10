@@ -6321,7 +6321,7 @@ end
 local edit = database:get('tshake:'..bot_id..'user:editmsg'..msg.chat_id_..':'..msg.sender_user_id_) or 0
 if result.photos_[0] then
 if msg.sender_user_id_ == tonumber(sudo_add) then
-t = 'المطور الاساسي 👨🏻‍🔧'
+t = 'المطور الاساسي'
 elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت '
 elseif is_creatorbasic(msg) then
@@ -6368,7 +6368,7 @@ sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.p
 end
 else
 if msg.sender_user_id_ == tonumber(sudo_add) then
-t = 'المطور الاساسي 👨🏻‍🔧'
+t = 'المطور الاساسي'
 elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت '
 elseif is_creatorbasic(msg) then
@@ -6407,7 +6407,7 @@ else
 end
 else
 if msg.sender_user_id_ == tonumber(sudo_add) then
-t = 'المطور الاساسي 👨🏻‍🔧'
+t = 'المطور الاساسي'
 elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت '
 elseif is_creatorbasic(msg) then
@@ -6445,7 +6445,7 @@ send(msg.chat_id_, msg.id_, 1, tshake_new_text, 1, 'html')
 end
 else
 if msg.sender_user_id_ == tonumber(sudo_add) then
-t = 'المطور الاساسي 👨🏻‍🔧'
+t = 'المطور الاساسي'
 elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت '
 elseif is_creatorbasic(msg) then
