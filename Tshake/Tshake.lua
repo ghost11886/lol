@@ -4167,9 +4167,9 @@ for k,v in pairs(list) do
 local user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
 if user_info and user_info.username then
 local username = user_info.username
-text = text..k.." ~ ⁞ @"..username.." {`"..v.."`}\n"
+text = text..k.." ~ ⁞ @"..username.." [`"..v.."`]\n"
 else
-text = text..k.." ~ ⁞ {`"..v.."`}\n" 
+text = text..k.." ~ ⁞ `"..v.."`\n" 
 end
 if #text > 7000 then
 send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
@@ -4179,7 +4179,7 @@ end
 if #list == 0 then
 text = "❗️┇ لا يوجد ادمنية  "
 end
-send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 -----------------------------------------------
 if (text and text == "ابلاغ" and msg.reply_to_message_id_ ~= 0 and (not database:get("tshake:mute:deleta:msg:"..bot_id..msg.chat_id_))) then 
