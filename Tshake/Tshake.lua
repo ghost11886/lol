@@ -4570,15 +4570,15 @@ if text:match("^الرابط$") then
 if not database:get("tshake:mute:link:gr:"..bot_id..msg.chat_id_) then 
 function dl_cb222( t1,t2 )
 if (database:get('tshake:'..bot_id.."group:link"..msg.chat_id_) and database:get('tshake:'..bot_id.."group:link"..msg.chat_id_) ~= "Error") then 
-send(msg.chat_id_, msg.id_, 1, '🔘┇ *Group Link* \n'..database:get('tshake:'..bot_id.."group:link"..msg.chat_id_), 1, "html")
+send(msg.chat_id_, msg.id_, 1, '🔘┇ *Group Link* \n['..database:get('tshake:'..bot_id.."group:link"..msg.chat_id_)..']', 1, "md")
 elseif t2.invite_link_ ~= false then 
-send(msg.chat_id_, msg.id_, 1, '🔘┇ *Group Link* \n'..(t2.invite_link_ or "Error"), 1, "html")
+send(msg.chat_id_, msg.id_, 1, '🔘┇ *Group Link* \n'..(t2.invite_link_ or "Error"), 1, "md")
 else
 local getlink = 'https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_
 local req = https.request(getlink)
 local link = json:decode(req)
 if link.ok == true then 
-send(msg.chat_id_, msg.id_, 1, '🔘┇ *Group Link* \n'..(link.result or "Error"), 1, "html")
+send(msg.chat_id_, msg.id_, 1, '🔘┇ *Group Link* \n'..(link.result or "Error"), 1, "md")
 database:set('tshake:'..bot_id.."group:link"..msg.chat_id_,link.result)
 else 
 send(msg.chat_id_, msg.id_, 1, '⚠️┇لا يمكني الوصل الى الرابط عليك منحي صلاحيه {دعوه المستخدمين من خلال الرابط}', 1, "html")
