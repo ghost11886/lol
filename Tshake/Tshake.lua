@@ -4365,7 +4365,7 @@ send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
 end  
 if (text and text == "رتبتي") then
 if msg.sender_user_id_ == tonumber(sudo_add) then
-t = 'المطور الاساسي 👨🏻‍🔧'
+t = 'المطور الاساسي'
 elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت '
 elseif is_creatorbasic(msg) then
@@ -4432,7 +4432,7 @@ end
 end
 msg2.sender_user_id_ = result.sender_user_id_
 if msg.sender_user_id_ == tonumber(sudo_add) then
-tshake_oop = 'المطور الاساسي 👨🏻‍🔧'
+tshake_oop = 'المطور الاساسي'
 elseif is_sudo(msg2) then
 tshake_oop = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت '
 elseif is_creatorbasic(msg) then
@@ -4505,7 +4505,7 @@ end
 end
 end
 if msg.sender_user_id_ == tonumber(sudo_add) then
-tshake_oop = 'المطور الاساسي 👨🏻‍🔧'
+tshake_oop = 'المطور الاساسي'
 elseif is_sudo(msg2) then
 tshake_oop = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت '
 elseif is_creatorbasic(msg) then
