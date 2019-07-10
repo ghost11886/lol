@@ -4377,13 +4377,13 @@ t = database:get("tshake:name_cre"..bot_id..msg.chat_id_) or 'منشئ  الكر
 elseif (database:get("tshake:name_user:"..bot_id..msg.chat_id_..msg.sender_user_id_) and database:get("tshake:all_if:"..database:get("tshake:name_user:"..bot_id..msg.chat_id_..msg.sender_user_id_) ..bot_id..msg.chat_id_)) then 
 t = database:get("tshake:name_user:"..bot_id..msg.chat_id_..msg.sender_user_id_)
 elseif is_owner(msg) then
-t = database:get("tshake:name_own"..bot_id..msg.chat_id_) or 'مدير الكروب  👩🏿‍🚀'
+t = database:get("tshake:name_own"..bot_id..msg.chat_id_) or 'مدير الكروب '
 elseif is_mod(msg) then
 t = database:get("tshake:name_adm"..bot_id..msg.chat_id_) or ' ادمن الكروب خالي '
 elseif is_vip(msg) then
-t = database:get("tshake:name_vipp"..bot_id..msg.chat_id_) or 'عضو مميز  🧟‍♂'
+t = database:get("tshake:name_vipp"..bot_id..msg.chat_id_) or 'عضو مميز '
 else
-t = database:get("tshake:name_nk"..bot_id..msg.chat_id_) or 'عضو محد يحترمك 😹' 
+t = database:get("tshake:name_nk"..bot_id..msg.chat_id_) or 'عضو محد يحترمك' 
 end
 send(msg.chat_id_, msg.id_, 1,"┇رتبتك >> "..t.."", 1, 'md')
 end
@@ -4452,7 +4452,7 @@ tshake_oop = database:get("tshake:name_vipp"..bot_id..msg.chat_id_) or ' عضو 
 else
 tshake_oop = database:get("tshake:name_nk"..bot_id..msg.chat_id_) or 'عضو فقط ' 
 end
-send(msg.chat_id_, msg.id_, 1,"🎟 ┇ ايدي  `("..result.sender_user_id_..")`\n🗳 ┇ موقعه  ("..tshake_oop..")\n💌 ┇ عدد رسائل `("..msgs..")`\n📧┇عدد السحكات  `("..edit..")`\n📩 ┇ تفاعلك  `("..ikeko_text..")`\n📥 ┇ مجوهرآتك *("..nko..")*", 1, 'md')
+send(msg.chat_id_, msg.id_, 1,"🎟 ┇ ايدي • `("..result.sender_user_id_..")`\n🗳 ┇ موقعه • ("..tshake_oop..")\n💌 ┇ عدد رسائل •`("..msgs..")`\n📧┇عدد السحكات • `("..edit..")`\n📩 ┇ تفاعلك • `("..ikeko_text..")`\n📥 ┇ مجوهرآتك •*("..nko..")*", 1, 'md')
 else
 send(msg.chat_id_, msg.id_, 1,"`"..result.sender_user_id_.."`", 1, 'md')
 end
@@ -4525,7 +4525,7 @@ tshake_oop = database:get("tshake:name_vipp"..bot_id..msg.chat_id_) or ' عضو 
 else
 tshake_oop = database:get("tshake:name_nk"..bot_id..msg.chat_id_) or 'عضو فقط ' 
 end
-texts = "🎟 ┇ ايدي  `("..result.id_..")`\n🗳 ┇ موقعه ("..tshake_oop..")\n💌 ┇ عدد رسائل `("..msgs..")`\n📔 ┇ عدد السحكات  `("..edit..")`\n📩 ┇ تفاعلك `("..ikeko_text..")`\n📥 ┇ مجوهرآتك *("..nko..")*"
+texts = "🎟 ┇ ايدي • `("..result.id_..")`\n🗳 ┇ موقعه •("..tshake_oop..")\n💌 ┇ عدد رسائل •`("..msgs..")`\n📔 ┇ عدد السحكات • `("..edit..")`\n📩 ┇ تفاعلك •`("..ikeko_text..")`\n📥 ┇ مجوهرآتك •*("..nko..")*"
 else
 texts = "`"..result.id_.."`"
 end
@@ -5586,7 +5586,7 @@ local user_msgs = ((database:get('tshake:'..bot_id..'user:msgs'..msg.chat_id_..'
 local edit = database:get('tshake:'..bot_id..'user:editmsg'..msg.chat_id_..':'..msg.sender_user_id_) or 0
 local t = ""
 if msg.sender_user_id_ == tonumber(sudo_add) then
-t = 'المطور الاساسي 👨🏻‍🔧'
+t = 'المطور الاساسي'
 elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت '
 elseif is_creatorbasic(msg) then
@@ -5648,7 +5648,7 @@ local user_msgs = ((database:get('tshake:'..bot_id..'user:msgs'..msg.chat_id_..'
 local edit = database:get('tshake:'..bot_id..'user:editmsg'..msg.chat_id_..':'..msg.sender_user_id_) or 0
 local t = ""
 if msg.sender_user_id_ == tonumber(sudo_add) then
-t = 'المطور الاساسي 👨🏻‍🔧'
+t = 'المطور الاساسي'
 elseif is_sudo(msg) then
 t = database:get("tshake:name_sudo"..bot_id..msg.chat_id_)  or 'مطور البوت '
 elseif is_creatorbasic(msg) then
@@ -5662,7 +5662,7 @@ t = database:get("tshake:name_user:"..bot_id..msg.chat_id_..msg.sender_user_id_)
 elseif is_owner(msg) then
 t = database:get("tshake:name_own"..bot_id..msg.chat_id_) or 'مدير الكروب '
 elseif is_mod(msg) then
-t = database:get("tshake:name_adm"..bot_id..msg.chat_id_) or 'ادمن الكروب👩??‍🚒'
+t = database:get("tshake:name_adm"..bot_id..msg.chat_id_) or 'ادمن الكروب'
 elseif is_vip(msg) then
 t = database:get("tshake:name_vipp"..bot_id..msg.chat_id_) or ' عضو مميز '
 else
@@ -6353,7 +6353,7 @@ local keko_text = {
 "عمري الحلوين 🙈💘",
 }
 keko3 = math.random(#keko_text)
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,"🎥 ┇ "..keko_text[keko3].."\n🎟 ┇ ايديك  "..msg.sender_user_id_.."\n🎫 ┇ يوزرك "..keko_info.."\n🛰 ┇ موقعك  "..t.."\n📖 ┇ رسائلك ("..user_msgs..")\n🗃 ┇ سحكاتك ("..edit..")\n📓 ┇ تفاعلك  ("..ikeko_text..")\n🤹🏻‍♂️ ┇ مجوهراتك  ("..nko..")\nꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ",msg.id_,msg.id_.."")
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,"🎥 ┇ "..keko_text[keko3].."\n🎟 ┇ ايديك • "..msg.sender_user_id_.."\n🎫 ┇ يوزرك •"..keko_info.."\n🛰 ┇ موقعك • "..t.."\n📖 ┇ رسائلك •("..user_msgs..")\n🗃 ┇ سحكاتك •("..edit..")\n📓 ┇ تفاعلك • ("..ikeko_text..")\n🤹🏻‍♂️ ┇ مجوهراتك • ("..nko..")\nꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ",msg.id_,msg.id_.."")
 else 
 local tshake_new_text = database:get("tshake:gr:id:text:"..bot_id..msg.chat_id_)
 local tshake_new_text = tshake_new_text:gsub('#username',(keko_info or 'لا يوجد'))
@@ -6389,7 +6389,7 @@ else
 t = database:get("tshake:name_nk"..bot_id..msg.chat_id_) or 'عضو فقط ' 
 end
 if not database:get("tshake:gr:id:text:"..bot_id..msg.chat_id_) then 
-send(msg.chat_id_, msg.id_, 1, "🎟 ┇ ايديك  ("..msg.sender_user_id_..")\n🎫 ┇ يوزرك  "..keko_info.."\n🛰 ┇ موقعك "..t.."\n📖 ┇ رسائلك ("..user_msgs..")\n🗃 ┇ سحكاتك  ("..edit..")\n📓 ┇ تفاعلك  "..ikeko_text.."\n🤹🏻‍♂️ ┇ مجوهراتك   ("..nko..")\nꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ ", 1, 'html')
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,"🎥 ┇ "..keko_text[keko3].."\n🎟 ┇ ايديك • "..msg.sender_user_id_.."\n🎫 ┇ يوزرك •"..keko_info.."\n🛰 ┇ موقعك • "..t.."\n📖 ┇ رسائلك •("..user_msgs..")\n🗃 ┇ سحكاتك •("..edit..")\n📓 ┇ تفاعلك • ("..ikeko_text..")\n🤹🏻‍♂️ ┇ مجوهراتك • ("..nko..")\nꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ",msg.id_,msg.id_.."")
 else 
 local tshake_new_text = database:get("tshake:gr:id:text:"..bot_id..msg.chat_id_)
 local tshake_new_text = tshake_new_text:gsub('#username',(keko_info or 'لا يوجد'))
@@ -6430,7 +6430,7 @@ end
 if not database:get('tshake:'..bot_id..'id:mute'..msg.chat_id_) then
 if not database:get('tshake:'..bot_id..'id:photo'..msg.chat_id_) then
 if not database:get("tshake:gr:id:text:"..bot_id..msg.chat_id_) then 
-send(msg.chat_id_, msg.id_, 1,"🎥 ┇ انت لا تملك صوره لحسابك !\n🎟 ┇ ايديك  "..msg.sender_user_id_.."\n🎫 ┇ يوزرك  "..keko_info.."\n🛰 ┇ موقعك   "..t.."\n📖 ┇ رسائلك  ("..user_msgs..")\n🗃 ┇ سحكاتك ("..edit..")\n📓 ┇ تفاعلك "..ikeko_text.."\n🤹🏻‍♂️ ┇ مجوهراتك  ("..nko..")\nꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ", 1, 'html')
+send(msg.chat_id_, msg.id_, 1, "🎟 ┇ ايديك • ("..msg.sender_user_id_..")\n🎫 ┇ يوزرك • "..keko_info.."\n🛰 ┇ موقعك •"..t.."\n📖 ┇ رسائلك •("..user_msgs..")\n🗃 ┇ سحكاتك • ("..edit..")\n📓 ┇ تفاعلك • "..ikeko_text.."\n🤹🏻‍♂️ ┇ مجوهراتك •  ("..nko..")\nꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ ", 1, 'html')
 else 
 local tshake_new_text = database:get("tshake:gr:id:text:"..bot_id..msg.chat_id_)
 local tshake_new_text = tshake_new_text:gsub('#username',(keko_info or 'لا يوجد'))
@@ -6466,7 +6466,7 @@ else
 t = database:get("tshake:name_nk"..bot_id..msg.chat_id_) or 'عضو فقط ' 
 end
 if not database:get("tshake:gr:id:text:"..bot_id..msg.chat_id_) then 
-send(msg.chat_id_, msg.id_, 1,"🎟 ┇ ايديك  ("..msg.sender_user_id_..")\n🎫 ┇ يوزرك  "..keko_info.."\n🛰 ┇ موقعك  "..t.."\n📖 ┇ رسائلك  {"..user_msgs..")\n🗃 ┇ سحكاتك ("..edit..")\n📓 ┇ تفاعلك  "..ikeko_text.."\n🤹🏻‍♂️ ┇ مجوهراتك  ("..nko..")\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ", 1, 'html')
+send(msg.chat_id_, msg.id_, 1,"🎥 ┇ انت لا تملك صوره لحسابك !\n🎟 ┇ ايديك • "..msg.sender_user_id_.."\n🎫 ┇ يوزرك • "..keko_info.."\n🛰 ┇ موقعك •  "..t.."\n📖 ┇ رسائلك • ("..user_msgs..")\n🗃 ┇ سحكاتك •("..edit..")\n📓 ┇ تفاعلك •"..ikeko_text.."\n🤹🏻‍♂️ ┇ مجوهراتك • ("..nko..")\nꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ", 1, 'html')
 else 
 local tshake_new_text = database:get("tshake:gr:id:text:"..bot_id..msg.chat_id_)
 local tshake_new_text = tshake_new_text:gsub('#username',(keko_info or 'لا يوجد'))
