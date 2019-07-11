@@ -1258,7 +1258,7 @@ end
 end
 getUser(msg.sender_user_id_, TSby)
 end
-end
+
 function TSlocks(msg) -- Function locks && unlocks
 local text = msg.content_.text_
 if text then
