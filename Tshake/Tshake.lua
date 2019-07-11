@@ -3004,7 +3004,7 @@ end
 if #list == 0 then
 text = "❗️┇ لا يوجد منشئين  "
 end
-send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 ----------------------------------------
 if text:match("^رفع ادمن بالكروب (%d+)$") and  is_creatorbasic(msg) then
@@ -3444,7 +3444,7 @@ end
 if #list == 0 then
 text = "✖┇لايوجد اشخاص لديهم صلاحيه الحظر"
 end
-send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 
 if text:match("^رفع القيود$") and (is_mod(msg) or is_creatorbasic(msg)) and msg.reply_to_message_id_ ~= 0 then
@@ -4015,7 +4015,7 @@ end
 if #list == 0 then
 text = "❗️┇ لا يوجد ادمنية  "
 end
-send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 -----------------------------------------------
 if (text and text == "ابلاغ" and msg.reply_to_message_id_ ~= 0 and (not database:get("tshake:mute:deleta:msg:"..bot_id..msg.chat_id_))) then 
@@ -4071,7 +4071,7 @@ end
 if #list == 0 then
 text = "❗️┇ لا يوجد اعضاء مميزين  "
 end
-send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 
 if text and text == "عدد الكروب" and (is_mod(msg) or is_creatorbasic(msg)) then 
@@ -4109,7 +4109,7 @@ end
 if #list == 0 then
 text = "🤹🏻‍♂️┇ لا يوجد مكتومين   "
 end
-send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 if text:match("^المدراء$") and (is_creator(msg) or is_creatorbasic(msg)) then
 local hash =   'tshake:'..bot_id..'owners:'..msg.chat_id_
@@ -4131,7 +4131,7 @@ end
 if #list == 0 then
 text = "❗️┇ لا يوجد مدراء  "
 end
-send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 if text:match("^المحظورين$") and (is_mod(msg) or is_creatorbasic(msg)) then
 local hash =   'tshake:'..bot_id..'banned:'..msg.chat_id_
@@ -4153,7 +4153,7 @@ end
 if #list == 0 then
 text = "🤹🏿‍♀️┇ لا يوجد محظورين    "
 end
-send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 if  msg.content_.text_:match("^قائمه العام$") and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
 local hash =   'tshake:'..bot_id..'gbanned:'
@@ -4175,7 +4175,7 @@ end
 if #list == 0 then
 text = "✖┇لايوجد محظورين عام"
 end
-send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 if  msg.content_.text_:match("^المكتومين عام$") and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
 local hash =   'tshake:'..bot_id..'gmuted:'
