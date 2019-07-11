@@ -197,12 +197,24 @@ local owner = database:sismember('tshake:'..bot_id..'owners:'..chat_id, user_id)
 local creator = database:sismember('tshake:'..bot_id..'creator:'..chat_id, user_id)  
 local creatorbasic = database:sismember('tshake:'..bot_id..'creatorbasic:'..chat_id, user_id)  
 local vip = database:sismember('tshake:'..bot_id..'vipgp:'..chat_id, user_id)
-if mod then var = true end
-if owner then var = true end
-if creator then var = true end
-if creatorbasic then var = true end
-if admin then var = true end
-if vip then var = true end
+if mod then 
+var = true 
+end
+if owner then 
+var = true 
+end
+if creator then 
+var = true 
+end
+if creatorbasic then 
+var = true 
+end
+if admin then 
+var = true 
+end
+if vip then 
+var = true 
+end
 for k,v in pairs(sudo_users) do
 if user_id == v then var = true end end
 local keko_add_sudo = redis:get('tshake:'..bot_id..'sudoo'..user_id..'')
@@ -1052,6 +1064,7 @@ dofile('Tshake.lua')
 os.exit()
 return false
 end
+end
 if text == "تفعيل"  then
 function TSby(extra,result,success)
 info = '💬┇بواسطه ~⪼ ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'
@@ -1839,7 +1852,7 @@ end
 function TSCheckMsg(msg) 
 local text = msg.content_.text_
 
-if text then 
+if text and not is_creatorbasic(msg) then 
 if database:get("lock_word:tshake"..msg.chat_id_..bot_id) then 
 local tshake_wr = (database:get("tshake:not:word:"..bot_id..msg.chat_id_) or 100)
 if #text >= tonumber(tshake_wr) then
@@ -1848,7 +1861,7 @@ return "stop"
 end
 end
 end
-if text and (text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]")) then
+if text and (text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]")  or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]")) then
 if database:get("lock_link:tshake"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
@@ -1856,7 +1869,7 @@ end
 end
 if msg.content_.caption_ then
 text = msg.content_.caption_
-if text and (text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]")) then
+if text and (text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]")  or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]")) then
 if database:get("lock_link:tshake"..msg.chat_id_..bot_id) then
 delete_msg(msg.chat_id_,{[0] = msg.id_})
 return "stop"
@@ -2131,6 +2144,12 @@ end
 if (text and text == 'تعطيل المغادره') and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, '☑┇تم تعطيل مغادره البوت', 1, 'md')
 database:set('tshake:'..bot_id..'leave:groups',true)
+end
+
+if text:match("^مسح الاساسين$") and is_sudo(msg) then
+text = '☑┇تم مسح قائمه المنشئين الاساسين'
+database:del('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_)
+send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 
 if text:match("^رفع منشئ اساسي$") and msg.reply_to_message_id_ then
@@ -2984,6 +3003,28 @@ local apow = {string.match(text, "^(تنزيل منشئ) (%d+)$")}
 database:srem(hash, apow[2])
 tsX000(apow[2],msg,"🔰┇تم تنزيله من منشئين المجموعه")
 end--
+
+if text == 'المنشئين الاساسين' and is_sudo(msg) then
+local list = database:smembers('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_)
+if #list == 0 then
+text = "❗️┇ لا يوجد منشئين اساسين "
+send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
+return false
+end
+text = "🛅┇قائمة المنشئين الاساسيين ،\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ \n"
+for k,v in pairs(list) do
+local user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
+if user_info and user_info.username then
+local username = user_info.username
+text = text..k.." ~ ⁞ [@"..username.."]{`"..v.."`}\n"
+else
+text = text..k.." ~ ⁞ `"..v.."`\n" 
+end
+end
+send(msg.chat_id_, msg.id_, 1, text, 1, 'md')
+return false
+end
+
 if text:match("^المنشئين")and is_creatorbasic(msg) then
 local hash =   'tshake:'..bot_id..'creator:'..msg.chat_id_
 local list = database:smembers(hash)
@@ -3320,8 +3361,12 @@ send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع حظر', 1, 'md')
 return "tshakke"
 end
 function ban_by_reply(extra, result, success)
+if database:sismember('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '❕┇لا تستطيع حظر وكتم وطرد \n🔘┇(مدراء،ادمنيه،اعضاء مميزين)البوت', 1, 'md')
+return false
+end
 local hash =  'tshake:'..bot_id..'banned:'..msg.chat_id_
-if ck_mod(result.sender_user_id_, msg.chat_id_) then
+if not is_creatorbasic(msg) or ck_mod(result.sender_user_id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '❕┇لا تستطيع حظر \n🔘┇(مدراء،ادمنيه،اعضاء مميزين)البوت', 1, 'md')
 else
 if database:sismember(hash, result.sender_user_id_) then
@@ -3338,15 +3383,14 @@ getMessage(msg.chat_id_, msg.reply_to_message_id_,ban_by_reply)
 return false
 end
 
-if text:match("^حظر @(.*)$") and (is_mod(msg) or is_creatorbasic(msg)) then
-if not is_creator(msg) and not is_setban(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
-send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع حظر', 1, 'md')
-return "tshakke"
-end
 local apba = {string.match(text, "^(حظر) @(.*)$")}
 function ban_by_username(extra, result, success)
 if result.id_ then
-if ck_mod(result.id_, msg.chat_id_)then
+if database:sismember('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, result.id_) then
+send(msg.chat_id_, msg.id_, 1, '❕┇لا تستطيع حظر وكتم وطرد \n🔘┇(مدراء،ادمنيه،اعضاء مميزين)البوت', 1, 'md')
+return false
+end
+if not is_creatorbasic(msg) or ck_mod(result.id_, msg.chat_id_)then
 send(msg.chat_id_, msg.id_, 1, '❕┇لا تستطيع حظر \n🔘┇(مدراء،ادمنيه،اعضاء مميزين)البوت', 1, 'md')
 else
 database:sadd('tshake:'..bot_id..'banned:'..msg.chat_id_, result.id_)
@@ -3368,7 +3412,11 @@ send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع حظر', 1, 'md')
 return "tshakke"
 end
 local apba = {string.match(text, "^([Bb][Aa][Nn]) (%d+)$")}
-if ck_mod(apba[2], msg.chat_id_)  then
+if database:sismember('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, apba[2]) then
+send(msg.chat_id_, msg.id_, 1, '❕┇لا تستطيع حظر وكتم وطرد \n🔘┇(مدراء،ادمنيه،اعضاء مميزين)البوت', 1, 'md')
+return false
+end
+if not is_creatorbasic(msg) or ck_mod(apba[2], msg.chat_id_)  then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️┇ لا تستطيع حظر او طرد (مدراء، ادمنية،مميزين)البوت   ', 1, 'md')
 else
 database:sadd('tshake:'..bot_id..'banned:'..msg.chat_id_, apba[2])
@@ -3568,7 +3616,7 @@ end
 
 if text:match("^حذف الكل$") and (is_owner(msg) or is_creatorbasic(msg)) and msg.reply_to_message_id_ then
 function delall_by_reply(extra, result, success)
-if ck_mod(result.sender_user_id_, msg.chat_id_) then
+if not is_creatorbasic(msg) or ck_mod(result.sender_user_id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️┇ لا تستطيع مسح رسائل (مدراء، ادمنية،مميزين)البوت   ', 1, 'md')
 else
 send(msg.chat_id_, msg.id_, 1, '👤┇العضو ~⪼ *('..result.sender_user_id_..')* \n🗑┇تم حذف كل رسائله\n', 1, 'md')
@@ -3743,8 +3791,12 @@ end
 
 if text:match("^كتم$") and (is_mod(msg) or is_creatorbasic(msg)) and msg.reply_to_message_id_ ~= 0 then
 function mute_by_reply(extra, result, success)
+if database:sismember('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '❕┇لا تستطيع حظر وكتم وطرد \n🔘┇(مدراء،ادمنيه،اعضاء مميزين)البوت', 1, 'md')
+return false
+end
 local hash =  'tshake:'..bot_id..'muted:'..msg.chat_id_
-if ck_mod(result.sender_user_id_, msg.chat_id_) then
+if not is_creatorbasic(msg) or ck_mod(result.sender_user_id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️┇ لا تستطيع كتم (مدراء، ادمنية،مميزين)البوت   ', 1, 'md')
 else
 if database:sismember(hash, result.sender_user_id_) then
@@ -3758,11 +3810,16 @@ end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,mute_by_reply)
 return false
 end
+
 if text:match("^كتم @(.*)$") and (is_mod(msg) or is_creatorbasic(msg)) then
 local apsi = {string.match(text, "^(كتم) @(.*)$")}
 function mute_by_username(extra, result, success)
 if result.id_ then
-if ck_mod(result.id_, msg.chat_id_) then
+if database:sismember('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, result.id_) then
+send(msg.chat_id_, msg.id_, 1, '❕┇لا تستطيع حظر وكتم وطرد \n🔘┇(مدراء،ادمنيه،اعضاء مميزين)البوت', 1, 'md')
+return false
+end
+if not is_creatorbasic(msg) or ck_mod(result.id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️┇ لا تستطيع كتم (مدراء، ادمنية،مميزين)البوت   ', 1, 'md')
 else 
 database:sadd('tshake:'..bot_id..'muted:'..msg.chat_id_, result.id_)
@@ -3776,9 +3833,14 @@ end
 resolve_username(apsi[2],mute_by_username)
 return false
 end
+
 if text:match("^كتم (%d+)$") and (is_mod(msg) or is_creatorbasic(msg)) then
 local apsi = {string.match(text, "^(كتم) (%d+)$")}
-if ck_mod(apsi[2], msg.chat_id_) or is_creatorbasic(msg, msg.chat_id_) then
+if database:sismember('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, apsi[2]) then
+send(msg.chat_id_, msg.id_, 1, '❕┇لا تستطيع حظر وكتم وطرد \n🔘┇(مدراء،ادمنيه،اعضاء مميزين)البوت', 1, 'md')
+return false
+end
+if not is_creatorbasic(msg) or ck_mod(apsi[2], msg.chat_id_) or is_creatorbasic(msg, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️┇ لا تستطيع كتم (مدراء، ادمنية،مميزين)البوت   ', 1, 'md')
 else
 database:sadd('tshake:'..bot_id..'muted:'..msg.chat_id_, apsi[2])
@@ -3786,6 +3848,7 @@ tsX000(apsi[2],msg,"🚫┇تم كتمه من البوت")
 end
 return false
 end
+
 if text:match("^الغاء كتم$") and (is_mod(msg) or is_creatorbasic(msg)) and msg.reply_to_message_id_ then
 function unmute_by_reply(extra, result, success)
 local hash =  'tshake:'..bot_id..'muted:'..msg.chat_id_
@@ -3827,7 +3890,11 @@ send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع طرد', 1, 'md')
 return "tshakke"
 end
 function kick_reply(extra, result, success)
-if ck_mod(result.sender_user_id_, msg.chat_id_) then
+if database:sismember('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, result.sender_user_id_) then
+send(msg.chat_id_, msg.id_, 1, '❕┇لا تستطيع حظر وكتم وطرد \n🔘┇(مدراء،ادمنيه،اعضاء مميزين)البوت', 1, 'md')
+return false
+end
+if not is_creatorbasic(msg) or ck_mod(result.sender_user_id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️┇ لا تستطيع حظر او طرد (مدراء، ادمنية،مميزين)البوت   ', 1, 'md')
 else
 tsX000("prore",msg,"🚫┇تم طرده من المجموعه")
@@ -3845,7 +3912,11 @@ end
 local apki = {string.match(text, "^(طرد) @(.*)$")}
 function kick_by_username(extra, result, success)
 if result.id_ then
-if ck_mod(result.id_, msg.chat_id_) then
+if database:sismember('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, result.id_) then
+send(msg.chat_id_, msg.id_, 1, '❕┇لا تستطيع حظر وكتم وطرد \n🔘┇(مدراء،ادمنيه،اعضاء مميزين)البوت', 1, 'md')
+return false
+end
+if not is_creatorbasic(msg) or ck_mod(result.id_, msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️┇ لا تستطيع حظر او طرد (مدراء، ادمنية،مميزين)البوت   ', 1, 'md')
 else
 texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apki[2] or 'TSHAKETEAM')..')\n🚫┇تم طرده من المجموعه'
@@ -3865,7 +3936,11 @@ send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع طرد', 1, 'md')
 return "tshakke"
 end
 local apki = {string.match(text, "^(طرد) (%d+)$")}
-if ck_mod(apki[2], msg.chat_id_) then
+if database:sismember('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, apki[2]) then
+send(msg.chat_id_, msg.id_, 1, '❕┇لا تستطيع حظر وكتم وطرد \n🔘┇(مدراء،ادمنيه،اعضاء مميزين)البوت', 1, 'md')
+return false
+end
+if not is_creatorbasic(msg) or ck_mod(apki[2], msg.chat_id_) then
 send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️┇ لا تستطيع حظر او طرد (مدراء، ادمنية،مميزين)البوت   ', 1, 'md')
 else
 chat_kick(msg.chat_id_, apki[2])
@@ -4408,13 +4483,13 @@ function dl_cb222( t1,t2 )
 if (database:get('tshake:'..bot_id.."group:link"..msg.chat_id_) and database:get('tshake:'..bot_id.."group:link"..msg.chat_id_) ~= "Error") then 
 send(msg.chat_id_, msg.id_, 1, '🔘┇ *Group Link* \n['..database:get('tshake:'..bot_id.."group:link"..msg.chat_id_)..']', 1, "md")
 elseif t2.invite_link_ ~= false then 
-send(msg.chat_id_, msg.id_, 1, '🔘┇ *Group Link* \n'..(t2.invite_link_ or "Error"), 1, "md")
+send(msg.chat_id_, msg.id_, 1, '🔘┇ *Group Link* \n['..(t2.invite_link_ or "Error")..']', 1, "md")
 else
 local getlink = 'https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_
 local req = https.request(getlink)
 local link = json:decode(req)
 if link.ok == true then 
-send(msg.chat_id_, msg.id_, 1, '🔘┇ *Group Link* \n'..(link.result or "Error"), 1, "md")
+send(msg.chat_id_, msg.id_, 1, '🔘┇ *Group Link* \n['..(link.result or "Error")..']', 1, "md")
 database:set('tshake:'..bot_id.."group:link"..msg.chat_id_,link.result)
 else 
 send(msg.chat_id_, msg.id_, 1, '⚠️┇لا يمكني الوصل الى الرابط عليك منحي صلاحيه {دعوه المستخدمين من خلال الرابط}', 1, "html")
@@ -7719,7 +7794,7 @@ return false
 end
 
 --         »»                 Run TshAkE                         ««              --
-if is_mod(msg) then TSlocks(msg) print("\27[1;34m»» is mod "..msg.sender_user_id_.."\27[m") end
+if is_mod(msg) or is_creatorbasic(msg) then TSlocks(msg) print("\27[1;34m»» is mod "..msg.sender_user_id_.."\27[m") end
 TSall(msg,data)
 function check_username(extra,result,success)
 local username = (result.username_ or '')
@@ -7835,36 +7910,36 @@ delete_msg(msg.chat_id_,{[0] = msg.message_id_})
 end
 local text = result.content_.text_
 if not is_mod(msgg) then
-if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+if text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]") or text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
 if database:get("lock_link:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) 
 end
 end
-if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+if text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]") or text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
 if database:get("lock_link.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) 
 end
 end
-if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+if text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]") or text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
 if database:get("lock_link:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) 
 end 
 end
-if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+if text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]") or text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
 if database:get("lock_link.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) 
 end 
 end 
-if text:match("[hH][tT][tT][pP][sT]") or text:match("[tT][eE][lL][eE][gG][rR][aA].[Pp][Hh]") or text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa].[Pp][Hh]") then
+if text:match("[Hh][Tt][Tt][Pp][Ss]") or text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa].[Pp][Hh]") then
 if database:get("lock_link.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) 
 end 
-end 
+end
 if text:match("(.*)(@)(.*)") then
 if database:get("lock_username:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
@@ -7891,8 +7966,10 @@ end
 end 
 
 if text:match("/")  then
+if database:get("lock_sarha:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) 
+end 
 end 
 if text:match("/")  then
 if database:get("lock_sarha.note:tshake"..msg.chat_id_..bot_id) then
@@ -7916,12 +7993,12 @@ end
 end
 if (not is_vip(msgg) and text) then
 check_filter_words(result, text)
-if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+if text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]") or text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
 if database:get("lock_link:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) 
 end
-if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
+if text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]") or text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Ss][Cc][Oo].[Pp][Ee]") then
 if database:get("lock_link.note:tshake"..msg.chat_id_..bot_id) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs) end
