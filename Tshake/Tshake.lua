@@ -5318,7 +5318,7 @@ return false  end
 end
 if text and (not is_mod(msg) or not is_creatorbasic(msg)) then  
 local taha = database:get('tshake:'..bot_id.."add:reply:rd"..text..msg.chat_id_)   
-if text and text:match(''..taha..'') then    
+if taha then    
 function get_info(arg,data)
 if data.username_ ~= false then
 send(msg.chat_id_,0, 1, "⚠┇العضو : {["..data.first_name_.."](T.ME/"..data.username_..")}\n📛┇["..taha.."] \n" , 1, 'md') 
@@ -7891,7 +7891,7 @@ delete_msg(msg.chat_id_,msgs)
 end 
 end
 local taha = database:get('tshake:'..bot_id.."add:reply:rd"..text..msg.chat_id_)   
-if taha and not is_mod(msgg) then    
+if text and text:match(''..taha..'')  and not is_mod(msgg) then    
 function get_info(arg,data)
 if data.username_ ~= false then
 send(msg.chat_id_,0, 1, "⚠┇العضو : {["..data.first_name_.."](T.ME/"..data.username_..")}\n📛┇["..taha.."] \n" , 1, 'md') 
