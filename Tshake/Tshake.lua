@@ -1061,7 +1061,6 @@ os.execute('cd libs;wget wget https://raw.githubusercontent.com/ghost11886/lol/m
 os.execute('rm -rf Tshake.lua')
 os.execute('wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/Tshake.lua')
 dofile('Tshake.lua')  
-os.exit()
 return false
 end
 end
@@ -2437,6 +2436,15 @@ end
 if text == 'تحديث' and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
 dofile('Tshake.lua')  
 send(msg.chat_id_, msg.id_, 1, '☑┇تم التحديث', 1, 'md')
+end
+if text:match("^تحديث السورس$") and tonumber(msg.sender_user_id_) == tonumber(sudo_add) then
+send(msg.chat_id_, msg.id_, 1, '☑┇تم التحديث', 1, 'md')
+os.execute('rm -rf ./libs/utils.lua')
+os.execute('cd libs;wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/libs/utils.lua')
+os.execute('rm -rf Tshake.lua')
+os.execute('wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/Tshake.lua')
+dofile('Tshake.lua')  
+return false
 end
 if text:match("^وضع وقت (%d+)$") then
 local a = {string.match(text, "^(وضع وقت) (%d+)$")}
