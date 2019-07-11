@@ -3383,6 +3383,11 @@ getMessage(msg.chat_id_, msg.reply_to_message_id_,ban_by_reply)
 return false
 end
 
+if text:match("^حظر @(.*)$") and (is_mod(msg) or is_creatorbasic(msg)) then
+if not is_creator(msg) and not is_setban(msg) and database:get("Tshake:lock:ban_and_kick"..bot_id..msg.chat_id_) then 
+send(msg.chat_id_, msg.id_, 1, '✖┇لا تستطيع حظر', 1, 'md')
+return "tshakke"
+end
 local apba = {string.match(text, "^(حظر) @(.*)$")}
 function ban_by_username(extra, result, success)
 if result.id_ then
