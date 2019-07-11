@@ -1562,7 +1562,7 @@ database:del("lock_link:tshake"..msg.chat_id_..bot_id,"ok")
 database:del("lock_username:tshake"..msg.chat_id_..bot_id,"ok")
 database:del("lock_botAndBan:tshake"..msg.chat_id_..bot_id,"ok")
 database:del("lock_new:tshake"..msg.chat_id_..bot_id,"ok")
-tsX000("lock",msg,"🔐┇ تم قفل جميع الاوامر ")
+tsX000("lock",msg,"⚠️┇ تم فتح جميع الاوامر ")
 end
 if (text == "فتح الاشعارات") then
 local tsX_o = database:get("lock_new:tshake"..msg.chat_id_..bot_id)
