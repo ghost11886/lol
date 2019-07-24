@@ -2763,7 +2763,7 @@ if text == ("تحديث السورس") then
 send(msg.chat_id_, msg.id_, 1, '☑┇تم التحديث', 1, 'md')
 os.execute('rm -rf ./libs/utils.lua')
 os.execute('rm -rf Tshake.lua')
-os.execute('cd libs;wget https://raw.githubusercontent.com/ghost11886/lol/Tshake/master/libs/utils.lua')
+os.execute('cd libs;wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/libs/utils.lua')
 os.execute('wget https://raw.githubusercontent.com/ghost11886/lol/master/Tshake/Tshake.lua')
 dofile('Tshake.lua')  
 return false
