@@ -7413,11 +7413,11 @@ return false end
 if text == ("[Dd][Ee][Vv]")or text == ("مطور بوت") or text == ("مطورين") or text == ("مطور البوت") or text == ("مطور") or text == ("المطور") and msg.reply_to_message_id_ == 0 then
 local text_sudo = redis:get('tshake:'..bot_id..'text_sudo')
 local nkeko = redis:get('tshake:'..bot_id..'nmkeko')
-local nakeko = redis:get('tshake:'..bot_id..'nakeko')
+local neekeko = redis:get('tshake:'..bot_id..'nakeko')
 if text_sudo then
 send(msg.chat_id_, msg.id_, 1, text_sudo, 1, 'md') 
 elseif nkeko then 
-sendContact(msg.chat_id_, msg.id_, 0, 1, nil, nkeko, "мσнαммα∂ αℓ-кнαℓι∂ү" , "", bot_id)
+sendContact(msg.chat_id_, msg.id_, 0, 1, nil, nkeko, neekeko , "", bot_id)
 else
 send(msg.chat_id_, msg.id_, 1, "🗃┇ عذراً لم يتم وضع كليشة المطور \n اذا كنت المطور الاساسي للبوت\n قم بارسال (تغير امر المطور بالكليشه) لوضع الكليشة 🎚", 1, 'md') 
 end
