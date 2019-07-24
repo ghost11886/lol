@@ -1,4 +1,4 @@
--[[
+--[[
  _____ ____  _   _    _    _  _______
 |_   _/ ___|| | | |  / \  | |/ / ____|
   | | \___ \| |_| | / _ \ | ' /|  _|
@@ -7546,7 +7546,7 @@ t = database:get("tshake:name_adm"..bot_id..msg.chat_id_) or 'ادمن الكر�
 elseif is_vip(msg) then
 t = database:get("tshake:name_vipp"..bot_id..msg.chat_id_) or ' عضو مميز 🧙🏻‍♂'
 else
-t = database:get("tshake:name_nk"..bot_id..msg.chat_id_) or 'عضو فقط 👶??' 
+t = database:get("tshake:name_nk"..bot_id..msg.chat_id_) or 'عضو فقط 👶🏻' 
 end
 if not database:get("tshake:gr:id:text:"..bot_id..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_, 1, "🎟┇ ايديك • ("..msg.sender_user_id_..")\n🎫┇ يوزرك • "..keko_info.."\n🛰┇ موقعك • "..t.."\n📖┇ رسائلك • ("..user_msgs..")\n🗃┇ سحكاتك • ("..edit..")\n📓┇ تفاعلك • "..ikeko_text.."\n🤹🏻‍♂️┇ مجوهراتك •  ("..nko..")\nꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ ", 1, 'html')
