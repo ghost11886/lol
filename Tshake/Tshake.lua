@@ -7417,7 +7417,7 @@ local nakeko = redis:get('tshake:'..bot_id..'nakeko')
 if text_sudo then
 send(msg.chat_id_, msg.id_, 1, text_sudo, 1, 'md') 
 elseif nkeko then 
-sendContact(msg.chat_id_, msg.id_, 0, 1, nil, nmkeko, text , "", bot_id)
+sendContact(msg.chat_id_, msg.id_, 0, 1, nil, nkeko, text , "", bot_id)
 else
 send(msg.chat_id_, msg.id_, 1, "🗃┇ عذراً لم يتم وضع كليشة المطور \n اذا كنت المطور الاساسي للبوت\n قم بارسال (تغير امر المطور بالكليشه) لوضع الكليشة 🎚", 1, 'md') 
 end
