@@ -2374,7 +2374,7 @@ end
 ------------------------------------------------------------------------
 if text == ("حظر عام") and msg.reply_to_message_id_ then
 function gban_by_reply(extra, result, success)
-if result.sender_user_id_ == tonumber(sudo_add) then
+if result.sender_user_id_ == tonumber(bot_id) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
 return false 
 end
