@@ -2374,7 +2374,7 @@ end
 ------------------------------------------------------------------------
 if text == ("حظر عام") and msg.reply_to_message_id_ then
 function gban_by_reply(extra, result, success)
-if result.sender_user_id_ == tonumber(sudo_users) then
+if result.sender_user_id_ == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
 return false 
 end
@@ -2395,7 +2395,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 SendText(msg.chat_id_,msg.id_,"*📮┇ هاذا معرف قناة \n*")   
 return false 
 end      
-if result.id_ == tonumber(sudo_users) then
+if result.id_ == tonumber(bot_id) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
 return false 
 end
@@ -2413,7 +2413,7 @@ end
 ------------------------------------------------------------------------
 if text and text:match("^حظر عام (%d+)$") then
 local apbll = {string.match(text, "^(حظر عام) (%d+)$")}
-if apbll[2] == tonumber(sudo_users) then
+if apbll[2] == tonumber(bot_id) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
 return false 
 end
@@ -2459,7 +2459,7 @@ end
 ------------------------------------------------------------------------
 if text == ("كتم عام") and msg.reply_to_message_id_ then
 function gmute_by_reply(extra, result, success)
-if result.sender_user_id_ == tonumber(sudo_users) then
+if result.sender_user_id_ == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك كتم المطور الاساسي \n", 1, 'md')
 return false 
 end
@@ -2479,7 +2479,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 SendText(msg.chat_id_,msg.id_,"*📮┇ هاذا معرف قناة \n*")   
 return false 
 end      
-if result.id_ == tonumber(sudo_users) then
+if result.id_ == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك كتم المطور الاساسي \n", 1, 'md')
 return false 
 end
@@ -2497,7 +2497,7 @@ end
 ------------------------------------------------------------------------
 if text and text:match("^كتم عام (%d+)$") then
 local apbll = {string.match(text, "^(كتم عام) (%d+)$")}
-if apbll[2] == tonumber(sudo_users) then
+if apbll[2] == tonumber(sudo_add) then
 send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك كتم المطور الاساسي \n", 1, 'md')
 return false 
 end
