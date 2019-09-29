@@ -2372,57 +2372,6 @@ send(msg.chat_id_, msg.id_, 1, text, 1, 'html')
 return false
 end  
 ------------------------------------------------------------------------
-if text == ("حظر عام") and msg.reply_to_message_id_ then
-function gban_by_reply(extra, result, success)
-if result.sender_user_id_ == tonumber(sudo_add) then
-send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
-return false 
-end
-local hash =  'tshake:'..bot_id..'gbanned:'
-database:sadd(hash, result.sender_user_id_)
-chat_kick(result.chat_id_, result.sender_user_id_)
-tsX000("prore",msg,"🚫┇تم حظره من مجموعات البوت")
-end
-getMessage(msg.chat_id_, msg.reply_to_message_id_,gban_by_reply)
-return false
-end
-------------------------------------------------------------------------
-if text and text:match("^حظر عام @(.*)$")  then
-local apbll = {string.match(text, "^(حظر عام) @(.*)$")}
-function gban_by_username(extra, result, success)
-if result.id_ then
-if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
-SendText(msg.chat_id_,msg.id_,"*📮┇ هاذا معرف قناة \n*")   
-return false 
-end      
-if result.id_ == tonumber(sudo_add) then
-send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
-return false 
-end
-local hash =  'tshake:'..bot_id..'gbanned:'
-texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apbll[2] or 'TSHAKETEAM')..')\n🚫┇تم حظره من المجموعات البوت'
-database:sadd(hash, result.id_)
-else
-texts = '✖┇خطاء'
-end
-send(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
-end
-resolve_username(apbll[2],gban_by_username)
-return false
-end
-------------------------------------------------------------------------
-if text and text:match("^حظر عام (%d+)$") then
-local apbll = {string.match(text, "^(حظر عام) (%d+)$")}
-if apbll[2] == tonumber(sudo_add) then
-send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
-return false 
-end
-local hash =  'tshake:'..bot_id..'gbanned:'
-database:sadd(hash, apbll[2])
-tsX000(apbll[2],msg,"🚫┇تم حظره من المجموعات البوت")
-return false
-end
-------------------------------------------------------------------------
 if text == ("الغاء العام") and msg.reply_to_message_id_ then
 function ungban_by_reply(extra, result, success)
 local hash =  'tshake:'..bot_id..'gbanned:'
@@ -3222,6 +3171,91 @@ if text and text:match("^تنزيل منشئ اساسي (%d+)$") then
 local apmd = {string.match(text, "^(تنزيل منشئ اساسي) (%d+)$")}
 database:srem('tshake:'..bot_id..'creatorbasic:'..msg.chat_id_, apmd[2])
 tsX000(apmd[2],msg,"تم تنزيلة منشئ اساسي من البوت")
+return false
+end
+------------------------------------------------------------------------
+if text == ("حظر عام") and msg.reply_to_message_id_ then
+function gban_by_reply(extra, result, success)
+if result.sender_user_id_ == tonumber(sudo_add) then
+send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
+return false 
+end
+local hash =  'tshake:'..bot_id..'gbanned:'
+database:sadd(hash, result.sender_user_id_)
+chat_kick(result.chat_id_, result.sender_user_id_)
+tsX000("prore",msg,"🚫┇تم حظره من مجموعات البوت")
+end
+getMessage(msg.chat_id_, msg.reply_to_message_id_,gban_by_reply)
+return false
+end
+------------------------------------------------------------------------
+if text and text:match("^حظر عام @(.*)$")  then
+local apbll = {string.match(text, "^(حظر عام) @(.*)$")}
+function gban_by_username(extra, result, success)
+if result.id_ then
+if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
+SendText(msg.chat_id_,msg.id_,"*📮┇ هاذا معرف قناة \n*")   
+return false 
+end      
+if result.id_ == tonumber(sudo_add) then
+send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
+return false 
+end
+local hash =  'tshake:'..bot_id..'gbanned:'
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apbll[2] or 'TSHAKETEAM')..')\n🚫┇تم حظره من المجموعات البوت'
+database:sadd(hash, result.id_)
+else
+texts = '✖┇خطاء'
+end
+send(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
+end
+resolve_username(apbll[2],gban_by_username)
+return false
+end
+------------------------------------------------------------------------
+if text and text:match("^حظر عام (%d+)$") then
+local apbll = {string.match(text, "^(حظر عام) (%d+)$")}
+if apbll[2] == tonumber(sudo_add) then
+send(msg.chat_id_, msg.id_, 1, "📮┇لا يمكنك حظر المطور الاساسي \n", 1, 'md')
+return false 
+end
+local hash =  'tshake:'..bot_id..'gbanned:'
+database:sadd(hash, apbll[2])
+tsX000(apbll[2],msg,"🚫┇تم حظره من المجموعات البوت")
+return false
+end
+------------------------------------------------------------------------
+if text == ("الغاء العام") and msg.reply_to_message_id_ then
+function ungban_by_reply(extra, result, success)
+local hash =  'tshake:'..bot_id..'gbanned:'
+tsX000("prore",msg,"🚫┇تم الغاء حظره من المجموعات البوت")
+database:srem(hash, result.sender_user_id_)
+end
+getMessage(msg.chat_id_, msg.reply_to_message_id_,ungban_by_reply)
+return false
+end
+------------------------------------------------------------------------
+if text and text:match("^الغاء العام @(.*)$") then
+local apid = {string.match(text, "^(الغاء العام) @(.*)$")}
+function ungban_by_username(extra, result, success)
+local hash =  'tshake:'..bot_id..'gbanned:'
+if result.id_ then
+texts = '👤┇العضو ~⪼ ['..result.title_..'](t.me/'..(apid[2] or 'TSHAKETEAM')..')\n��┇تم الغاء حظره من المجموعات البوت'
+database:srem(hash, result.id_)
+else
+texts = '✖┇خطاء'
+end
+send(msg.chat_id_, msg.id_, 1, texts, 1, 'md')
+end
+resolve_username(apid[2],ungban_by_username)
+return false
+end
+------------------------------------------------------------------------
+if text and text:match("^الغاء العام (%d+)$") then
+local apbll = {string.match(text, "^(الغاء العام) (%d+)$")}
+local hash =  'tshake:'..bot_id..'gbanned:'
+database:srem(hash, apbll[2])
+tsX000(apbll[2],msg,"🚫┇تم الغاء حظره من مجموعات البوت")
 return false
 end
 ------------------------------------------------------------------------
