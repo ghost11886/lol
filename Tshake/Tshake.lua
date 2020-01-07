@@ -7939,15 +7939,19 @@ end
   send(msg.chat_id_, msg.id_, 1, '📛│تم مسح قائمه المطايه 😹🐗\n💳│ايديك : {'..msg.sender_user_id_..'}', 1, 'md')
   end  
 
-    if text and text:match("^رفع زاحف$") and is_owner(msg) and msg.reply_to_message_id_ then
+ if text and text:match("^رفع زاحف$") and is_owner(msg) and msg.reply_to_message_id_ then
     function setzhf_by_reply(extra, result, success)
 hash =  'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
+    if ck_mod(result.sender_user_id_, msg.chat_id_) == true then
+send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️┇ لا تستطيع رفعه زاحفاً لانه ( '..Rutba(result.sender_user_id_,result.chat_id_)..' )', 1, 'md')
+else
     if database:sismember(hash, result.sender_user_id_) then
 	tsX000("prore",msg,"🔼│بالفعل تم رفعه زاحف 🐊😹\n💳│ايديه : {"..result.sender_user_id_.."}")
     else
      database:sadd(hash, result.sender_user_id_)
 	 tsX000("prore",msg,"🔼│تم رفعه زاحف 🐊😹\n💳│ايديه : {"..result.sender_user_id_.."}")
     end
+  end
   end
     getMessage(msg.chat_id_, msg.reply_to_message_id_,setzhf_by_reply)
   end
@@ -8002,6 +8006,9 @@ end
     if text and text:match("^رفع مطي$") and is_owner(msg) and msg.reply_to_message_id_ then
     function setm6e_by_reply(extra, result, success)
      hash =  'tshake:'..bot_id..'m6es:dz:'..msg.chat_id_
+	  if ck_mod(result.sender_user_id_, msg.chat_id_) == true then
+send(msg.chat_id_, msg.id_, 1, '🙋🏻‍♂️┇ لا تستطيع رفعه مطياً لانه ( '..Rutba(result.sender_user_id_,result.chat_id_)..' )', 1, 'md')
+else
     if database:sismember(hash, result.sender_user_id_) then
 	tsX000("prore",msg,"🔼│بالفعل تم رفعه مطي 😹🐗\n💳│ايديه : {"..result.sender_user_id_.."}")
     else
@@ -8009,6 +8016,7 @@ end
 	 tsX000("prore",msg,"🔼│تم رفعه مطي 😹🐗\n💳│ايديه : {"..result.sender_user_id_.."}")
     end
   end
+   end
     getMessage(msg.chat_id_, msg.reply_to_message_id_,setm6e_by_reply)
   end
       if text and text:match("^تنزيل مطي$") and is_owner(msg) and msg.reply_to_message_id_ then
