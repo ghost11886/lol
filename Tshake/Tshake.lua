@@ -7925,13 +7925,7 @@ if m6e then var = true end
 return var
 end
 
-    if  text:match("^مسح الزواحف$") and is_owner(msg) then
-hash =   'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
-list = database:smembers(hash) 
-    for k,v in pairs(list) do database:del('tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_) 
-end
-  send(msg.chat_id_, msg.id_, 1, '📛│تم مسح قائمه الزواحف 🐊😹\n💳│ايديك : {'..msg.sender_user_id_..'}', 1, 'md')
-end  
+
     if  text:match("^مسح المطايه$") and is_owner(msg) then
 hash =   'tshake:'..bot_id..'m6es:dz:'..msg.chat_id_
 list = database:smembers(hash) 
