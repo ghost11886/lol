@@ -7926,14 +7926,6 @@ return var
 end
 
 
-    if  text:match("^مسح المطايه$") and is_owner(msg) then
-hash =   'tshake:'..bot_id..'m6es:dz:'..msg.chat_id_
-list = database:smembers(hash) 
-    for k,v in pairs(list) do database:del('tshake:'..bot_id..'m6es:dz:'..msg.chat_id_) 
-end
-  send(msg.chat_id_, msg.id_, 1, '📛│تم مسح قائمه المطايه 😹🐗\n💳│ايديك : {'..msg.sender_user_id_..'}', 1, 'md')
-  end  
-
     if text:match("^رفع زاحف$") and is_owner(msg) and msg.reply_to_message_id_ then
     function setzhf_by_reply(extra, result, success)
 hash =  'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
