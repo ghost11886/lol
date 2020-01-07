@@ -7910,20 +7910,20 @@ end
 function is_zhf(msg)
 user_id = msg.sender_user_id_
 chat_id = msg.chat_id_
-local var = false
-local zahf = database:sismember('tshake:'..bot_id..'zhfs:dz:'..chat_id, user_id)
+var = false
+zahf = database:sismember('tshake:'..bot_id..'zhfs:dz:'..chat_id, user_id)
 if zahf then var = true end
 return var
 end
 function is_m6e(msg)
 user_id = msg.sender_user_id_
 chat_id = msg.chat_id_
-local var = false
-local m6e = database:sismember('tshake:'..bot_id..'m6es:dz:'..chat_id, user_id)
+var = false
+m6e = database:sismember('tshake:'..bot_id..'m6es:dz:'..chat_id, user_id)
 if m6e then var = true end
 return var
 end
-local function getMessage(chat_id, message_id,cb)
+function getMessage(chat_id, message_id,cb)
 tdcli_function ({
 ID = "GetMessage",
 chat_id_ = chat_id,
@@ -7931,15 +7931,15 @@ message_id_ = message_id
   }, cb, nil)
 end
     if  text:match("^مسح الزواحف$") and is_owner(msg) then
-  local hash =   'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
-    local list = database:smembers(hash) 
+hash =   'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
+list = database:smembers(hash) 
     for k,v in pairs(list) do database:del('tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_) 
 end
   send(msg.chat_id_, msg.id_, 1, '📛│تم مسح قائمه الزواحف 🐊😹\n💳│ايديك : {'..msg.sender_user_id_..'}', 1, 'md')
 end  
     if  text:match("^مسح المطايه$") and is_owner(msg) then
-  local hash =   'tshake:'..bot_id..'m6es:dz:'..msg.chat_id_
-    local list = database:smembers(hash) 
+hash =   'tshake:'..bot_id..'m6es:dz:'..msg.chat_id_
+list = database:smembers(hash) 
     for k,v in pairs(list) do database:del('tshake:'..bot_id..'m6es:dz:'..msg.chat_id_) 
 end
   send(msg.chat_id_, msg.id_, 1, '📛│تم مسح قائمه المطايه 😹🐗\n💳│ايديك : {'..msg.sender_user_id_..'}', 1, 'md')
@@ -7954,7 +7954,7 @@ getUser(msg.sender_user_id_, keko333)
 end
 if value == "prore" then
 function get_tshakeX(tshakex1,tshakex2,tshakex3)
-local id_tshakex = tshakex2.sender_user_id_
+id_tshakex = tshakex2.sender_user_id_
 function keko333(extra,result,success)
 info = '🦁│العضو : ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKETEAM')..')\n'..text
 send(msg.chat_id_, msg.id_, 1,info, 1, 'md')
@@ -7974,7 +7974,7 @@ end -- end fun
 
     if text:match("^رفع زاحف$") and is_owner(msg) and msg.reply_to_message_id_ then
     function setzhf_by_reply(extra, result, success)
-    local hash =  'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
+hash =  'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
     if database:sismember(hash, result.sender_user_id_) then
 	tsX000("prore",msg,"🔼│بالفعل تم رفعه زاحف 🐊😹\n💳│ايديه : {"..result.sender_user_id_.."}")
     else
@@ -7986,7 +7986,7 @@ end -- end fun
   end
       if text:match("^تنزيل زاحف$") and is_owner(msg) and msg.reply_to_message_id_ then
     function unzhf_by_reply(extra, result, success)
-    local hash =  'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
+     hash =  'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
     if not database:sismember(hash, result.sender_user_id_) then
 	tsX000("prore",msg,"🔽│بالفعل تنزيله من الزواحف 🐊😹\n💳│ايديه : {"..result.sender_user_id_.."}")
     else
@@ -7997,13 +7997,13 @@ end -- end fun
     getMessage(msg.chat_id_, msg.reply_to_message_id_,unzhf_by_reply)
   end
       if text:match("^الزواحف$") and is_owner(msg) then
-  local hash =   'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
-    local list = database:smembers(hash)
+   hash =   'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
+     list = database:smembers(hash)
      text = "🦎│قائمه الزواحف 🐊😹،\n😹│ذولي زحفو حتى على البوت\n─ ─ ─ ─ ─ ─ ─ ─ ─ \n"
   for k,v in pairs(list) do
-    local user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
+     user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
       if user_info and user_info.username then
-        local username = user_info.username
+         username = user_info.username
         text = text.."│"..k.."├:(@"..username..")\n"
   else
     text = text.."│"..k.."├:("..v..")\n"
@@ -8020,7 +8020,7 @@ end -- end fun
   end
   if text:match("^(.*)$") and is_zhf(msg) then
   if not database:get('tshake:'..bot_id..'thshesh:mute'..msg.chat_id_) then
-    local zhhhf = {
+     zhhhf = {
   "ها ابو الزلاحيف 😹",
   "اخوان ترى هذا زاحف 😒😹😹",
   "يول متستحي بعدك تزحف شكبرك تصير بعد ؟ 😐😹",
@@ -8034,7 +8034,7 @@ end
 end
     if text:match("^رفع مطي$") and is_owner(msg) and msg.reply_to_message_id_ then
     function setm6e_by_reply(extra, result, success)
-    local hash =  'tshake:'..bot_id..'m6es:dz:'..msg.chat_id_
+     hash =  'tshake:'..bot_id..'m6es:dz:'..msg.chat_id_
     if database:sismember(hash, result.sender_user_id_) then
 	tsX000("prore",msg,"🔼│بالفعل تم رفعه مطي 😹🐗\n💳│ايديه : {"..result.sender_user_id_.."}")
     else
@@ -8046,7 +8046,7 @@ end
   end
       if text:match("^تنزيل مطي$") and is_owner(msg) and msg.reply_to_message_id_ then
     function unm6e_by_reply(extra, result, success)
-    local hash =  'tshake:'..bot_id..'m6es:dz:'..msg.chat_id_
+     hash =  'tshake:'..bot_id..'m6es:dz:'..msg.chat_id_
     if not database:sismember(hash, result.sender_user_id_) then
 	tsX000("prore",msg,"🔽│بالفعل تم تنزيله من المطايه 😹🐗\n💳│ايديه : {"..result.sender_user_id_.."}")
     else
@@ -8060,13 +8060,13 @@ end
     send(msg.chat_id_, msg.reply_to_message_id_, 1, 'شكد فاشل بحيث حتى من المطايه نزلوك 😕😂', 1, 'html')
     end
       if text:match("^المطايه$") and is_owner(msg) then
-  local hash =   'tshake:'..bot_id..'m6es:dz:'..msg.chat_id_
-    local list = database:smembers(hash)
+   hash =   'tshake:'..bot_id..'m6es:dz:'..msg.chat_id_
+     list = database:smembers(hash)
      text = "🐐│قائمه المطايه 😹🐗،\n😹│يعني ملوك الصفنه\n─ ─ ─ ─ ─ ─ ─ ─ ─ \n"
   for k,v in pairs(list) do
-    local user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
+     user_info = database:hgetall('tshake:'..bot_id..'user:'..v)
       if user_info and user_info.username then
-        local username = user_info.username
+         username = user_info.username
         text = text.."│"..k.."├:(@"..username..")\n"
   else
     text = text.."│"..k.."├:("..v..")\n"
@@ -8083,7 +8083,7 @@ end
   end
   if text:match("^(.*)$") and is_m6e(msg) then
   if not database:get('tshake:'..bot_id..'thshesh:mute'..msg.chat_id_) then
-    local m66e = {
+     m66e = {
   "ها ابو صابر المطي 😹",
   "احلى مطي ومرقم الماني 😹😹",
   "يعني ملك الصفنه 🤣 المطي ابن المطي منور 😒😂",
@@ -8115,7 +8115,7 @@ end
 --                    الفشااااااااااااااااااااااااااار
   if text:match("^(سبه)$") and is_mod(msg) or text:match("^(اغلط عليه)$") and is_mod(msg) or text:match("^(فشر عليه)$") and is_mod(msg) or text:match("^(هينه)$") and is_mod(msg) then
   if not database:get('tshake:'..bot_id..'thshesh:mute'..msg.chat_id_) then
-    local fshar = {
+     fshar = {
   "خرا عليك يا زباله 😕😂",
   "انعل ابوك لابوك يا خرا 🙁❤️",
   "انت والنعال سوه يول 😸😹",
@@ -8134,7 +8134,7 @@ end
 end
    if text:match("^(سبها)$") and is_mod(msg) or text:match("^(اغلط عليها)$") and is_mod(msg) or text:match("^(فشر عليها)$") and is_mod(msg) or text:match("^(هينها)$") and is_mod(msg) then
     if not database:get('tshake:'..bot_id..'thshesh:mute'..msg.chat_id_) then
-    local fshaar = {
+     fshaar = {
   "خرا عليج يا زباله 😕😂",
   "انعل ابوج لابوج يا خرا 🙁❤️",
   "انتي والنعال سوه يولو 😸😹",
@@ -8156,7 +8156,7 @@ end
 
 if text:match("^بوس (.*)$") and is_mod(msg) or text:match("^بوسها (.*)$") and is_mod(msg) or text:match("^بوسني$") and is_mod(msg) or text:match("^بوسني (.*)$") and is_mod(msg) or text:match("^بوسها$") and is_mod(msg) or text:match("^بوسه (.*)$") and is_mod(msg) or text:match("^بوسه$") and is_mod(msg) then
   if not database:get('tshake:'..bot_id..'thshesh:mute'..msg.chat_id_) then
-    local bs = {
+     bs = {
   "لا ايع شهل جيفه 😕😂",
   "امحححححه يقلبي🙁❤️",
   "يمعود لتلعب نفسنا 😒😹",
@@ -8176,7 +8176,7 @@ end
 if text:match("^تحب (.*)$") and is_mod(msg) or text:match("^تحبها (.*)$") and is_mod(msg) or text:match("^تحبني$") and is_mod(msg) or text:match("^تحبني (.*)$") and is_mod(msg) or text:match("^تحبها$") and is_mod(msg) or text:match("^تحبه (.*)$") and is_mod(msg) or text:match("^تحبه$") and is_mod(msg) then
   if not database:get('tshake:'..bot_id..'thshesh:mute'..msg.chat_id_) then
   
-    local thb = {
+     thb = {
   "لعبت نفسي ولله 😕😂",
   "غير اموت عليه 🙁❤️",
   "لا شهل نعال 😒😹",
@@ -8194,7 +8194,7 @@ if text:match("^تحب (.*)$") and not is_mod(msg) or text:match("^تحبها (.
 end
 end
 if text:match("^م التحشيش$") or text:match("^اوامر التحشيش$") or text:match("^م تحشيش$") or text:match("^اوامر تحشيش$") and is_creator(msg) then
-     local text =  [[
+      text =  [[
 😹║ اوامر التحشيش
   ─ ─ ─ ─ ─ ─ ─ ─ ─
   الاوامر التاليه خاصه بالمدراء
