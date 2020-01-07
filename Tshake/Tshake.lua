@@ -134,6 +134,22 @@ else
 return false 
 end 
 end
+function is_zhf(msg)
+user_id = msg.sender_user_id_
+chat_id = msg.chat_id_
+var = false
+local zahf = database:sismember('tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_,msg.sender_user_id_)
+if zahf then var = true end
+return var
+end
+function is_m6e(msg)
+user_id = msg.sender_user_id_
+chat_id = msg.chat_id_
+var = false
+local m6e = database:sismember('tshake:'..bot_id..'m6es:dz:'..msg.chat_id_,msg.sender_user_id_)
+if m6e then var = true end
+return var
+end
 
 --         »»                 ck_mod                         ««              --
 function ck_mod(user_id,chat_id)
@@ -7908,23 +7924,20 @@ taha = '✖️┇عكس كلمه » {'..name..'} ⚜️'
 send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 end
 ------------------------------------------------------------------------
-function is_zhf(msg)
-user_id = msg.sender_user_id_
-chat_id = msg.chat_id_
-var = false
-zahf = database:sismember('tshake:'..bot_id..'zhfs:dz:'..chat_id, user_id)
-if zahf then var = true end
-return var
+    if  text:match("^مسح الزواحف$") and is_owner(msg) then
+hash =   'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
+list = database:smembers(hash) 
+    for k,v in pairs(list) do database:del('tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_) 
 end
-function is_m6e(msg)
-user_id = msg.sender_user_id_
-chat_id = msg.chat_id_
-var = false
-m6e = database:sismember('tshake:'..bot_id..'m6es:dz:'..chat_id, user_id)
-if m6e then var = true end
-return var
+  send(msg.chat_id_, msg.id_, 1, '📛│تم مسح قائمه الزواحف 🐊😹\n💳│ايديك : {'..msg.sender_user_id_..'}', 1, 'md')
+end  
+    if  text:match("^مسح المطايه$") and is_owner(msg) then
+hash =   'tshake:'..bot_id..'m6es:dz:'..msg.chat_id_
+list = database:smembers(hash) 
+    for k,v in pairs(list) do database:del('tshake:'..bot_id..'m6es:dz:'..msg.chat_id_) 
 end
-
+  send(msg.chat_id_, msg.id_, 1, '📛│تم مسح قائمه المطايه 😹🐗\n💳│ايديك : {'..msg.sender_user_id_..'}', 1, 'md')
+  end  
 
     if text:match("^رفع زاحف$") and is_owner(msg) and msg.reply_to_message_id_ then
     function setzhf_by_reply(extra, result, success)
