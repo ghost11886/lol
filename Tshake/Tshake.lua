@@ -7923,13 +7923,7 @@ m6e = database:sismember('tshake:'..bot_id..'m6es:dz:'..chat_id, user_id)
 if m6e then var = true end
 return var
 end
-function getMessage(chat_id, message_id,cb)
-tdcli_function ({
-ID = "GetMessage",
-chat_id_ = chat_id,
-message_id_ = message_id
-  }, cb, nil)
-end
+
     if  text:match("^مسح الزواحف$") and is_owner(msg) then
 hash =   'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
 list = database:smembers(hash) 
@@ -8223,7 +8217,7 @@ if text:match("^م التحشيش$") or text:match("^اوامر التحشيش$"
   😹┤اغلط عليه او اغلط عليها
   😹┘فشر عليه او فشر عليها
   ─ ─ ─ ─ ─ ─ ─ ─ ─
-  🎗┤CH @TSHAKETEAM]]
+  🎗┤DEV @IM_KI]]
   send(msg.chat_id_, msg.id_, 1, (h1 or text), 1, 'md')
      end
 ------------------------------------------------------------------------
