@@ -7907,22 +7907,7 @@ taha = '✖️┇عكس كلمه » {'..name..'} ⚜️'
 send(msg.chat_id_, msg.id_, 1,taha, 1, 'md')
 end
 ------------------------------------------------------------------------
-function is_zhf(msg)
-user_id = msg.sender_user_id_
-chat_id = msg.chat_id_
-var = false
-zahf = database:sismember('tshake:'..bot_id..'zhfs:dz:'..chat_id, user_id)
-if zahf then var = true end
-return var
-end
-function is_m6e(msg)
-user_id = msg.sender_user_id_
-chat_id = msg.chat_id_
-var = false
-m6e = database:sismember('tshake:'..bot_id..'m6es:dz:'..chat_id, user_id)
-if m6e then var = true end
-return var
-end
+
 
     if  text:match("^مسح الزواحف$") and is_owner(msg) then
 hash =   'tshake:'..bot_id..'zhfs:dz:'..msg.chat_id_
@@ -8220,6 +8205,7 @@ if text:match("^م التحشيش$") or text:match("^اوامر التحشيش$"
   🎗┤DEV @IM_KI]]
   send(msg.chat_id_, msg.id_, 1, (h1 or text), 1, 'md')
      end
+	 
 ------------------------------------------------------------------------
 if text == ''..(database:get('tshake:'..bot_id..'aks'..msg.chat_id_) or 'لفاتع')..'' and not database:get('tshake:'..bot_id..'l:id3'..msg.chat_id_) then
 if not database:get('tshake:'..bot_id..'l:id3'..msg.chat_id_) then 
