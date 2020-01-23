@@ -4262,7 +4262,7 @@ database:del('tshake:'..bot_id..'mods:'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, 1, '🗑┇ تم مسح  قائمة الادمنية  ', 1, 'md')
 end
 if text and text == "تعين الايدي" then
-send(msg.chat_id_, msg.id_, 1,  '☑┇ ارسل الان النص\n☑┇ يمكنك اضافه :\n- `#username` > اسم المستخدم\n- `#msgs` > عدد رسائل المستخدم\n- `#photos` > عدد صور المستخدم\n- `#id` > ايدي المستخدم\n- `#auto` > تفاعل المستخدم\n- `#stast` > موقع المستخدم \n- `#edit` > عدد السحكات\n- `#game` > المجوهرات', 1, 'md')
+send(msg.chat_id_, msg.id_, 1,  '☑┇ ارسل الان النص\n☑┇ يمكنك اضافه :\n- `#username` > اسم المستخدم\n- `#msgs` > عدد رسائل المستخدم\n- `#photos` > عدد صور المستخدم\n- `#id` > ايدي المستخدم\n- `#auto` > تفاعل المستخدم\n- `#statuspre` > نسبه تفاعل المستخدم\n- `#stast` > موقع المستخدم \n- `#edit` > عدد السحكات\n- `#game` > المجوهرات', 1, 'md')
 database:set("tsahke:set:id:"..bot_id..msg.chat_id_..msg.sender_user_id_,'tshake')
 return "tshake"
 end
@@ -7538,6 +7538,7 @@ local tshake_new_text = tshake_new_text:gsub('#stast',(t or 'لا يوجد'))
 local tshake_new_text = tshake_new_text:gsub('#auto',(ikeko_text or 'لا يوجد'))
 local tshake_new_text = tshake_new_text:gsub('#photos',(all_photo_tshake or 'لا يوجد'))
 local tshake_new_text = tshake_new_text:gsub('#game',(nko or 'لا يوجد'))
+local tshake_new_text = tshake_new_text:gsub('#statuspre',(nupmsgg or 'لا يوجد'))
 sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,tshake_new_text,msg.id_,msg.id_.."")
 end
 else
@@ -7574,6 +7575,7 @@ local tshake_new_text = tshake_new_text:gsub('#stast',(t or 'لا يوجد'))
 local tshake_new_text = tshake_new_text:gsub('#auto',(ikeko_text or 'لا يوجد'))
 local tshake_new_text = tshake_new_text:gsub('#photos',(all_photo_tshake or 'لا يوجد'))
 local tshake_new_text = tshake_new_text:gsub('#game',(nko or 'لا يوجد'))
+local tshake_new_text = tshake_new_text:gsub('#statuspre',(nupmsgg or 'لا يوجد'))
 send(msg.chat_id_, msg.id_, 1, tshake_new_text, 1, 'html')
 end   
 end
@@ -7615,6 +7617,7 @@ local tshake_new_text = tshake_new_text:gsub('#stast',(t or 'لا يوجد'))
 local tshake_new_text = tshake_new_text:gsub('#auto',(ikeko_text or 'لا يوجد'))
 local tshake_new_text = tshake_new_text:gsub('#photos',(all_photo_tshake or 'لا يوجد'))
 local tshake_new_text = tshake_new_text:gsub('#game',(nko or 'لا يوجد'))
+local tshake_new_text = tshake_new_text:gsub('#statuspre',(nupmsgg or 'لا يوجد'))
 send(msg.chat_id_, msg.id_, 1, tshake_new_text, 1, 'html')
 end
 else
@@ -7651,6 +7654,7 @@ local tshake_new_text = tshake_new_text:gsub('#stast',(t or 'لا يوجد'))
 local tshake_new_text = tshake_new_text:gsub('#auto',(ikeko_text or 'لا يوجد'))
 local tshake_new_text = tshake_new_text:gsub('#photos',(all_photo_tshake or 'لا يوجد'))
 local tshake_new_text = tshake_new_text:gsub('#game',(nko or 'لا يوجد'))
+local tshake_new_text = tshake_new_text:gsub('#statuspre',(nupmsgg or 'لا يوجد'))
 send(msg.chat_id_, msg.id_, 1, tshake_new_text, 1, 'html') 
 end 
 end
