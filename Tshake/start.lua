@@ -1,6 +1,9 @@
-sudo_tshake = dofile("sudo.lua")
+serpent = dofile("./File_Libs/serpent.lua")
+serpent = dofile("./File_Libs/serpent.lua")
 https = require("ssl.https")
-JSON = dofile("./libs/JSON.lua")
+http = require("socket.http")
+JSON = dofile("./File_Libs/JSON.lua")
+local database = dofile("./File_Libs/redis.lua").connect("127.0.0.1", 6379)
 local tshake_dev = io.open("tshake_online.lua")
 if tshake_dev then
 tshake_on = {string.match(tshake_dev:read('*all'), "^(.*)/(%d+)")}
